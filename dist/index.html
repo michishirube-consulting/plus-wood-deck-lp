@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="使っていない庭を、家族が過ごせる場所に。木村建設のウッドデッキ専門店、スマートフォンLPデザイン初稿。">
+  <title>木村建設｜ウッドデッキ専門店</title>
+  <link rel="preconnect" href="https://images.pexels.com">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23263336'/%3E%3Cpath d='M14 18h36v7H14zm0 11h36v7H14zm0 11h36v7H14z' fill='%23d6b48c'/%3E%3Ccircle cx='24' cy='21.5' r='1.6' fill='%238a5a35'/%3E%3Ccircle cx='41' cy='32.5' r='1.8' fill='%238a5a35'/%3E%3Ccircle cx='29' cy='43.5' r='1.4' fill='%238a5a35'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ivory: #f4f0e7;
+      --paper: #fffdf9;
+      --ink: #263336;
+      --ink-2: #425052;
+      --brown: #8a5a35;
+      --brown-dark: #684126;
+      --sand: #d6b48c;
+      --green: #526a57;
+      --green-dark: #08783e;
+      --sage: #e6ece4;
+      --line: #dcd5ca;
+      --muted: #7b807d;
+      --shadow: 0 20px 60px rgba(38, 51, 54, .13);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: #e7e2d8; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(138, 90, 53, .08), transparent 26%),
+        linear-gradient(90deg, rgba(138, 90, 53, .035) 1px, transparent 1px),
+        #e7e2d8;
+      background-size: auto, 68px 100%, auto;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a { font: inherit; }
+    button { color: inherit; }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+
+    .site-shell {
+      position: relative;
+      width: min(100%, 430px);
+      min-height: 100vh;
+      margin-inline: auto;
+      overflow: hidden;
+      background: var(--ivory);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      position: absolute;
+      z-index: 10;
+      inset: 0 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(20, 29, 30, .58), transparent);
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-content: center;
+      gap: 3px;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 50%;
+      background: rgba(38, 51, 54, .5);
+      backdrop-filter: blur(5px);
+    }
+    .brand-mark i { display: block; width: 17px; height: 2px; background: var(--sand); border-radius: 99px; }
+    .brand-copy { line-height: 1.2; }
+    .brand-copy strong { display: block; font-size: 14px; letter-spacing: .08em; }
+    .brand-copy small { display: block; margin-top: 3px; font-size: 9px; letter-spacing: .18em; color: rgba(255,255,255,.84); }
+    .specialty {
+      padding: 5px 9px;
+      border: 1px solid rgba(255,255,255,.58);
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      background: rgba(38,51,54,.35);
+      backdrop-filter: blur(5px);
+    }
+
+    .hero { position: relative; }
+    .hero-visual { position: relative; height: 505px; background: #344542; overflow: hidden; }
+    .hero-visual img { height: 100%; object-fit: cover; object-position: 58% center; }
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(19,27,28,.08) 38%, rgba(23,31,31,.62) 100%);
+    }
+    .image-label {
+      position: absolute;
+      z-index: 2;
+      right: 12px;
+      bottom: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: rgba(255,255,255,.92);
+      background: rgba(24,31,31,.62);
+      font-size: 10px;
+      letter-spacing: .04em;
+    }
+    .hero-seal {
+      position: absolute;
+      z-index: 3;
+      left: 18px;
+      bottom: 22px;
+      width: 84px;
+      height: 84px;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 50%;
+      background: rgba(82,106,87,.78);
+      backdrop-filter: blur(6px);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: .08em;
+      transform: rotate(-5deg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      margin-top: -1px;
+      padding: 33px 16px 42px;
+      background: var(--ivory);
+    }
+    .hero-content::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 16px;
+      width: 52px;
+      height: 3px;
+      background: var(--brown);
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 9vw, 38px);
+      line-height: 1.38;
+      letter-spacing: -.035em;
+      font-weight: 750;
+    }
+    .hero-lead {
+      margin: 18px 0 0;
+      color: var(--ink-2);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+    .hero-lead strong { color: var(--brown-dark); font-weight: 700; }
+
+    .cta-wrap { margin-top: 24px; }
+    .cta {
+      width: 100%;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--green-dark);
+      box-shadow: 0 9px 24px rgba(8,120,62,.22);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: .01em;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .cta:active { transform: translateY(1px); box-shadow: 0 5px 15px rgba(8,120,62,.2); }
+    .line-symbol {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 8px;
+      color: var(--green-dark);
+      background: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: -.05em;
+    }
+    .cta-arrow { margin-left: auto; font-size: 20px; line-height: 1; }
+    .cta-note { margin: 10px 0 0; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 17px;
+      color: var(--ink-2);
+      font-size: 11px;
+      font-weight: 650;
+    }
+    .trust-row span { padding: 5px 9px; border-radius: 99px; background: rgba(255,255,255,.62); border: 1px solid var(--line); }
+
+    section { position: relative; padding: 70px 16px; }
+    .section-kicker { margin: 0 0 10px; color: var(--brown); font-size: 11px; font-weight: 800; letter-spacing: .18em; }
+    h2 { margin: 0; font-size: 27px; line-height: 1.5; letter-spacing: -.025em; }
+    .section-lead { margin: 13px 0 0; color: var(--ink-2); font-size: 15px; line-height: 1.85; }
+
+    .life-section { color: #fff; background: var(--ink); }
+    .life-section .section-kicker { color: var(--sand); }
+    .life-section .section-lead { color: rgba(255,255,255,.72); }
+    .life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 28px; }
+    .life-item { position: relative; min-height: 212px; overflow: hidden; background: #52605d; }
+    .life-item:nth-child(2), .life-item:nth-child(3) { min-height: 176px; }
+    .life-item img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+    .life-item:nth-child(1) img { object-position: 48% center; }
+    .life-item:nth-child(2) img { object-position: 54% 45%; }
+    .life-item:nth-child(3) img { object-position: 70% 42%; }
+    .life-item:nth-child(4) img { object-position: 52% center; }
+    .life-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(16,24,24,.82)); }
+    .life-copy { position: absolute; z-index: 2; inset: auto 12px 12px; }
+    .life-copy b { display: block; font-size: 14px; line-height: 1.55; }
+    .life-copy small { display: block; margin-bottom: 3px; color: var(--sand); font-size: 9px; letter-spacing: .12em; }
+    .life-foot { display: flex; align-items: center; gap: 12px; margin: 26px 0 0; color: rgba(255,255,255,.7); font-size: 12px; }
+    .life-foot::before { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,.18); }
+
+    .cases-section { padding-inline: 0; background: var(--paper); }
+    .cases-head { padding-inline: 16px; }
+    .case-scroller {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      padding: 0 16px 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: none;
+    }
+    .case-scroller::-webkit-scrollbar { display: none; }
+    .case-card {
+      flex: 0 0 min(330px, calc(100vw - 60px));
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: #fff;
+      scroll-snap-align: start;
+      box-shadow: 0 8px 22px rgba(38,51,54,.06);
+    }
+    .case-photo { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #d7d9d2; }
+    .case-photo img { height: 100%; object-fit: cover; }
+    .case-card:nth-child(1) .case-photo img { object-position: 52% 48%; }
+    .case-card:nth-child(2) .case-photo img { object-position: center 42%; }
+    .case-card:nth-child(3) .case-photo img { object-position: 62% center; }
+    .case-photo::after { content: ""; position: absolute; inset: 58% 0 0; background: linear-gradient(transparent, rgba(20,29,29,.55)); }
+    .case-no {
+      position: absolute;
+      z-index: 2;
+      top: 13px;
+      left: 13px;
+      display: inline-grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      color: #fff;
+      border-radius: 50%;
+      background: var(--brown);
+      font-size: 10px;
+      line-height: 1.2;
+      letter-spacing: .09em;
+      text-align: center;
+    }
+    .case-photo .image-label { bottom: 10px; }
+    .case-body { padding: 22px 18px 20px; }
+    .case-type { margin: 0; color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+    .case-title { margin: 4px 0 15px; font-size: 20px; line-height: 1.5; }
+    .case-spec { display: grid; grid-template-columns: 78px 1fr; gap: 8px 10px; margin: 0; padding: 14px 0; border-block: 1px solid var(--line); font-size: 13px; line-height: 1.55; }
+    .case-spec dt { color: var(--muted); }
+    .case-spec dd { margin: 0; font-weight: 650; }
+    .case-price { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: 16px; }
+    .case-price span { color: var(--muted); font-size: 12px; }
+    .case-price strong { color: var(--brown-dark); font-size: 17px; }
+    .draft-tag { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; color: var(--muted); font-size: 10px; }
+    .draft-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
+    .scroll-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; color: var(--muted); font-size: 11px; }
+    .scroll-hint i { display: block; width: 26px; height: 2px; border-radius: 99px; background: var(--line); transition: background .2s, width .2s; }
+    .scroll-hint i.active { width: 38px; background: var(--brown); }
+    .case-cta { margin: 28px 16px 0; padding: 24px 16px; text-align: center; border-radius: 16px; background: var(--sage); }
+    .case-cta p { margin: 0 0 15px; font-size: 14px; font-weight: 700; line-height: 1.7; }
+    .price-note { margin: 12px 0 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+
+    .mini-footer { padding: 26px 16px calc(110px + var(--safe-bottom)); color: var(--muted); background: var(--paper); font-size: 10px; line-height: 1.7; }
+    .mini-footer a { text-underline-offset: 2px; }
+
+    .fixed-cta {
+      position: fixed;
+      z-index: 20;
+      left: 50%;
+      bottom: 0;
+      width: min(100%, 430px);
+      padding: 8px 12px calc(8px + var(--safe-bottom));
+      background: rgba(255,253,249,.94);
+      border-top: 1px solid rgba(220,213,202,.92);
+      backdrop-filter: blur(10px);
+      transform: translate(-50%, 110%);
+      transition: transform .28s ease;
+    }
+    .fixed-cta.visible { transform: translate(-50%, 0); }
+    .fixed-cta .cta { min-height: 52px; font-size: 15px; }
+
+    dialog {
+      width: min(346px, calc(100% - 32px));
+      padding: 0;
+      border: 0;
+      border-radius: 18px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: 0 24px 80px rgba(16,26,26,.3);
+    }
+    dialog::backdrop { background: rgba(20,28,29,.65); backdrop-filter: blur(3px); }
+    .dialog-inner { padding: 28px 22px 22px; text-align: center; }
+    .dialog-icon { width: 48px; height: 48px; display: grid; place-items: center; margin: 0 auto 14px; border-radius: 15px; color: #fff; background: var(--green-dark); font-size: 12px; font-weight: 900; }
+    .dialog-inner h3 { margin: 0; font-size: 20px; }
+    .dialog-inner p { margin: 11px 0 19px; color: var(--ink-2); font-size: 14px; line-height: 1.75; }
+    .dialog-close { width: 100%; min-height: 48px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-weight: 700; cursor: pointer; }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (min-width: 700px) {
+      body { padding-block: 28px; }
+      .site-shell { border-radius: 26px; }
+      .fixed-cta { bottom: 28px; border-radius: 0 0 26px 26px; }
+    }
+    @media (max-width: 360px) {
+      h1 { font-size: 30px; }
+      h2 { font-size: 24px; }
+      .hero-visual { height: 460px; }
+      .trust-row { gap: 5px; }
+      .trust-row span { padding-inline: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="topbar" aria-label="サイトヘッダー">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-copy"><strong>木村建設</strong><small>WOOD DECK</small></span>
+      </div>
+      <span class="specialty">ウッドデッキ専門店</span>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-visual" id="heroVisual">
+        <img src="assets/hero-concept-v1.jpg" alt="リビングからウッドデッキと小さな庭へつながる日本の戸建て住宅イメージ" fetchpriority="high">
+        <span class="hero-seal">リビングの<br>続きに<br>庭の居場所を</span>
+        <span class="image-label">コンセプトイメージ</span>
+      </div>
+      <div class="hero-content">
+        <p class="eyebrow">GARDEN TO LIVING</p>
+        <h1 id="hero-title">使っていない庭を、<br>家族が過ごせる場所に。</h1>
+        <p class="hero-lead">リビングからつながるウッドデッキを、<strong>庭の広さ・使い方・ご予算</strong>から一緒に考えます。サイズも商品も、決まっていなくて大丈夫です。</p>
+        <div class="cta-wrap">
+          <button class="cta js-line" type="button">
+            <span class="line-symbol" aria-hidden="true">LINE</span>
+            <span>LINEでサイズと費用を相談する</span>
+            <span class="cta-arrow" aria-hidden="true">›</span>
+          </button>
+          <p class="cta-note">商品の指定は不要です<br>庭の写真があれば相談がスムーズです</p>
+        </div>
+        <div class="trust-row" aria-label="相談できる内容">
+          <span>サイズ</span><span>素材選び</span><span>概算費用</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="life-section" aria-labelledby="life-title">
+      <div class="reveal">
+        <p class="section-kicker">DECK CHANGES THE GARDEN</p>
+        <h2 id="life-title">庭が、毎日使える<br>場所になる。</h2>
+        <p class="section-lead">眺めるだけだった庭を、室内からすぐ出られる家族の居場所へ。</p>
+      </div>
+
+      <div class="life-grid reveal">
+        <article class="life-item">
+          <img src="assets/hero-concept-v1.jpg" alt="大きな窓から庭のデッキへつながる住宅イメージ" loading="lazy">
+          <div class="life-copy"><small>01 / CONNECT</small><b>リビングから、<br>そのまま外へ</b></div>
+        </article>
+        <article class="life-item">
+          <img src="https://images.pexels.com/photos/8841686/pexels-photo-8841686.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="デッキで家族がくつろぐ様子" loading="lazy">
+          <div class="life-copy"><small>02 / FAMILY</small><b>家族で過ごす<br>場所に</b></div>
+        </article>
+        <article class="life-item">
+          <img src="assets/hero-concept-v1.jpg" alt="室内から庭へ続く木製デッキのイメージ" loading="lazy">
+          <div class="life-copy"><small>03 / STEP</small><b>庭への段差を<br>抑える設計も</b></div>
+        </article>
+        <article class="life-item">
+          <img src="assets/hero-concept-v1.jpg" alt="庭と住宅をつなぐデッキのイメージ" loading="lazy">
+          <div class="life-copy"><small>04 / DAILY</small><b>庭に出る動線を<br>もっと身近に</b></div>
+        </article>
+      </div>
+      <p class="life-foot">住宅と庭を、ひと続きで考える。</p>
+    </section>
+
+    <section class="cases-section" aria-labelledby="cases-title">
+      <div class="cases-head reveal">
+        <p class="section-kicker">SIZE &amp; BUDGET</p>
+        <h2 id="cases-title">広さと使い方で見る、<br>デッキの実例。</h2>
+        <p class="section-lead">必要な広さは、何をしたいかで変わります。実施工の寸法と価格で比べられる構成です。</p>
+      </div>
+
+      <div class="case-scroller" id="caseScroller" aria-label="施工事例">
+        <article class="case-card">
+          <div class="case-photo">
+            <img src="assets/hero-concept-v1.jpg" alt="コンパクトなデッキの参考イメージ" loading="lazy">
+            <span class="case-no">CASE<br>01</span>
+            <span class="image-label">参考イメージ</span>
+          </div>
+          <div class="case-body">
+            <p class="case-type">COMPACT TYPE</p>
+            <h3 class="case-title">コンパクトに使う</h3>
+            <dl class="case-spec">
+              <dt>サイズ</dt><dd>実施工の横幅 × 奥行きを掲載</dd>
+              <dt>素材</dt><dd>採用品・カラーを掲載</dd>
+              <dt>使い方</dt><dd>腰掛ける・庭へ出る</dd>
+            </dl>
+            <div class="case-price"><span>施工時参考価格</span><strong>実績価格を掲載</strong></div>
+            <span class="draft-tag">公開時に木村建設の実データへ差し替え</span>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-photo">
+            <img src="https://images.pexels.com/photos/8841686/pexels-photo-8841686.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="家族で過ごすデッキの参考イメージ" loading="lazy">
+            <span class="case-no">CASE<br>02</span>
+            <span class="image-label">参考イメージ</span>
+          </div>
+          <div class="case-body">
+            <p class="case-type">FAMILY TYPE</p>
+            <h3 class="case-title">家族で過ごす</h3>
+            <dl class="case-spec">
+              <dt>サイズ</dt><dd>実施工の横幅 × 奥行きを掲載</dd>
+              <dt>素材</dt><dd>採用品・カラーを掲載</dd>
+              <dt>使い方</dt><dd>椅子とテーブルを置く</dd>
+            </dl>
+            <div class="case-price"><span>施工時参考価格</span><strong>実績価格を掲載</strong></div>
+            <span class="draft-tag">公開時に木村建設の実データへ差し替え</span>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-photo">
+            <img src="https://images.pexels.com/photos/12445995/pexels-photo-12445995.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="庭を広く使うデッキの参考イメージ" loading="lazy">
+            <span class="case-no">CASE<br>03</span>
+            <span class="image-label">参考イメージ</span>
+          </div>
+          <div class="case-body">
+            <p class="case-type">WIDE TYPE</p>
+            <h3 class="case-title">庭を広く使う</h3>
+            <dl class="case-spec">
+              <dt>サイズ</dt><dd>実施工の横幅 × 奥行きを掲載</dd>
+              <dt>素材</dt><dd>採用品・カラーを掲載</dd>
+              <dt>使い方</dt><dd>庭とつなげて過ごす</dd>
+            </dl>
+            <div class="case-price"><span>施工時参考価格</span><strong>実績価格を掲載</strong></div>
+            <span class="draft-tag">公開時に木村建設の実データへ差し替え</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true"><i class="active"></i><i></i><i></i></div>
+
+      <div class="case-cta reveal">
+        <p>庭の写真から、近いサイズと<br>費用の考え方をご案内します。</p>
+        <button class="cta js-line" type="button">
+          <span class="line-symbol" aria-hidden="true">LINE</span>
+          <span>LINEでサイズと費用を相談する</span>
+          <span class="cta-arrow" aria-hidden="true">›</span>
+        </button>
+        <p class="price-note">参考価格は実施工データの支給後に掲載。施工条件・含まれる工事範囲も併記します。</p>
+      </div>
+    </section>
+
+    <footer class="mini-footer">
+      <p>※この初稿ではデザイン確認のため、生成したコンセプトイメージと無料利用可能な参考写真を使用しています。公開版では木村建設の実施工写真・実寸・実績価格へ差し替えます。</p>
+      <p>Reference photo: <a href="https://www.pexels.com/photo/a-family-sitting-on-their-home-patio-8841686/">Julia M Cameron</a> / <a href="https://www.pexels.com/photo/wooden-house-with-a-backyard-12445995/">Robert So</a> on Pexels</p>
+    </footer>
+  </main>
+
+  <div class="fixed-cta" id="fixedCta" aria-hidden="true">
+    <button class="cta js-line" type="button" tabindex="-1">
+      <span class="line-symbol" aria-hidden="true">LINE</span>
+      <span>LINEでサイズと費用を相談する</span>
+      <span class="cta-arrow" aria-hidden="true">›</span>
+    </button>
+  </div>
+
+  <dialog id="lineDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-inner">
+      <div class="dialog-icon" aria-hidden="true">LINE</div>
+      <h3 id="dialogTitle">LINE導線の確認用です</h3>
+      <p>公開時に木村建設のLINE公式アカウントへ接続します。ボタン文言と押しやすさを、この画面でレビューできます。</p>
+      <button class="dialog-close" type="button">閉じる</button>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const heroVisual = document.getElementById('heroVisual');
+      const fixed = document.getElementById('fixedCta');
+      const fixedButton = fixed.querySelector('button');
+      const dialog = document.getElementById('lineDialog');
+      const closeButton = dialog.querySelector('.dialog-close');
+      const scroller = document.getElementById('caseScroller');
+      const dots = [...document.querySelectorAll('.scroll-hint i')];
+
+      const heroObserver = new IntersectionObserver(([entry]) => {
+        const visible = !entry.isIntersecting;
+        fixed.classList.toggle('visible', visible);
+        fixed.setAttribute('aria-hidden', String(!visible));
+        fixedButton.tabIndex = visible ? 0 : -1;
+      }, { threshold: .05 });
+      heroObserver.observe(heroVisual);
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      document.querySelectorAll('.js-line').forEach(button => {
+        button.addEventListener('click', () => dialog.showModal());
+      });
+      closeButton.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      let raf = 0;
+      scroller.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const cards = [...scroller.querySelectorAll('.case-card')];
+          const center = scroller.scrollLeft + scroller.clientWidth / 2;
+          let nearest = 0;
+          let distance = Infinity;
+          cards.forEach((card, index) => {
+            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+            const current = Math.abs(center - cardCenter);
+            if (current < distance) { distance = current; nearest = index; }
+          });
+          dots.forEach((dot, index) => dot.classList.toggle('active', index === nearest));
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>

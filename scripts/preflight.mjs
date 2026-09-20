@@ -39,7 +39,7 @@ for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
   requireLaunch(ids.includes(id), `リンク先 #${id} が見つかりません。`);
 }
 for (const [, asset] of html.matchAll(/(?:src|href)="((?:assets\/|site-config)[^"]+)"/g)) {
-  requireLaunch(existsSync(`dist/${asset}`), `${asset} が見つかりません。`);
+  requireLaunch(existsSync(`dist/${asset.split(/[?#]/)[0]}`), `${asset} が見つかりません。`);
 }
 for (const [, asset] of html.matchAll(/srcset="(assets\/[^"]+)"/g)) {
   requireLaunch(existsSync(`dist/${asset}`), `${asset} が見つかりません。`);

@@ -43,7 +43,8 @@ window.WOODDECK_CONFIG = Object.freeze({
 - `dist/assets/lp.js` — 画像拡大、相談文作成、LINE導線
 - `dist/site-config.js` — LINE URL・対応地域の設定
 - `dist/assets/brand/` — plus wood deck ロゴ
-- `dist/assets/patterns/` — デッキのプランイメージ
+- `dist/assets/portfolio/` — 家と庭への合わせ方が異なる6つの生成プランイメージ（表示用768px・拡大用1536px）
+- `docs/portfolio-image-prompts.md` — 画像制作の意図と生成プロンプト
 
 ## 本番導線の接続前チェック
 

@@ -2,35 +2,47 @@
   'use strict';
   const config = window.WOODDECK_CONFIG || {};
   const plans = {
-  "compact": {
-    "title": "コンパクト",
-    "alt": "窓の前に小さなベンチを置いたコンパクトなウッドデッキ",
-    "description": "腰掛けたり、庭へ出たりする場所に。窓の幅と、庭に残したい広さから考えます。"
+  "tree": {
+    "title": "植栽を囲むデッキ",
+    "alt": "植栽のための四角い開口を設け、庭の木を囲むオリジナル形状のウッドデッキ",
+    "description": "植栽のまわりに開口を設け、窓から庭への動線とつなぐ考え方です。木の成長や根への影響、床下の点検・排水を確認しながら、形と広さを検討します。",
+    "idea": "庭の木を残して、その周りを使える形にしたいです。",
+    "image": "assets/portfolio/deck-tree-v1"
   },
-  "wide": {
-    "title": "横長タイプ",
-    "alt": "2つの掃き出し窓に沿って設けた横長ウッドデッキ",
-    "description": "部屋と部屋、庭への動線をつなぐ形。窓や室外機の位置を確認して検討します。"
+  "outdoor-room": {
+    "title": "屋根付きの外の部屋",
+    "alt": "住宅の脇の細長い庭を、木の目隠しと半透明の屋根で囲ったウッドデッキ",
+    "description": "住宅の脇を利用する、屋根・目隠しと一体で考えるプランです。採光、風通し、雨の吹き込み、境界や設置条件を確認します。屋根を含む対応可否・仕様は個別に確認します。",
+    "idea": "家の横のスペースに、屋根や目隠しを組み合わせたいです。",
+    "image": "assets/portfolio/deck-outdoor-room-v1"
   },
-  "deep": {
-    "title": "奥行きタイプ",
-    "alt": "4人掛けのテーブルと椅子を置いた奥行きのあるウッドデッキ",
-    "description": "椅子を置くだけでなく、後ろを通る余白も大切に。使う家具と人数から考えます。"
+  "courtyard": {
+    "title": "中庭をつなぐ回廊",
+    "alt": "中庭の植栽を残し、複数の部屋をコの字型の木の回廊でつないだ夕景",
+    "description": "複数の窓をデッキでつなぎ、庭を真ん中に残す配置の考え方です。窓ごとの高さや通路幅、排水・点検のしやすさまで確認します。照明の有無も含めて検討できます。",
+    "idea": "中庭を残しながら、複数の部屋をデッキでつなぎたいです。",
+    "image": "assets/portfolio/deck-courtyard-v1"
   },
-  "lshape": {
-    "title": "L字タイプ",
-    "alt": "建物の角を囲み2つの窓をつなぐL字型のウッドデッキ",
-    "description": "建物の形に合わせた配置例です。2つの窓からの出入りや、庭の残し方を検討します。"
+  "terraced": {
+    "title": "段差を生かすテラス",
+    "alt": "高さの異なる床と幅広いステップを組み合わせ、芝生の庭へつなげたウッドデッキ",
+    "description": "床の高さや奥行きを変え、庭へのステップと過ごす場所を組み合わせるプランです。段差の寸法、歩く動線、転落対策、置きたい家具とのバランスを確認します。",
+    "idea": "庭との段差を生かして、ステップや腰掛ける場所をつくりたいです。",
+    "image": "assets/portfolio/deck-terraced-v1"
   },
-  "steps": {
-    "title": "幅広ステップ",
-    "alt": "庭へ降りる幅広のステップを設けたウッドデッキ",
-    "description": "庭へ降りる場所と段差をまとめて考える形。高さや踏面などは現地で確認します。"
+  "canopy": {
+    "title": "モダンな屋根付きデッキ",
+    "alt": "白い住宅にグレーのデッキと黒いフレームの屋根、縦格子の目隠しを合わせたプラン",
+    "description": "デッキと屋根、目隠しの色・形を住宅の外観に合わせる考え方です。柱と窓の位置、日差し、雨水の流れ、屋根の構造・設置条件を確認し、対応可能な仕様を検討します。",
+    "idea": "家の外観に合う色で、屋根や目隠しも合わせて考えたいです。",
+    "image": "assets/portfolio/deck-canopy-v1"
   },
-  "privacy": {
-    "title": "目隠し付き",
-    "alt": "横格子の目隠しと椅子を組み合わせたウッドデッキ",
-    "description": "隣家や道路からの視線に配慮する配置例。風通しや圧迫感、必要な高さも確認します。"
+  "angled": {
+    "title": "敷地に沿う変形デッキ",
+    "alt": "斜めに角を落とした多角形のデッキで、住宅の横の通り道を残した小さな庭",
+    "description": "敷地や通路に合わせて角を落とすなど、床の輪郭から考えるプランです。採用する素材や商品の加工条件、必要な通路幅、室外機や点検口へのアクセスを確認します。",
+    "idea": "狭い庭の形に合わせて、通り道を残したデッキを考えたいです。",
+    "image": "assets/portfolio/deck-angled-v1"
   }
 };
   const lineDialog = document.getElementById('lineDialog');
@@ -135,14 +147,31 @@
     });
   });
 
+  const filterButtons = [...document.querySelectorAll('[data-filter]')];
+  const portfolioStories = [...document.querySelectorAll('.portfolio-story')];
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.filter;
+      filterButtons.forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+      portfolioStories.forEach(story => {
+        story.hidden = category !== 'all' && story.dataset.category !== category;
+      });
+      const count = portfolioStories.filter(story => !story.hidden).length;
+      document.getElementById('portfolioCount').textContent =
+        (category === 'all' ? '' : button.textContent + '：') + count + 'つのプランを表示';
+      queueFixed();
+      record('wooddeck_portfolio_filter', { category });
+    });
+  });
+
   document.querySelectorAll('[data-plan]').forEach(button => {
     button.addEventListener('click', () => {
       viewedPlan = button.dataset.plan;
       const plan = plans[viewedPlan];
       if (!plan) return;
       const image = document.getElementById('planImage');
-      image.src = 'assets/patterns/deck-' + viewedPlan + '.jpg';
-      image.parentElement.querySelector('source').srcset = 'assets/patterns/deck-' + viewedPlan + '.webp';
+      image.parentElement.querySelector('source').srcset = plan.image + '.webp';
+      image.src = plan.image + '.jpg';
       image.alt = plan.alt + '。生成したプランイメージ';
       document.getElementById('planTitle').textContent = plan.title;
       document.getElementById('planDescription').textContent = plan.description;
@@ -168,6 +197,7 @@
     if (selectedPlan) {
       reference = '気になる形：' + plans[selectedPlan].title;
       lines.push('LPの「' + plans[selectedPlan].title + '」のプランイメージが気になっています。');
+      lines.push(plans[selectedPlan].idea);
     }
     if (selectedSize) {
       const example = sizeExamples[selectedSize];

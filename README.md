@@ -16,16 +16,16 @@ python3 -m http.server 4187 --bind 127.0.0.1 --directory dist
 
 ## LINE公式アカウントの接続
 
-公開前に `dist/site-config.js` の `lineUrl` に、LINE公式アカウントのURLを設定してください。
+公開前に `dist/site-config.js` の `lineUrl` にLINE公式アカウントのURLを、`serviceArea` に確認済みの対応地域を設定してください。
 
 ```js
 window.WOODDECK_CONFIG = Object.freeze({
   lineUrl: 'https://line.me/R/ti/p/@example',
-  serviceArea: ''
+  serviceArea: '○○市・△△市とその周辺地域'
 });
 ```
 
-`lineUrl` が空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。対応地域を表示する場合は `serviceArea` に確認済みの文言を設定します。
+`lineUrl` が空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。GitHub Pagesの公開処理は、LINE URLまたは対応地域が未設定の場合に停止します。
 
 ## GitHub Pagesで公開する
 
@@ -48,9 +48,15 @@ window.WOODDECK_CONFIG = Object.freeze({
 ## 公開前チェック
 
 - LINE公式アカウントURLを設定する
-- 対応地域を確認する
+- 対応地域を設定する
 - 施工写真・価格・保証などは、確認済み情報だけを掲載する
 - 画像生成によるプランイメージである旨の注意書きを残す
+
+次のコマンドで、GitHubへ送る前に公開条件を確認できます。
+
+```bash
+node scripts/preflight.mjs
+```
 
 ## ライセンス
 

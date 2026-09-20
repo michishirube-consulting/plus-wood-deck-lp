@@ -3,595 +3,286 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f4f0e7">
-  <meta name="description" content="使っていない庭を、家族が過ごせる場所に。木村建設のウッドデッキ専門店、スマートフォンLPデザイン初稿。">
-  <title>木村建設｜ウッドデッキ専門店</title>
-  <link rel="preconnect" href="https://images.pexels.com">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23263336'/%3E%3Cpath d='M14 18h36v7H14zm0 11h36v7H14zm0 11h36v7H14z' fill='%23d6b48c'/%3E%3Ccircle cx='24' cy='21.5' r='1.6' fill='%238a5a35'/%3E%3Ccircle cx='41' cy='32.5' r='1.8' fill='%238a5a35'/%3E%3Ccircle cx='29' cy='43.5' r='1.4' fill='%238a5a35'/%3E%3C/svg%3E">
-  <style>
-    :root {
-      --ivory: #f4f0e7;
-      --paper: #fffdf9;
-      --ink: #263336;
-      --ink-2: #425052;
-      --brown: #8a5a35;
-      --brown-dark: #684126;
-      --sand: #d6b48c;
-      --green: #526a57;
-      --green-dark: #08783e;
-      --sage: #e6ece4;
-      --line: #dcd5ca;
-      --muted: #7b807d;
-      --shadow: 0 20px 60px rgba(38, 51, 54, .13);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: #e7e2d8; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 18% 10%, rgba(138, 90, 53, .08), transparent 26%),
-        linear-gradient(90deg, rgba(138, 90, 53, .035) 1px, transparent 1px),
-        #e7e2d8;
-      background-size: auto, 68px 100%, auto;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    button, a { font: inherit; }
-    button { color: inherit; }
-    img { display: block; width: 100%; }
-    a { color: inherit; }
-
-    .site-shell {
-      position: relative;
-      width: min(100%, 430px);
-      min-height: 100vh;
-      margin-inline: auto;
-      overflow: hidden;
-      background: var(--ivory);
-      box-shadow: var(--shadow);
-    }
-
-    .topbar {
-      position: absolute;
-      z-index: 10;
-      inset: 0 0 auto;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      color: #fff;
-      background: linear-gradient(180deg, rgba(20, 29, 30, .58), transparent);
-    }
-
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-mark {
-      position: relative;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-content: center;
-      gap: 3px;
-      border: 1px solid rgba(255,255,255,.72);
-      border-radius: 50%;
-      background: rgba(38, 51, 54, .5);
-      backdrop-filter: blur(5px);
-    }
-    .brand-mark i { display: block; width: 17px; height: 2px; background: var(--sand); border-radius: 99px; }
-    .brand-copy { line-height: 1.2; }
-    .brand-copy strong { display: block; font-size: 14px; letter-spacing: .08em; }
-    .brand-copy small { display: block; margin-top: 3px; font-size: 9px; letter-spacing: .18em; color: rgba(255,255,255,.84); }
-    .specialty {
-      padding: 5px 9px;
-      border: 1px solid rgba(255,255,255,.58);
-      border-radius: 99px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      background: rgba(38,51,54,.35);
-      backdrop-filter: blur(5px);
-    }
-
-    .hero { position: relative; }
-    .hero-visual { position: relative; height: 505px; background: #344542; overflow: hidden; }
-    .hero-visual img { height: 100%; object-fit: cover; object-position: 58% center; }
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(19,27,28,.08) 38%, rgba(23,31,31,.62) 100%);
-    }
-    .image-label {
-      position: absolute;
-      z-index: 2;
-      right: 12px;
-      bottom: 12px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      color: rgba(255,255,255,.92);
-      background: rgba(24,31,31,.62);
-      font-size: 10px;
-      letter-spacing: .04em;
-    }
-    .hero-seal {
-      position: absolute;
-      z-index: 3;
-      left: 18px;
-      bottom: 22px;
-      width: 84px;
-      height: 84px;
-      display: grid;
-      place-content: center;
-      text-align: center;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.72);
-      border-radius: 50%;
-      background: rgba(82,106,87,.78);
-      backdrop-filter: blur(6px);
-      font-size: 11px;
-      font-weight: 700;
-      line-height: 1.45;
-      letter-spacing: .08em;
-      transform: rotate(-5deg);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 4;
-      margin-top: -1px;
-      padding: 33px 16px 42px;
-      background: var(--ivory);
-    }
-    .hero-content::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 16px;
-      width: 52px;
-      height: 3px;
-      background: var(--brown);
-    }
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 12px;
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .16em;
-    }
-    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
-    h1 {
-      margin: 0;
-      font-size: clamp(32px, 9vw, 38px);
-      line-height: 1.38;
-      letter-spacing: -.035em;
-      font-weight: 750;
-    }
-    .hero-lead {
-      margin: 18px 0 0;
-      color: var(--ink-2);
-      font-size: 15px;
-      line-height: 1.9;
-    }
-    .hero-lead strong { color: var(--brown-dark); font-weight: 700; }
-
-    .cta-wrap { margin-top: 24px; }
-    .cta {
-      width: 100%;
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border: 0;
-      border-radius: 10px;
-      color: #fff;
-      background: var(--green-dark);
-      box-shadow: 0 9px 24px rgba(8,120,62,.22);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 750;
-      letter-spacing: .01em;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .cta:active { transform: translateY(1px); box-shadow: 0 5px 15px rgba(8,120,62,.2); }
-    .line-symbol {
-      width: 24px;
-      height: 24px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      border-radius: 8px;
-      color: var(--green-dark);
-      background: #fff;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: -.05em;
-    }
-    .cta-arrow { margin-left: auto; font-size: 20px; line-height: 1; }
-    .cta-note { margin: 10px 0 0; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.65; }
-    .trust-row {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 17px;
-      color: var(--ink-2);
-      font-size: 11px;
-      font-weight: 650;
-    }
-    .trust-row span { padding: 5px 9px; border-radius: 99px; background: rgba(255,255,255,.62); border: 1px solid var(--line); }
-
-    section { position: relative; padding: 70px 16px; }
-    .section-kicker { margin: 0 0 10px; color: var(--brown); font-size: 11px; font-weight: 800; letter-spacing: .18em; }
-    h2 { margin: 0; font-size: 27px; line-height: 1.5; letter-spacing: -.025em; }
-    .section-lead { margin: 13px 0 0; color: var(--ink-2); font-size: 15px; line-height: 1.85; }
-
-    .life-section { color: #fff; background: var(--ink); }
-    .life-section .section-kicker { color: var(--sand); }
-    .life-section .section-lead { color: rgba(255,255,255,.72); }
-    .life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 28px; }
-    .life-item { position: relative; min-height: 212px; overflow: hidden; background: #52605d; }
-    .life-item:nth-child(2), .life-item:nth-child(3) { min-height: 176px; }
-    .life-item img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
-    .life-item:nth-child(1) img { object-position: 48% center; }
-    .life-item:nth-child(2) img { object-position: 54% 45%; }
-    .life-item:nth-child(3) img { object-position: 70% 42%; }
-    .life-item:nth-child(4) img { object-position: 52% center; }
-    .life-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(16,24,24,.82)); }
-    .life-copy { position: absolute; z-index: 2; inset: auto 12px 12px; }
-    .life-copy b { display: block; font-size: 14px; line-height: 1.55; }
-    .life-copy small { display: block; margin-bottom: 3px; color: var(--sand); font-size: 9px; letter-spacing: .12em; }
-    .life-foot { display: flex; align-items: center; gap: 12px; margin: 26px 0 0; color: rgba(255,255,255,.7); font-size: 12px; }
-    .life-foot::before { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,.18); }
-
-    .cases-section { padding-inline: 0; background: var(--paper); }
-    .cases-head { padding-inline: 16px; }
-    .case-scroller {
-      display: flex;
-      gap: 14px;
-      margin-top: 28px;
-      padding: 0 16px 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      overscroll-behavior-inline: contain;
-      scrollbar-width: none;
-    }
-    .case-scroller::-webkit-scrollbar { display: none; }
-    .case-card {
-      flex: 0 0 min(330px, calc(100vw - 60px));
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: #fff;
-      scroll-snap-align: start;
-      box-shadow: 0 8px 22px rgba(38,51,54,.06);
-    }
-    .case-photo { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #d7d9d2; }
-    .case-photo img { height: 100%; object-fit: cover; }
-    .case-card:nth-child(1) .case-photo img { object-position: 52% 48%; }
-    .case-card:nth-child(2) .case-photo img { object-position: center 42%; }
-    .case-card:nth-child(3) .case-photo img { object-position: 62% center; }
-    .case-photo::after { content: ""; position: absolute; inset: 58% 0 0; background: linear-gradient(transparent, rgba(20,29,29,.55)); }
-    .case-no {
-      position: absolute;
-      z-index: 2;
-      top: 13px;
-      left: 13px;
-      display: inline-grid;
-      place-items: center;
-      width: 52px;
-      height: 52px;
-      color: #fff;
-      border-radius: 50%;
-      background: var(--brown);
-      font-size: 10px;
-      line-height: 1.2;
-      letter-spacing: .09em;
-      text-align: center;
-    }
-    .case-photo .image-label { bottom: 10px; }
-    .case-body { padding: 22px 18px 20px; }
-    .case-type { margin: 0; color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
-    .case-title { margin: 4px 0 15px; font-size: 20px; line-height: 1.5; }
-    .case-spec { display: grid; grid-template-columns: 78px 1fr; gap: 8px 10px; margin: 0; padding: 14px 0; border-block: 1px solid var(--line); font-size: 13px; line-height: 1.55; }
-    .case-spec dt { color: var(--muted); }
-    .case-spec dd { margin: 0; font-weight: 650; }
-    .case-price { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: 16px; }
-    .case-price span { color: var(--muted); font-size: 12px; }
-    .case-price strong { color: var(--brown-dark); font-size: 17px; }
-    .draft-tag { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; color: var(--muted); font-size: 10px; }
-    .draft-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
-    .scroll-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; color: var(--muted); font-size: 11px; }
-    .scroll-hint i { display: block; width: 26px; height: 2px; border-radius: 99px; background: var(--line); transition: background .2s, width .2s; }
-    .scroll-hint i.active { width: 38px; background: var(--brown); }
-    .case-cta { margin: 28px 16px 0; padding: 24px 16px; text-align: center; border-radius: 16px; background: var(--sage); }
-    .case-cta p { margin: 0 0 15px; font-size: 14px; font-weight: 700; line-height: 1.7; }
-    .price-note { margin: 12px 0 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
-
-    .mini-footer { padding: 26px 16px calc(110px + var(--safe-bottom)); color: var(--muted); background: var(--paper); font-size: 10px; line-height: 1.7; }
-    .mini-footer a { text-underline-offset: 2px; }
-
-    .fixed-cta {
-      position: fixed;
-      z-index: 20;
-      left: 50%;
-      bottom: 0;
-      width: min(100%, 430px);
-      padding: 8px 12px calc(8px + var(--safe-bottom));
-      background: rgba(255,253,249,.94);
-      border-top: 1px solid rgba(220,213,202,.92);
-      backdrop-filter: blur(10px);
-      transform: translate(-50%, 110%);
-      transition: transform .28s ease;
-    }
-    .fixed-cta.visible { transform: translate(-50%, 0); }
-    .fixed-cta .cta { min-height: 52px; font-size: 15px; }
-
-    dialog {
-      width: min(346px, calc(100% - 32px));
-      padding: 0;
-      border: 0;
-      border-radius: 18px;
-      color: var(--ink);
-      background: var(--paper);
-      box-shadow: 0 24px 80px rgba(16,26,26,.3);
-    }
-    dialog::backdrop { background: rgba(20,28,29,.65); backdrop-filter: blur(3px); }
-    .dialog-inner { padding: 28px 22px 22px; text-align: center; }
-    .dialog-icon { width: 48px; height: 48px; display: grid; place-items: center; margin: 0 auto 14px; border-radius: 15px; color: #fff; background: var(--green-dark); font-size: 12px; font-weight: 900; }
-    .dialog-inner h3 { margin: 0; font-size: 20px; }
-    .dialog-inner p { margin: 11px 0 19px; color: var(--ink-2); font-size: 14px; line-height: 1.75; }
-    .dialog-close { width: 100%; min-height: 48px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-weight: 700; cursor: pointer; }
-
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-
-    @media (min-width: 700px) {
-      body { padding-block: 28px; }
-      .site-shell { border-radius: 26px; }
-      .fixed-cta { bottom: 28px; border-radius: 0 0 26px 26px; }
-    }
-    @media (max-width: 360px) {
-      h1 { font-size: 30px; }
-      h2 { font-size: 24px; }
-      .hero-visual { height: 460px; }
-      .trust-row { gap: 5px; }
-      .trust-row span { padding-inline: 7px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
-</head>
-<body>
-  <main class="site-shell">
-    <header class="topbar" aria-label="サイトヘッダー">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="brand-copy"><strong>木村建設</strong><small>WOOD DECK</small></span>
-      </div>
-      <span class="specialty">ウッドデッキ専門店</span>
-    </header>
-
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-visual" id="heroVisual">
-        <img src="assets/hero-concept-v1.jpg" alt="リビングからウッドデッキと小さな庭へつながる日本の戸建て住宅イメージ" fetchpriority="high">
-        <span class="hero-seal">リビングの<br>続きに<br>庭の居場所を</span>
-        <span class="image-label">コンセプトイメージ</span>
-      </div>
-      <div class="hero-content">
-        <p class="eyebrow">GARDEN TO LIVING</p>
-        <h1 id="hero-title">使っていない庭を、<br>家族が過ごせる場所に。</h1>
-        <p class="hero-lead">リビングからつながるウッドデッキを、<strong>庭の広さ・使い方・ご予算</strong>から一緒に考えます。サイズも商品も、決まっていなくて大丈夫です。</p>
-        <div class="cta-wrap">
-          <button class="cta js-line" type="button">
-            <span class="line-symbol" aria-hidden="true">LINE</span>
-            <span>LINEでサイズと費用を相談する</span>
-            <span class="cta-arrow" aria-hidden="true">›</span>
-          </button>
-          <p class="cta-note">商品の指定は不要です<br>庭の写真があれば相談がスムーズです</p>
-        </div>
-        <div class="trust-row" aria-label="相談できる内容">
-          <span>サイズ</span><span>素材選び</span><span>概算費用</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="life-section" aria-labelledby="life-title">
-      <div class="reveal">
-        <p class="section-kicker">DECK CHANGES THE GARDEN</p>
-        <h2 id="life-title">庭が、毎日使える<br>場所になる。</h2>
-        <p class="section-lead">眺めるだけだった庭を、室内からすぐ出られる家族の居場所へ。</p>
-      </div>
-
-      <div class="life-grid reveal">
-        <article class="life-item">
-          <img src="assets/hero-concept-v1.jpg" alt="大きな窓から庭のデッキへつながる住宅イメージ" loading="lazy">
-          <div class="life-copy"><small>01 / CONNECT</small><b>リビングから、<br>そのまま外へ</b></div>
-        </article>
-        <article class="life-item">
-          <img src="https://images.pexels.com/photos/8841686/pexels-photo-8841686.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700" alt="デッキで家族がくつろぐ様子" loading="lazy">
-          <div class="life-copy"><small>02 / FAMILY</small><b>家族で過ごす<br>場所に</b></div>
-        </article>
-        <article class="life-item">
-          <img src="assets/hero-concept-v1.jpg" alt="室内から庭へ続く木製デッキのイメージ" loading="lazy">
-          <div class="life-copy"><small>03 / STEP</small><b>庭への段差を<br>抑える設計も</b></div>
-        </article>
-        <article class="life-item">
-          <img src="assets/hero-concept-v1.jpg" alt="庭と住宅をつなぐデッキのイメージ" loading="lazy">
-          <div class="life-copy"><small>04 / DAILY</small><b>庭に出る動線を<br>もっと身近に</b></div>
-        </article>
-      </div>
-      <p class="life-foot">住宅と庭を、ひと続きで考える。</p>
-    </section>
-
-    <section class="cases-section" aria-labelledby="cases-title">
-      <div class="cases-head reveal">
-        <p class="section-kicker">SIZE &amp; BUDGET</p>
-        <h2 id="cases-title">広さと使い方で見る、<br>デッキの実例。</h2>
-        <p class="section-lead">必要な広さは、何をしたいかで変わります。実施工の寸法と価格で比べられる構成です。</p>
-      </div>
-
-      <div class="case-scroller" id="caseScroller" aria-label="施工事例">
-        <article class="case-card">
-          <div class="case-photo">
-            <img src="assets/hero-concept-v1.jpg" alt="コンパクトなデッキの参考イメージ" loading="lazy">
-            <span class="case-no">CASE<br>01</span>
-            <span class="image-label">参考イメージ</span>
-          </div>
-          <div class="case-body">
-            <p class="case-type">COMPACT TYPE</p>
-            <h3 class="case-title">コンパクトに使う</h3>
-            <dl class="case-spec">
-              <dt>サイズ</dt><dd>実施工の横幅 × 奥行きを掲載</dd>
-              <dt>素材</dt><dd>採用品・カラーを掲載</dd>
-              <dt>使い方</dt><dd>腰掛ける・庭へ出る</dd>
-            </dl>
-            <div class="case-price"><span>施工時参考価格</span><strong>実績価格を掲載</strong></div>
-            <span class="draft-tag">公開時に木村建設の実データへ差し替え</span>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-photo">
-            <img src="https://images.pexels.com/photos/8841686/pexels-photo-8841686.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="家族で過ごすデッキの参考イメージ" loading="lazy">
-            <span class="case-no">CASE<br>02</span>
-            <span class="image-label">参考イメージ</span>
-          </div>
-          <div class="case-body">
-            <p class="case-type">FAMILY TYPE</p>
-            <h3 class="case-title">家族で過ごす</h3>
-            <dl class="case-spec">
-              <dt>サイズ</dt><dd>実施工の横幅 × 奥行きを掲載</dd>
-              <dt>素材</dt><dd>採用品・カラーを掲載</dd>
-              <dt>使い方</dt><dd>椅子とテーブルを置く</dd>
-            </dl>
-            <div class="case-price"><span>施工時参考価格</span><strong>実績価格を掲載</strong></div>
-            <span class="draft-tag">公開時に木村建設の実データへ差し替え</span>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-photo">
-            <img src="https://images.pexels.com/photos/12445995/pexels-photo-12445995.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="庭を広く使うデッキの参考イメージ" loading="lazy">
-            <span class="case-no">CASE<br>03</span>
-            <span class="image-label">参考イメージ</span>
-          </div>
-          <div class="case-body">
-            <p class="case-type">WIDE TYPE</p>
-            <h3 class="case-title">庭を広く使う</h3>
-            <dl class="case-spec">
-              <dt>サイズ</dt><dd>実施工の横幅 × 奥行きを掲載</dd>
-              <dt>素材</dt><dd>採用品・カラーを掲載</dd>
-              <dt>使い方</dt><dd>庭とつなげて過ごす</dd>
-            </dl>
-            <div class="case-price"><span>施工時参考価格</span><strong>実績価格を掲載</strong></div>
-            <span class="draft-tag">公開時に木村建設の実データへ差し替え</span>
-          </div>
-        </article>
-      </div>
-
-      <div class="scroll-hint" aria-hidden="true"><i class="active"></i><i></i><i></i></div>
-
-      <div class="case-cta reveal">
-        <p>庭の写真から、近いサイズと<br>費用の考え方をご案内します。</p>
-        <button class="cta js-line" type="button">
-          <span class="line-symbol" aria-hidden="true">LINE</span>
-          <span>LINEでサイズと費用を相談する</span>
-          <span class="cta-arrow" aria-hidden="true">›</span>
-        </button>
-        <p class="price-note">参考価格は実施工データの支給後に掲載。施工条件・含まれる工事範囲も併記します。</p>
-      </div>
-    </section>
-
-    <footer class="mini-footer">
-      <p>※この初稿ではデザイン確認のため、生成したコンセプトイメージと無料利用可能な参考写真を使用しています。公開版では木村建設の実施工写真・実寸・実績価格へ差し替えます。</p>
-      <p>Reference photo: <a href="https://www.pexels.com/photo/a-family-sitting-on-their-home-patio-8841686/">Julia M Cameron</a> / <a href="https://www.pexels.com/photo/wooden-house-with-a-backyard-12445995/">Robert So</a> on Pexels</p>
-    </footer>
-  </main>
-
-  <div class="fixed-cta" id="fixedCta" aria-hidden="true">
-    <button class="cta js-line" type="button" tabindex="-1">
-      <span class="line-symbol" aria-hidden="true">LINE</span>
-      <span>LINEでサイズと費用を相談する</span>
-      <span class="cta-arrow" aria-hidden="true">›</span>
-    </button>
-  </div>
-
-  <dialog id="lineDialog" aria-labelledby="dialogTitle">
-    <div class="dialog-inner">
-      <div class="dialog-icon" aria-hidden="true">LINE</div>
-      <h3 id="dialogTitle">LINE導線の確認用です</h3>
-      <p>公開時に木村建設のLINE公式アカウントへ接続します。ボタン文言と押しやすさを、この画面でレビューできます。</p>
-      <button class="dialog-close" type="button">閉じる</button>
-    </div>
-  </dialog>
-
-  <script>
-    (() => {
-      const heroVisual = document.getElementById('heroVisual');
-      const fixed = document.getElementById('fixedCta');
-      const fixedButton = fixed.querySelector('button');
-      const dialog = document.getElementById('lineDialog');
-      const closeButton = dialog.querySelector('.dialog-close');
-      const scroller = document.getElementById('caseScroller');
-      const dots = [...document.querySelectorAll('.scroll-hint i')];
-
-      const heroObserver = new IntersectionObserver(([entry]) => {
-        const visible = !entry.isIntersecting;
-        fixed.classList.toggle('visible', visible);
-        fixed.setAttribute('aria-hidden', String(!visible));
-        fixedButton.tabIndex = visible ? 0 : -1;
-      }, { threshold: .05 });
-      heroObserver.observe(heroVisual);
-
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in');
-            revealObserver.unobserve(entry.target);
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="description" content="庭の広さや使い方に合うウッドデッキをご提案。人工木と天然木の違い、サイズ・費用の考え方、プラン例をご案内します。商品未定でもLINEで相談できます。">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="plus wood deck｜ウッドデッキ専門店">
+  <meta property="og:title" content="plus wood deck｜ウッドデッキのサイズ・費用相談">
+  <meta property="og:description" content="使っていない庭を、暮らしの場所に。庭に合うサイズや素材、費用の考え方をLINEで相談できます。">
+  <meta name="twitter:card" content="summary">
+  <title>plus wood deck｜ウッドデッキのサイズ・費用相談</title>
+  <link rel="preload" as="image" type="image/webp" href="assets/hero-concept-v1.webp" fetchpriority="high">
+  <link rel="icon" type="image/webp" href="assets/brand/plus-wood-deck-logo.webp">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "#wooddeck-service",
+      "name": "ウッドデッキの施工相談",
+      "serviceType": "ウッドデッキのサイズ・素材・費用の相談"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "庭が狭くても設置できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "窓の前だけに設けるコンパクトな形も選択肢です。庭に残したい広さ、境界、室外機、点検口、排水を確認して設置できるか判断します。"
           }
-        });
-      }, { threshold: .12 });
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-      document.querySelectorAll('.js-line').forEach(button => {
-        button.addEventListener('click', () => dialog.showModal());
-      });
-      closeButton.addEventListener('click', () => dialog.close());
-      dialog.addEventListener('click', event => {
-        if (event.target === dialog) dialog.close();
-      });
-
-      let raf = 0;
-      scroller.addEventListener('scroll', () => {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          const cards = [...scroller.querySelectorAll('.case-card')];
-          const center = scroller.scrollLeft + scroller.clientWidth / 2;
-          let nearest = 0;
-          let distance = Infinity;
-          cards.forEach((card, index) => {
-            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-            const current = Math.abs(center - cardCenter);
-            if (current < distance) { distance = current; nearest = index; }
-          });
-          dots.forEach((dot, index) => dot.classList.toggle('active', index === nearest));
-        });
-      }, { passive: true });
-    })();
+        },
+        {
+          "@type": "Question",
+          "name": "サイズも商品も決まっていません。",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "「庭でお茶を飲みたい」「洗濯物を干したい」など、使いたい場面から相談できます。写真や図面も、最初からそろえる必要はありません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "費用はどのくらいかかりますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "広さ・素材・基礎・高さ・追加設備で変わるため、現時点では一律の価格を掲載していません。希望の使い方とご予算を伝え、含まれる工事を確認しながらお見積もりをご相談ください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "今ある庭に、後から付けられますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "後付けを検討できる場合もあります。窓の高さや地面の状態、配管・排水・搬入経路を確認します。既存のデッキがある場合は、その状態もお知らせください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "人工木と天然木、どちらが合いますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "手入れにかけられる時間と、好みの質感から比べてみましょう。人工木も清掃は必要です。天然木の手入れは樹種・仕上げで異なります。取扱可能な製品と仕様を確認して選びます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "夏は熱くなりませんか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "直射日光でデッキ表面が熱くなる場合があります。素材名だけでは判断せず、商品の仕様、色、日当たり、日よけも確認しましょう。使用前には表面の熱さを確かめてください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "何年くらい使えますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "一律の年数はお約束できません。製品・樹種・設置環境・使い方・手入れで変わります。床板だけでなく下地も点検し、採用品の保証条件とお手入れ方法を確認することが大切です。"
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
+
+  <link rel="stylesheet" href="assets/fonts/plus-rounded.css">
+  <link rel="stylesheet" href="assets/lp.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main-content">本文へ移動</a>
+<main class="site-shell" id="main-content">
+  <header class="topbar" aria-label="サイトヘッダー">
+    <a class="brand" href="#main-content" aria-label="plus wood deck ページの先頭へ"><span class="brand-logo"><picture><source srcset="assets/brand/plus-wood-deck-logo.webp" type="image/webp"><img src="assets/brand/plus-wood-deck-logo.png" width="1024" height="1024" alt="plus wood deck" decoding="async"></picture></span></a>
+    <div class="header-copy"><p class="header-label">ウッドデッキ専門店</p><p class="brand-tagline">庭に、暮らしをプラス。</p></div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-visual" id="heroVisual">
+      <picture><source srcset="assets/hero-concept-v1.webp" type="image/webp"><img src="assets/hero-concept-v1.jpg" width="1280" height="1600" alt="リビングの窓からデッキと庭へつながる日本の住宅。完成イメージ" fetchpriority="high"></picture>
+      <span class="image-label">完成イメージ</span>
+    </div>
+    <div class="hero-content">
+      <h1 id="hero-title"><span class="hero-h1-label">庭に合わせたウッドデッキのご相談</span>使っていない庭を、<br>家族が過ごせる場所に。</h1>
+      <p class="hero-lead">窓を開けたら、そこも家族の居場所。<br>庭の広さ・使い方・ご予算から考えます。</p>
+      <p class="hero-assurance">サイズも商品も、決まっていなくて大丈夫。</p>
+      <button class="cta js-line" data-location="hero" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button>
+      <p class="cta-note">友だち追加後、希望の使い方をひとこと。<br>写真や図面は、まだなくても大丈夫です。</p>
+      <p class="area-note" data-service-area hidden></p>
+      <nav class="hero-shortcuts" aria-label="検討したいことから見る"><a href="#size-cost">費用・広さを見る<span aria-hidden="true">↓</span></a><a href="#deck-patterns">形を画像で見る<span aria-hidden="true">↓</span></a></nav>
+    </div>
+  </section>
+
+  <section class="life-section" id="use-cases" aria-labelledby="life-title">
+    <h2 id="life-title">窓の先を、毎日使える庭へ。</h2>
+    <div class="life-grid">
+      <article class="life-item"><picture><source srcset="assets/patterns/deck-compact.webp" type="image/webp"><img src="assets/patterns/deck-compact.jpg" width="960" height="720" alt="窓前のデッキとベンチのプランイメージ" loading="lazy" decoding="async"></picture><h3>庭を眺めて、ひと休み。</h3><p>窓からすぐ出られる場所に。</p></article>
+      <article class="life-item"><picture><source srcset="assets/patterns/deck-deep.webp" type="image/webp"><img src="assets/patterns/deck-deep.jpg" width="960" height="720" alt="庭のデッキでテーブルを囲むプランイメージ" loading="lazy" decoding="async"></picture><h3>いつものお茶を、外で。</h3><p>家族でテーブルを囲む時間に。</p></article>
+    </div>
+    <p class="note">写真は使い方を表すプランイメージです。</p>
+  </section>
+
+  <section class="cases-section" id="size-cost" aria-labelledby="cases-title">
+    <div class="cases-head">
+      <p class="section-kicker">まず知りたい、サイズと費用</p>
+      <h2 id="cases-title">何を置きたいかで、<br>必要な広さが変わります。</h2>
+      <p class="section-lead">わが家に近い使い方から、サイズをイメージ。</p>
+    </div>
+    <div class="case-scroller" id="caseScroller" tabindex="0" aria-label="3つの使い方とサイズ例。横にスクロールできます">
+      <article class="case-card" aria-label="1 / 3 腰掛ける・庭へ出る"><p class="case-type">腰掛ける・庭へ出る</p><h3>窓の前に、小さな居場所。</h3><figure class="plan-figure"><svg viewBox="0 0 300 225" role="img" aria-label="横幅1.8m、奥行き1.2mのデッキ配置の検討例。ベンチを配置。"><rect x="28" y="8" width="224" height="26" fill="#e3e8e0"/><text x="140" y="26" text-anchor="middle" fill="#506c54" font-size="12">リビング・窓側</text><rect x="32" y="42" width="108" height="72" rx="2" fill="#dfc7a8" stroke="#9a7754"/><path d="M32 54h108 M32 66h108 M32 78h108 M32 90h108 M32 102h108" stroke="#c7a67d" stroke-width=".6"/><rect x="45" y="62" width="62" height="20" rx="3" fill="#fffefa" stroke="#506c54" stroke-width="2"/><text x="76" y="76" fill="#263632" text-anchor="middle" font-size="10">ベンチ</text><path d="M32 199h108m-108 -4v8m108 -8v8" stroke="#6c7465"/><text x="86" y="215" text-anchor="middle" font-size="12" fill="#425044">横幅 1.8m</text><text x="173" y="86" text-anchor="middle" font-size="12" fill="#425044" transform="rotate(90 173 86)">奥行き 1.2m</text></svg></figure><div class="size-spec"><strong>1.8 × 1.2m</strong><span>横幅 × 奥行き</span></div><p class="note">縁側のように使う配置例。</p><button class="size-consult" type="button" data-size="compact">この使い方で相談文をつくる<span aria-hidden="true">›</span></button></article>
+<article class="case-card" aria-label="2 / 3 2人でお茶を楽しむ"><p class="case-type">2人でお茶を楽しむ</p><h3>椅子2脚と、小さなテーブル。</h3><figure class="plan-figure"><svg viewBox="0 0 300 225" role="img" aria-label="横幅2.7m、奥行き1.8mのデッキ配置の検討例。椅子2脚と小さなテーブルを配置。"><rect x="28" y="8" width="224" height="26" fill="#e3e8e0"/><text x="140" y="26" text-anchor="middle" fill="#506c54" font-size="12">リビング・窓側</text><rect x="32" y="42" width="162" height="108" rx="2" fill="#dfc7a8" stroke="#9a7754"/><path d="M32 54h162 M32 66h162 M32 78h162 M32 90h162 M32 102h162 M32 114h162 M32 126h162 M32 138h162" stroke="#c7a67d" stroke-width=".6"/><rect x="51" y="78" width="30" height="30" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><rect x="137" y="78" width="30" height="30" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><circle cx="109" cy="93" r="17" fill="#fffefa" stroke="#506c54" stroke-width="2"/><text x="112" y="137" text-anchor="middle" fill="#425044" font-size="11">2脚 ＋ 小さなテーブル</text><path d="M32 199h162m-162 -4v8m162 -8v8" stroke="#6c7465"/><text x="113" y="215" text-anchor="middle" font-size="12" fill="#425044">横幅 2.7m</text><text x="212" y="104" text-anchor="middle" font-size="12" fill="#425044" transform="rotate(90 212 104)">奥行き 1.8m</text></svg></figure><div class="size-spec"><strong>2.7 × 1.8m</strong><span>横幅 × 奥行き</span></div><p class="note">家具の大きさと通路幅を確認。</p><button class="size-consult" type="button" data-size="pair">この使い方で相談文をつくる<span aria-hidden="true">›</span></button></article>
+<article class="case-card" aria-label="3 / 3 家族でテーブルを囲む"><p class="case-type">家族でテーブルを囲む</p><h3>椅子を引く余白まで考える。</h3><figure class="plan-figure"><svg viewBox="0 0 300 225" role="img" aria-label="横幅3.6m、奥行き2.4mのデッキ配置の検討例。4人掛けテーブルと通路を配置。"><rect x="28" y="8" width="224" height="26" fill="#e3e8e0"/><text x="140" y="26" text-anchor="middle" fill="#506c54" font-size="12">リビング・窓側</text><rect x="32" y="42" width="216" height="144" rx="2" fill="#dfc7a8" stroke="#9a7754"/><path d="M32 54h216 M32 66h216 M32 78h216 M32 90h216 M32 102h216 M32 114h216 M32 126h216 M32 138h216 M32 150h216 M32 162h216 M32 174h216" stroke="#c7a67d" stroke-width=".6"/><rect x="99" y="93" width="80" height="40" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><rect x="102" y="56" width="30" height="30" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><rect x="146" y="56" width="30" height="30" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><rect x="102" y="140" width="30" height="30" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><rect x="146" y="140" width="30" height="30" rx="4" fill="#fffefa" stroke="#506c54" stroke-width="2"/><path d="M217 61v107" stroke="#506c54" stroke-width="2" stroke-dasharray="4 4"/><text x="232" y="114" text-anchor="middle" fill="#425044" font-size="10" transform="rotate(90 232 114)">通れる余白</text><path d="M32 199h216m-216 -4v8m216 -8v8" stroke="#6c7465"/><text x="140" y="215" text-anchor="middle" font-size="12" fill="#425044">横幅 3.6m</text><text x="266" y="122" text-anchor="middle" font-size="12" fill="#425044" transform="rotate(90 266 122)">奥行き 2.4m</text></svg></figure><div class="size-spec"><strong>3.6 × 2.4m</strong><span>横幅 × 奥行き</span></div><p class="note">椅子の出し入れで必要寸法は変わります。</p><button class="size-consult" type="button" data-size="family">この使い方で相談文をつくる<span aria-hidden="true">›</span></button></article>
+    </div>
+    <div class="scroller-controls"><button class="scroller-button" type="button" data-slide="-1" aria-label="前のサイズ例">‹</button><div class="scroll-hint" aria-hidden="true"><i class="active"></i><i></i><i></i></div><button class="scroller-button" type="button" data-slide="1" aria-label="次のサイズ例">›</button></div>
+    <div class="cases-foot">
+      <p class="note">寸法は配置を考えるための例です。商品規格・家具・現地条件で必要な広さは変わります。</p>
+      <div class="budget-answer">
+        <h3>「いくら？」は、庭の条件とセットで。</h3>
+        <p>工事費は広さ・素材・基礎・ステップなどで変わります。「予算内で、どのくらいの広さにできる？」からご相談ください。<a href="#cost-guide">費用が変わるポイントを見る</a></p>
+      </div>
+      <div class="cta-wrap"><button class="cta js-line" data-location="size-cost" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">おおよその寸法でも、まだ分からなくてもOK</p></div>
+    </div>
+  </section>
+
+  <nav class="topic-nav" aria-label="知りたい内容へ移動">
+    <a href="#deck-patterns">6つのデザイン例</a><a href="#materials">人工木と天然木</a><a href="#consultation">LINE相談の流れ</a><a href="#faq">よくある質問</a>
+  </nav>
+
+  <section class="patterns-section" id="deck-patterns" aria-labelledby="patterns-title">
+    <p class="section-kicker">形から広がる、庭の使い方</p>
+    <h2 id="patterns-title">わが家の庭なら、<br>どんなデッキが合う？</h2>
+    <p class="section-lead">広さも、窓も、したいことも。<br>庭に合わせて考える6つのプランです。</p>
+    <p class="note" style="margin-top:10px">画像をタップすると、大きく見られます。</p>
+    <div class="pattern-grid">
+    <article class="pattern-card"><button class="pattern-media" type="button" data-plan="compact" aria-label="コンパクトのプランイメージを拡大"><picture><source srcset="assets/patterns/deck-compact.webp" type="image/webp"><img src="assets/patterns/deck-compact.jpg" width="960" height="720" alt="窓の前に小さなベンチを置いたコンパクトなウッドデッキ。生成したプランイメージ" loading="lazy" decoding="async"></picture><span class="zoom-mark" aria-hidden="true">＋</span></button><div class="pattern-copy"><span class="pattern-no">01</span><h3>コンパクト</h3><p>庭を残して、窓前だけに。</p></div></article>
+<article class="pattern-card"><button class="pattern-media" type="button" data-plan="wide" aria-label="横長タイプのプランイメージを拡大"><picture><source srcset="assets/patterns/deck-wide.webp" type="image/webp"><img src="assets/patterns/deck-wide.jpg" width="960" height="720" alt="2つの掃き出し窓に沿って設けた横長ウッドデッキ。生成したプランイメージ" loading="lazy" decoding="async"></picture><span class="zoom-mark" aria-hidden="true">＋</span></button><div class="pattern-copy"><span class="pattern-no">02</span><h3>横長タイプ</h3><p>2つの窓から出入りする。</p></div></article>
+<article class="pattern-card"><button class="pattern-media" type="button" data-plan="deep" aria-label="奥行きタイプのプランイメージを拡大"><picture><source srcset="assets/patterns/deck-deep.webp" type="image/webp"><img src="assets/patterns/deck-deep.jpg" width="960" height="720" alt="4人掛けのテーブルと椅子を置いた奥行きのあるウッドデッキ。生成したプランイメージ" loading="lazy" decoding="async"></picture><span class="zoom-mark" aria-hidden="true">＋</span></button><div class="pattern-copy"><span class="pattern-no">03</span><h3>奥行きタイプ</h3><p>テーブルを囲む時間に。</p></div></article>
+<article class="pattern-card"><button class="pattern-media" type="button" data-plan="lshape" aria-label="L字タイプのプランイメージを拡大"><picture><source srcset="assets/patterns/deck-lshape.webp" type="image/webp"><img src="assets/patterns/deck-lshape.jpg" width="960" height="720" alt="建物の角を囲み2つの窓をつなぐL字型のウッドデッキ。生成したプランイメージ" loading="lazy" decoding="async"></picture><span class="zoom-mark" aria-hidden="true">＋</span></button><div class="pattern-copy"><span class="pattern-no">04</span><h3>L字タイプ</h3><p>家の角に沿って、庭へ。</p></div></article>
+<article class="pattern-card"><button class="pattern-media" type="button" data-plan="steps" aria-label="幅広ステップのプランイメージを拡大"><picture><source srcset="assets/patterns/deck-steps.webp" type="image/webp"><img src="assets/patterns/deck-steps.jpg" width="960" height="720" alt="庭へ降りる幅広のステップを設けたウッドデッキ。生成したプランイメージ" loading="lazy" decoding="async"></picture><span class="zoom-mark" aria-hidden="true">＋</span></button><div class="pattern-copy"><span class="pattern-no">05</span><h3>幅広ステップ</h3><p>デッキから庭へ降りやすく。</p></div></article>
+<article class="pattern-card"><button class="pattern-media" type="button" data-plan="privacy" aria-label="目隠し付きのプランイメージを拡大"><picture><source srcset="assets/patterns/deck-privacy.webp" type="image/webp"><img src="assets/patterns/deck-privacy.jpg" width="960" height="720" alt="横格子の目隠しと椅子を組み合わせたウッドデッキ。生成したプランイメージ" loading="lazy" decoding="async"></picture><span class="zoom-mark" aria-hidden="true">＋</span></button><div class="pattern-copy"><span class="pattern-no">06</span><h3>目隠し付き</h3><p>外からの視線が気になる庭に。</p></div></article>
+    </div>
+    <p class="note">すべて生成したプランイメージで、実際の施工事例写真ではありません。設置できる形や仕様は現地確認が必要です。</p>
+  </section>
+
+  <section class="cost-section" id="cost-guide" aria-labelledby="cost-title">
+    <p class="section-kicker">見積もりで比べたいこと</p>
+    <h2 id="cost-title">予算を考えるときは、<br>工事の中身まで。</h2>
+    <p class="section-lead">同じ広さでも、次の条件で総額が変わります。</p>
+    <ol class="cost-list">
+      <li><span>01</span><div><h3>広さ・形・素材</h3><p>横幅と奥行き、加工の有無、商品や樹種。必要な広さから考えると予算を整理しやすくなります。</p></div></li>
+      <li><span>02</span><div><h3>地面・基礎・高さ</h3><p>土やコンクリートなどの状態と、窓からの高さ。デッキを支える下地も確認します。</p></div></li>
+      <li><span>03</span><div><h3>ステップ・目隠し・撤去</h3><p>追加したい設備や既存物の撤去、材料の搬入経路。必要な工事を分けて確認します。</p></div></li>
+    </ol>
+    <p class="cost-callout">比較するときは、<strong>本体・基礎・施工・撤去・オプション</strong>のどこまで含む金額かを確認しましょう。</p>
+  </section>
+
+  <section class="materials-section" id="materials" aria-labelledby="materials-title">
+    <p class="section-kicker">素材選びのヒント</p>
+    <h2 id="materials-title">人工木と天然木。<br>暮らし方で選びましょう。</h2>
+    <p class="section-lead">「手入れにかける時間」と「好みの質感」が、選ぶときの手がかりです。</p>
+    <div class="material-intro">
+      <div><strong>人工木</strong><span>樹脂や木粉などを使った素材。配合・仕上げは商品ごとに異なります。</span></div>
+      <div><strong>天然木</strong><span>自然の木材。樹種ごとの木目や手触り、経年変化を楽しむ素材です。</span></div>
+    </div>
+    <div class="comparison-table" role="table" aria-label="人工木と天然木の比較">
+      <div class="comparison-row" role="row"><h3 role="rowheader">見た目・質感</h3><div class="comparison-values" role="presentation"><p role="cell"><span class="sr-only">人工木：</span>木目や色を表現した仕上げ。候補の実物サンプルで確認。</p><p role="cell"><span class="sr-only">天然木：</span>自然の木目と触感。同じ樹種でも個体差があります。</p></div></div>
+<div class="comparison-row" role="row"><h3 role="rowheader">日々の手入れ</h3><div class="comparison-values" role="presentation"><p role="cell"><span class="sr-only">人工木：</span>清掃は必要。定期塗装が不要な商品もあります。</p><p role="cell"><span class="sr-only">天然木：</span>清掃に加え、樹種・仕上げに応じた保護塗装など。</p></div></div>
+<div class="comparison-row" role="row"><h3 role="rowheader">使い続けたとき</h3><div class="comparison-values" role="presentation"><p role="cell"><span class="sr-only">人工木：</span>色調の変化、汚れ、傷、伸縮などが起こり得ます。</p><p role="cell"><span class="sr-only">天然木：</span>退色、割れ、反りなどの出方は樹種・環境によります。</p></div></div>
+<div class="comparison-row" role="row"><h3 role="rowheader">費用の考え方</h3><div class="comparison-values" role="presentation"><p role="cell"><span class="sr-only">人工木：</span>商品・下地・形状・オプションを含めて比較。</p><p role="cell"><span class="sr-only">天然木：</span>樹種・下地・加工に加え、将来の手入れも考慮。</p></div></div>
+    </div>
+    <p class="note">夏の熱さや耐久性も商品・樹種・設置環境によって変わります。素材名だけで決めず、採用候補の仕様を確認します。</p>
+  </section>
+
+  <section class="check-section" id="before-building" aria-labelledby="check-title">
+    <p class="section-kicker">つくる前に確認したいこと</p>
+    <h2 id="check-title">見た目の先に、<br>毎日の使いやすさを。</h2>
+    <figure class="check-visual"><picture><source srcset="assets/patterns/deck-steps.webp" type="image/webp"><img src="assets/patterns/deck-steps.jpg" width="960" height="720" alt="庭への動線と幅広ステップを考えたデッキのプランイメージ" loading="lazy" decoding="async"></picture><span class="image-label">プランイメージ</span></figure>
+    <ul class="check-list">
+      <li><strong>椅子を引いても、通れますか？</strong><span>置く家具と、人が動く余白を一緒に確認。</span></li>
+      <li><strong>窓から庭へ、出入りしやすい？</strong><span>窓際の段差、ステップ位置、雨水の流れまで。</span></li>
+      <li><strong>日差しと視線は、気になりませんか？</strong><span>使う時間帯の日当たりと、隣家・道路からの視線を確認。</span></li>
+      <li><strong>庭の点検や手入れもできますか？</strong><span>室外機、排水、点検口、庭に残すスペースも大切に。</span></li>
+    </ul>
+  </section>
+
+  <section class="consultation-section" id="consultation" aria-labelledby="consultation-title">
+    <p class="section-kicker">ウッドデッキのご相談</p>
+    <h2 id="consultation-title">「こんな庭にしたい」<br>のひとことから。</h2>
+    <div class="consultation-promise"><strong>商品選びより、使い方の相談から。</strong><p>サイズ・素材・ご予算を、一緒に整理。目隠しやステップの希望も、庭全体の使い方と合わせてお伝えください。</p></div>
+    <ol class="flow" aria-label="LINE相談から施工までの流れ">
+      <li><span>01</span><div><strong>LINEで、したいことを送る</strong><p>「庭でお茶を飲みたい」など、短い文章で大丈夫です。</p></div></li>
+      <li><span>02</span><div><strong>庭の広さ・使い方を確認</strong><p>市区町村と希望の使い方から。写真・図面は、あればで構いません。</p></div></li>
+      <li><span>03</span><div><strong>現地調査・正式なお見積もり</strong><p>必要な確認を行い、工事範囲と金額を具体的にします。</p></div></li>
+      <li><span>04</span><div><strong>内容を確認して、契約・施工へ</strong><p>仕様や費用を確認し、ご納得いただいてから進めます。</p></div></li>
+    </ol>
+    <div class="message-example" id="message-builder">
+      <p class="section-kicker">何を送るか迷ったら</p>
+      <h3>わが家の相談文を、ここで。</h3>
+      <p class="builder-intro">気になることを選ぶだけ。選ばず、そのまま相談しても大丈夫です。</p>
+      <fieldset class="intent-options"><legend>まず相談したいこと（任意）</legend><label><input type="radio" name="intent" value="budget"><span>予算・費用</span></label><label><input type="radio" name="intent" value="dining"><span>庭で食事</span></label><label><input type="radio" name="intent" value="laundry"><span>洗濯に使う</span></label><label><input type="radio" name="intent" value="undecided" checked><span>まだ未定</span></label></fieldset>
+      <p class="selection-note" id="selectionNote" hidden></p>
+      <button class="clear-selection" id="clearSelection" type="button" hidden>選んだ形・サイズを外す</button>
+      <p class="message-label">コピーする相談文</p>
+      <blockquote id="consultationMessage" aria-live="polite">ウッドデッキを検討しています。<br>わが家に合うサイズと費用を相談したいです。<br>サイズ・商品はまだ決まっていません。</blockquote>
+      <details class="message-extra"><summary>希望や状況を書き足す（任意）</summary><label for="consultationExtra">使いたい人数、庭の様子など</label><textarea id="consultationExtra" rows="3" maxlength="500" placeholder="例：新築予定です。庭の広さはまだ分かりません。"></textarea><p class="note">補足も一緒にコピーされます。このページからは送信・保存されません。</p></details>
+      <button class="copy-button" type="button" data-copy>この相談文をコピー</button>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="note">LINEで貼り付けて送ってください。お住まいの市区町村も添えると、対応地域を確認しやすくなります。</p>
+    </div>
+    <div class="cta-wrap"><button class="cta js-line" data-location="consultation" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">友だち追加後、希望の使い方をひとこと送ってください</p></div>
+    <p class="area-note" data-service-area hidden></p>
+  </section>
+
+  <section class="faq-section" id="faq" aria-labelledby="faq-title">
+    <p class="section-kicker">相談前の気がかりに</p>
+    <h2 id="faq-title">よくあるご質問。</h2>
+    <div class="faq-list"><details class="faq-item"><summary>庭が狭くても設置できますか？</summary><div class="faq-answer"><p>窓の前だけに設けるコンパクトな形も選択肢です。庭に残したい広さ、境界、室外機、点検口、排水を確認して設置できるか判断します。</p></div></details>
+<details class="faq-item"><summary>サイズも商品も決まっていません。</summary><div class="faq-answer"><p>「庭でお茶を飲みたい」「洗濯物を干したい」など、使いたい場面から相談できます。写真や図面も、最初からそろえる必要はありません。</p></div></details>
+<details class="faq-item"><summary>費用はどのくらいかかりますか？</summary><div class="faq-answer"><p>広さ・素材・基礎・高さ・追加設備で変わるため、現時点では一律の価格を掲載していません。希望の使い方とご予算を伝え、含まれる工事を確認しながらお見積もりをご相談ください。</p></div></details>
+<details class="faq-item"><summary>今ある庭に、後から付けられますか？</summary><div class="faq-answer"><p>後付けを検討できる場合もあります。窓の高さや地面の状態、配管・排水・搬入経路を確認します。既存のデッキがある場合は、その状態もお知らせください。</p></div></details>
+<details class="faq-item"><summary>人工木と天然木、どちらが合いますか？</summary><div class="faq-answer"><p>手入れにかけられる時間と、好みの質感から比べてみましょう。人工木も清掃は必要です。天然木の手入れは樹種・仕上げで異なります。取扱可能な製品と仕様を確認して選びます。</p></div></details>
+<details class="faq-item"><summary>夏は熱くなりませんか？</summary><div class="faq-answer"><p>直射日光でデッキ表面が熱くなる場合があります。素材名だけでは判断せず、商品の仕様、色、日当たり、日よけも確認しましょう。使用前には表面の熱さを確かめてください。</p></div></details>
+<details class="faq-item"><summary>何年くらい使えますか？</summary><div class="faq-answer"><p>一律の年数はお約束できません。製品・樹種・設置環境・使い方・手入れで変わります。床板だけでなく下地も点検し、採用品の保証条件とお手入れ方法を確認することが大切です。</p></div></details></div>
+  </section>
+
+  <section class="final-section" id="contact" aria-labelledby="final-title">
+    <figure class="final-photo"><picture><source srcset="assets/patterns/deck-privacy.webp" type="image/webp"><img src="assets/patterns/deck-privacy.jpg" width="960" height="720" alt="目隠しと椅子を設けた庭のウッドデッキ。プランイメージ" loading="lazy" decoding="async"></picture><figcaption>プランイメージ</figcaption></figure>
+    <p class="section-kicker">次は、わが家の庭で。</p>
+    <h2 id="final-title">どんなデッキが合うか、<br>一緒に考えませんか？</h2>
+    <p class="section-lead">広さが分からなくても、商品が未定でも。<br>まずは「庭でしたいこと」をお聞かせください。</p>
+    <div class="cta-wrap"><button class="cta js-line" data-location="final" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">サイズ・素材・費用を相談できます</p></div>
+  </section>
+
+  <footer class="mini-footer">
+    <div class="footer-identity"><span class="brand-logo"><picture><source srcset="assets/brand/plus-wood-deck-logo.webp" type="image/webp"><img src="assets/brand/plus-wood-deck-logo.png" width="1024" height="1024" alt="plus wood deck" loading="lazy" decoding="async"></picture></span><div><p class="footer-brand">庭に、暮らしをプラス。</p><p class="footer-operator">ウッドデッキ専門店</p></div></div>
+    <nav class="footer-nav" aria-label="ページ内リンク"><a href="#size-cost">サイズ・費用</a><a href="#deck-patterns">デザイン例</a><a href="#materials">素材の違い</a><a href="#consultation">相談の流れ</a><a href="#faq">よくある質問</a></nav>
+    <p class="note">掲載画像は生成した完成・プランイメージです。実施工写真・施工実績ではありません。設置可否や仕様は現地条件によって異なります。</p>
+  </footer>
+</main>
+<div class="fixed-cta" id="fixedCta" aria-hidden="true"><p>サイズも商品も、まだ決まっていなくてOK</p><button class="cta js-line" data-location="fixed" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button></div>
+<dialog id="lineDialog" aria-labelledby="dialogTitle">
+  <div class="dialog-inner">
+    <p class="preview-notice">デザイン確認用・LINE未接続</p>
+    <h2 class="dialog-title" id="dialogTitle">LINE相談ボタンの<br>表示確認です。</h2>
+    <p class="dialog-text">公開用のLINE公式アカウントが未設定のため、この画面から相談は送信されません。接続後は、ボタンから公式アカウントへ進めます。</p>
+    <button class="dialog-close" type="button" data-close>ページに戻る</button>
+  </div>
+</dialog>
+<dialog class="plan-dialog" id="planDialog" aria-labelledby="planTitle">
+  <picture><source srcset="assets/patterns/deck-compact.webp" type="image/webp"><img id="planImage" src="assets/patterns/deck-compact.jpg" width="960" height="720" alt="デッキのプランイメージ"></picture>
+  <div class="dialog-inner">
+    <p class="section-kicker">プランイメージ</p><h2 class="dialog-title" id="planTitle"></h2><p class="dialog-text" id="planDescription"></p>
+    <p class="note">寸法・素材・施工価格を示す実施工写真ではありません。</p>
+    <button class="copy-button" id="usePlan" type="button">この形を相談文に入れる</button>
+    <button class="dialog-close" type="button" data-close>閉じる</button>
+  </div>
+</dialog>
+<script src="site-config.js"></script>
+<script src="assets/lp.js"></script>
 </body>
 </html>

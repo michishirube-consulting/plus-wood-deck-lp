@@ -16,7 +16,7 @@ python3 -m http.server 4187 --bind 127.0.0.1 --directory dist
 
 ## LINE公式アカウントの接続
 
-公開前に `dist/site-config.js` の `lineUrl` にLINE公式アカウントのURLを、`serviceArea` に確認済みの対応地域を設定してください。
+本番のLINE導線を接続するときに、`dist/site-config.js` の `lineUrl` にLINE公式アカウントのURLを、`serviceArea` に確認済みの対応地域を設定してください。
 
 ```js
 window.WOODDECK_CONFIG = Object.freeze({
@@ -25,7 +25,7 @@ window.WOODDECK_CONFIG = Object.freeze({
 });
 ```
 
-`lineUrl` が空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。GitHub Pagesの公開処理は、LINE URLまたは対応地域が未設定の場合に停止します。
+`lineUrl` が空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。`serviceArea` が空の場合、対応エリア表示は非表示になります。GitHub Pagesには安全なプレビュー状態で公開でき、設定後のpushで本番導線へ切り替わります。
 
 ## GitHub Pagesで公開する
 
@@ -45,7 +45,7 @@ window.WOODDECK_CONFIG = Object.freeze({
 - `dist/assets/brand/` — plus wood deck ロゴ
 - `dist/assets/patterns/` — デッキのプランイメージ
 
-## 公開前チェック
+## 本番導線の接続前チェック
 
 - LINE公式アカウントURLを設定する
 - 対応地域を設定する

@@ -7,11 +7,11 @@ const setting = name => config.match(new RegExp(`${name}:\\s*['\"]([^'\"]*)['\"]
 const lineUrl = setting('lineUrl');
 const serviceArea = setting('serviceArea');
 const failures = [];
+const warnings = [];
 const requireLaunch = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
-requireLaunch(lineUrl, 'dist/site-config.js にLINE公式アカウントURLを設定してください。');
 if (lineUrl) {
   try {
     const parsedLineUrl = new URL(lineUrl);
@@ -20,10 +20,15 @@ if (lineUrl) {
   } catch {
     failures.push('LINE URLの形式が正しくありません。');
   }
+} else {
+  warnings.push('LINE公式アカウントURLは未設定です。LINEボタンは案内画面を表示します。');
 }
 
-requireLaunch(serviceArea, 'dist/site-config.js に対応地域を設定してください。');
-requireLaunch(!/(example|〇〇|未定|要確認)/i.test(serviceArea), '対応地域の仮文言を実際の内容へ差し替えてください。');
+if (serviceArea) {
+  requireLaunch(!/(example|〇〇|未定|要確認)/i.test(serviceArea), '対応地域の仮文言を実際の内容へ差し替えてください。');
+} else {
+  warnings.push('対応地域は未設定です。LP上では対応エリア表示を非表示にします。');
+}
 
 requireLaunch(!html.includes('木村建設'), '削除済みの会社名がLPに残っています。');
 requireLaunch((html.match(/<h1\b/g) || []).length === 1, 'H1は1つにしてください。');
@@ -46,4 +51,9 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`公開前チェック完了: LINE接続・対応地域・HTML・画像を確認しました（対応地域: ${serviceArea}）。`);
+if (warnings.length) {
+  console.warn('未設定項目がありますが、安全なプレビュー動作で公開します。');
+  warnings.forEach(warning => console.warn(`- ${warning}`));
+}
+
+console.log(`公開前チェック完了: HTML・画像・リンク構造を確認しました${serviceArea ? `（対応地域: ${serviceArea}）` : ''}。`);

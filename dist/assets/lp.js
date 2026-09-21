@@ -140,6 +140,7 @@
       lines.push('寸法はまだ決めていません。');
     }
     lines.push(questions[selectedIntent]);
+    lines.push('施工希望地域（市区町村）：［入力］');
     if (!selectedPlan && !selectedSize) lines.push('商品やサイズはまだ決まっていません。');
     return lines.join('\n');
   }

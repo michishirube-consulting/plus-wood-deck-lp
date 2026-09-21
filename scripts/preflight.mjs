@@ -1,6 +1,9 @@
 import {existsSync, readFileSync} from 'node:fs';
 
-const html = readFileSync('dist/index.html', 'utf8');
+const pageFiles = ['index.html', 'operator.html', 'privacy.html', 'terms.html'];
+const pages = Object.fromEntries(pageFiles.map(file => [file, readFileSync(`dist/${file}`, 'utf8')]));
+const html = pages['index.html'];
+const allHtml = Object.values(pages).join('\n');
 const config = readFileSync('dist/site-config.js', 'utf8');
 const robots = readFileSync('dist/robots.txt', 'utf8');
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
@@ -41,30 +44,43 @@ if (serviceArea) {
 
 const formerOperator = ['木', '村', '建', '設'].join('');
 const wrongJapaneseBrand = ['道', 'しるべ'].join('');
-requireLaunch(!html.includes(formerOperator), '削除済みの会社名がLPに残っています。');
-requireLaunch(!html.includes(wrongJapaneseBrand), 'ブランドの日本語表記は「みちしるべ」に統一してください。');
+requireLaunch(!allHtml.includes(formerOperator), '削除済みの会社名が公開ページに残っています。');
+requireLaunch(!allHtml.includes(wrongJapaneseBrand), 'ブランドの日本語表記は「みちしるべ」に統一してください。');
 requireLaunch((html.match(/<h1\b/g) || []).length === 1, 'H1は1つにしてください。');
 requireLaunch(html.includes(`<link rel="canonical" href="${productionUrl}">`), 'canonical URLを本番URLへ設定してください。');
 requireLaunch(html.includes(`<meta property="og:url" content="${productionUrl}">`), 'og:urlを本番URLへ設定してください。');
 requireLaunch(robots.includes(`Sitemap: ${productionUrl}sitemap.xml`), 'robots.txtに本番sitemap URLを設定してください。');
-requireLaunch(sitemap.includes(`<loc>${productionUrl}</loc>`), 'sitemap.xmlに本番URLを設定してください。');
+requireLaunch(html.includes('みちしるべコンサルティング株式会社'), '正式な運営会社名を表示してください。');
+requireLaunch(html.includes('現地調査・見積もり・契約・施工は地域の施工対応店'), '運営窓口と施工担当の役割を明記してください。');
+requireLaunch(pages['privacy.html'].includes('ご本人の同意をいただきます'), '施工対応店への情報提供前の同意を明記してください。');
+
+for (const file of pageFiles) {
+  const page = pages[file];
+  const expectedUrl = file === 'index.html' ? productionUrl : `${productionUrl}${file}`;
+  requireLaunch((page.match(/<h1\b/g) || []).length === 1, `${file}のH1は1つにしてください。`);
+  requireLaunch(page.includes(`<link rel="canonical" href="${expectedUrl}">`), `${file}のcanonical URLを本番URLへ設定してください。`);
+  requireLaunch(sitemap.includes(`<loc>${expectedUrl}</loc>`), `sitemap.xmlに${file}の本番URLを設定してください。`);
+
+  const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  requireLaunch(ids.length === new Set(ids).size, `${file}内に重複IDがあります。`);
+  for (const [, id] of page.matchAll(/href="#([^"]+)"/g)) {
+    requireLaunch(ids.includes(id), `${file}のリンク先 #${id} が見つかりません。`);
+  }
+  for (const [, asset] of page.matchAll(/(?:src|href)="((?:assets\/|site-config)[^"]+)"/g)) {
+    requireLaunch(existsSync(`dist/${asset.split(/[?#]/)[0]}`), `${file}: ${asset} が見つかりません。`);
+  }
+  for (const [, asset] of page.matchAll(/srcset="(assets\/[^"]+)"/g)) {
+    requireLaunch(existsSync(`dist/${asset}`), `${file}: ${asset} が見つかりません。`);
+  }
+  for (const [, linkedPage] of page.matchAll(/href="([a-z-]+\.html)"/g)) {
+    requireLaunch(existsSync(`dist/${linkedPage}`), `${file}: ${linkedPage} が見つかりません。`);
+  }
+}
 
 const jsonLdBlocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
 requireLaunch(jsonLdBlocks.length > 0, 'JSON-LD構造化データが見つかりません。');
 for (const [, block] of jsonLdBlocks) {
   try { JSON.parse(block); } catch { failures.push('JSON-LD構造化データのJSONが正しくありません。'); }
-}
-
-const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
-requireLaunch(ids.length === new Set(ids).size, 'HTML内に重複IDがあります。');
-for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
-  requireLaunch(ids.includes(id), `リンク先 #${id} が見つかりません。`);
-}
-for (const [, asset] of html.matchAll(/(?:src|href)="((?:assets\/|site-config)[^"]+)"/g)) {
-  requireLaunch(existsSync(`dist/${asset.split(/[?#]/)[0]}`), `${asset} が見つかりません。`);
-}
-for (const [, asset] of html.matchAll(/srcset="(assets\/[^"]+)"/g)) {
-  requireLaunch(existsSync(`dist/${asset}`), `${asset} が見つかりません。`);
 }
 
 if (failures.length) {

@@ -4,5 +4,5 @@ window.WOODDECK_CONFIG = Object.freeze({
   lineId: '',
   // Or use an official line.me / lin.ee URL. The consultation text is copied before opening it.
   lineUrl: '',
-  serviceArea: ''
+  serviceArea: '福岡県を含む九州エリア・東海エリア・関東エリア'
 });

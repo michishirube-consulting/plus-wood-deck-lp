@@ -58,6 +58,7 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .cta-note{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7}
 .cta-wrap{margin-top:22px}
 .area-note{font-size:13px;text-align:center;margin-top:8px;color:var(--ink-2)}
+.hero-role-note{margin-top:10px;padding-top:10px;border-top:1px solid #ded8ce;font-size:12px;line-height:1.75;text-align:center;color:var(--muted)}
 .hero-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .hero-shortcuts a{display:flex;align-items:center;justify-content:space-between;gap:5px;min-height:44px;font-size:13px;font-weight:700;line-height:1.6;text-decoration:none;border-bottom:1px solid #d9d3c8;color:var(--ink-2)}
 .hero-shortcuts span{color:var(--brown)}
@@ -179,6 +180,21 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .check-list li{padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
 .check-list strong{display:block;font-size:16px}
 .check-list span{color:var(--ink-2);display:block;margin-top:3px}
+.service-model-section{background:var(--ink);color:#fff}
+.service-model-section .section-kicker{color:#efcb9c}
+.service-model-section .section-lead{color:#e2e5e2}
+.role-flow{margin:24px 0 0;padding:0;list-style:none}
+.role-flow li{display:grid;grid-template-columns:82px 1fr;gap:12px;padding:14px 0;border-top:1px solid #ffffff22}
+.role-flow li:last-child{border-bottom:1px solid #ffffff22}
+.role-flow>li>span{align-self:start;padding:4px 7px;border:1px solid #ffffff66;border-radius:999px;font-size:11px;line-height:1.5;text-align:center;color:#f4eadc}
+.role-flow strong{display:block;font-size:16px;line-height:1.6}
+.role-flow p{margin-top:3px;font-size:13px;line-height:1.75;color:#d4d9d5}
+.service-area-box{margin-top:20px;padding:15px 16px;border-left:3px solid var(--sand);border-radius:0 8px 8px 0;background:#ffffff0d}
+.service-area-box strong{font-size:13px;color:#efcb9c}
+.service-area-box p{margin-top:3px;font-size:16px;font-weight:700;line-height:1.7}
+.service-area-box span{display:block;margin-top:5px;font-size:12px;line-height:1.7;color:#d4d9d5}
+.model-note{margin-top:16px;font-size:12px;line-height:1.8;color:#c8ceca}
+.text-link{display:flex;align-items:center;justify-content:space-between;min-height:48px;margin-top:8px;color:#fff;font-size:14px;font-weight:700}
 .consultation-section{background:var(--sage)}
 .consultation-promise{margin-top:20px;padding:17px 0;border-block:1px solid #d8e0d5}
 .consultation-promise strong{font-size:17px}
@@ -238,6 +254,10 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .mini-footer .note{color:var(--muted);margin-top:18px}
 .footer-nav{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:16px}
 .footer-nav a{font-size:13px;min-height:34px;display:flex;align-items:center}
+.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+.footer-legal a{display:flex;align-items:center;min-height:34px;font-size:12px;color:var(--ink-2)}
+.consent-note{margin-top:14px;font-size:12px;line-height:1.8;color:var(--muted)}
+.consent-note a{color:var(--brown);font-weight:700}
 .fixed-cta{position:fixed;z-index:20;left:50%;bottom:0;width:min(100%,430px);padding:7px 12px calc(9px + var(--safe-bottom));transform:translate(-50%,115%);transition:transform .18s;background:#fffffff5;border-top:1px solid var(--line);visibility:hidden;backdrop-filter:blur(8px)}
 .fixed-cta.visible{visibility:visible;transform:translate(-50%,0)}
 .fixed-cta p{font-size:12px;color:var(--muted);text-align:center;margin-bottom:5px;line-height:1.4}
@@ -257,6 +277,33 @@ dialog::backdrop{background:#292d2cb3}
 @media(min-width:700px){body{padding:24px 0}.site-shell{border-radius:12px;overflow:clip}.fixed-cta{bottom:0}}
 @media(max-width:360px){h1{font-size:26px}section{padding-inline:16px}.hero-content,.topbar,.life-section,.cases-head,.cases-foot,.topic-nav{padding-inline:16px}.topbar{gap:16px}.brand-logo{width:44px;height:77px}.brand-tagline{font-size:18px}.hero-content:before{left:16px}.cta{font-size:14px;gap:7px;padding-inline:10px}.line-symbol{width:24px;height:24px;flex-basis:24px}.final-photo{margin-inline:-16px}.pattern-copy h3{font-size:19px}.portfolio-filters{gap:6px}.portfolio-filters button{font-size:12px;padding-inline:8px}.footer-identity{gap:16px}.footer-brand{font-size:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+/* Company, privacy and service information pages */
+.info-page{background:var(--ivory)}
+.info-page .site-shell{min-height:100dvh}
+.info-page .topbar{justify-content:space-between}
+.back-link{display:flex;align-items:center;min-height:44px;font-size:13px;color:var(--brown);font-weight:700;text-decoration:none}
+.info-main{padding:42px 20px 54px}
+.info-main h1{font-size:30px;line-height:1.45}
+.info-intro{margin-top:16px;font-size:16px;line-height:1.9;color:var(--ink-2)}
+.info-summary{margin-top:24px;padding:18px;border-left:4px solid var(--brown);background:var(--ivory)}
+.info-summary strong{display:block;font-size:17px;line-height:1.6}
+.info-summary p{margin-top:6px;font-size:14px;line-height:1.8;color:var(--ink-2)}
+.info-section{padding:26px 0 0}
+.info-section h2{font-size:20px;line-height:1.6}
+.info-section h3{margin-top:18px;font-size:16px}
+.info-section p,.info-section li{font-size:14px;line-height:1.9;color:var(--ink-2)}
+.info-section p{margin-top:8px}
+.info-section ul,.info-section ol{margin:10px 0 0;padding-left:1.4em}
+.info-section li+li{margin-top:5px}
+.info-table{width:100%;margin-top:14px;border-collapse:collapse;font-size:14px;line-height:1.8}
+.info-table th,.info-table td{display:block;padding:10px 0;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+.info-table th{padding-bottom:0;color:var(--brown);font-size:12px}
+.info-table td{padding-top:3px;color:var(--ink-2)}
+.info-main a{overflow-wrap:anywhere}
+.info-meta{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.info-footer{padding-bottom:36px}
+.info-footer .footer-nav{margin-top:0}
 
 /* Conversion-focused compact layout */
 section{padding-block:44px}

@@ -28,7 +28,8 @@
     {
       "@type": "Organization",
       "@id": "https://michishirube-consulting.github.io/plus-wood-deck-lp/#organization",
-      "name": "みちしるべコンサルティング",
+      "name": "みちしるべコンサルティング株式会社",
+      "legalName": "みちしるべコンサルティング株式会社",
       "brand": {
         "@type": "Brand",
         "name": "plus wood deck"
@@ -48,9 +49,10 @@
     {
       "@type": "Service",
       "@id": "https://michishirube-consulting.github.io/plus-wood-deck-lp/#wooddeck-service",
-      "name": "ウッドデッキの施工相談",
-      "serviceType": "ウッドデッキの形・サイズ・素材・費用の相談",
+      "name": "ウッドデッキの相談受付・施工対応店案内",
+      "serviceType": "ウッドデッキの形・サイズ・素材・費用相談と施工対応店の案内",
       "url": "https://michishirube-consulting.github.io/plus-wood-deck-lp/",
+      "areaServed": ["九州エリア", "東海エリア", "関東エリア"],
       "provider": {
         "@id": "https://michishirube-consulting.github.io/plus-wood-deck-lp/#organization"
       }
@@ -97,6 +99,22 @@
             "@type": "Answer",
             "text": "手入れにかけられる時間と、好みの質感から比べます。候補が決まったら、商品の仕様や実物サンプルも確認して選びます。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "相談と施工は、同じ会社が担当しますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "相談受付とご希望の整理はplus wood deckの運営窓口が行い、現地調査・見積もり・契約・施工は地域の施工対応店が担当します。担当する施工対応店は事前にご案内します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "相談内容は施工店へ共有されますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "現地調査や見積もりへ進む場合は、共有する施工対応店と情報の範囲をご案内し、同意をいただいたうえで必要な情報を共有します。"
+          }
         }
       ]
     }
@@ -105,7 +123,7 @@
   </script>
 
   <link rel="stylesheet" href="assets/fonts/plus-rounded.css">
-  <link rel="stylesheet" href="assets/lp.css?v=20260921-brushup">
+  <link rel="stylesheet" href="assets/lp.css?v=20260921-operator">
 </head>
 
 <body>
@@ -126,8 +144,9 @@
       <p class="hero-lead">リビングから、そのまま庭へ。<br>お茶、洗濯、子どもの遊び場。したいことから、形・広さ・費用を一緒に考えます。</p>
       <p class="hero-assurance">商品名もサイズも、決めずに相談できます。</p>
       <button class="cta js-line" data-location="hero" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button>
-      <p class="cta-note">庭の写真がなくても大丈夫。まずは、したいことをひとこと。</p>
+      <p class="cta-note">庭の写真は後からでOK。まずは市区町村と、したいことをひとこと。</p>
       <p class="area-note" data-service-area hidden></p>
+      <p class="hero-role-note">相談受付：plus wood deck運営窓口<br>現地調査・見積もり・施工：地域の施工対応店</p>
       <nav class="hero-shortcuts" aria-label="検討したいことから見る"><a href="#deck-patterns">家に合う形を見る<span aria-hidden="true">↓</span></a><a href="#size-cost">広さ・費用の考え方<span aria-hidden="true">↓</span></a></nav>
     </div>
   </section>
@@ -283,7 +302,7 @@
       <p class="selection-note" id="selectionNote" hidden></p>
       <button class="clear-selection" id="clearSelection" type="button" hidden>選択を外す</button>
       <p class="message-label">LINEに引き継ぐ相談内容</p>
-      <blockquote id="consultationMessage" aria-live="polite">ウッドデッキを検討しています。<br>わが家に合う形・サイズ・費用を相談したいです。<br>商品やサイズはまだ決まっていません。</blockquote>
+      <blockquote id="consultationMessage" aria-live="polite">ウッドデッキを検討しています。<br>わが家に合う形・サイズ・費用を相談したいです。<br>施工希望地域（市区町村）：［入力］<br>商品やサイズはまだ決まっていません。</blockquote>
       <button class="copy-button" type="button" data-copy>相談文をコピー</button>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       <p class="cta-reason">気になる形を選んで、ご自宅に合うつくり方を相談できます。</p>
@@ -320,18 +339,33 @@
     </ul>
   </section>
 
+  <section class="service-model-section" id="service-model" aria-labelledby="service-model-title">
+    <p class="section-kicker">相談窓口と施工担当について</p>
+    <h2 id="service-model-title">相談から施工まで、<br>担当を明確にご案内します。</h2>
+    <p class="section-lead">plus wood deckは、ウッドデッキの相談を受け付け、ご希望と地域に合う施工対応店へつなぐサービスです。</p>
+    <ol class="role-flow" aria-label="運営窓口と施工対応店の役割">
+      <li><span>相談受付</span><div><strong>plus wood deck運営窓口</strong><p>したい暮らし、庭の条件、予算のご希望を整理します。</p></div></li>
+      <li><span>おつなぎ</span><div><strong>対応可能な施工店をご案内</strong><p>施工店へ情報を共有する前に、共有先と内容をご案内します。</p></div></li>
+      <li><span>工事対応</span><div><strong>地域の施工対応店</strong><p>現地調査・見積もり・契約・施工・施工後の対応を担当します。</p></div></li>
+    </ol>
+    <div class="service-area-box"><strong>現在の対応エリア</strong><p>福岡県を含む九州エリア・東海エリア・関東エリア</p><span>市区町村、現地条件、希望する工事内容によりご案内できない場合があります。</span></div>
+    <p class="model-note">運営：みちしるべコンサルティング株式会社。工事の見積もり・契約条件・保証内容は、担当する施工対応店からご案内します。</p>
+    <a class="text-link" href="operator.html">運営と施工の役割を詳しく見る <span aria-hidden="true">›</span></a>
+  </section>
+
   <section class="consultation-section" id="consultation" aria-labelledby="consultation-title">
     <p class="section-kicker">ウッドデッキのご相談</p>
     <h2 id="consultation-title">商品もサイズも、<br>決まっていなくて大丈夫です。</h2>
     <p class="section-lead">「庭でお茶をしたい」「洗濯を楽にしたい」。使い方をひとこと送るところから始められます。</p>
     <ol class="flow" aria-label="LINE相談から施工までの流れ">
-      <li><span>01</span><div><strong>LINEで、したいことを送る</strong><p>短い文章で大丈夫です。写真や図面は、あればで構いません。</p></div></li>
-      <li><span>02</span><div><strong>希望する使い方を確認</strong><p>人数、置きたい物、困っていることを整理します。</p></div></li>
-      <li><span>03</span><div><strong>現地調査・正式なお見積もり</strong><p>必要な確認を行い、工事範囲と金額を具体的にします。</p></div></li>
-      <li><span>04</span><div><strong>内容を確認して、契約・施工へ</strong><p>仕様や費用を確認し、ご納得いただいてから進めます。</p></div></li>
+      <li><span>01</span><div><strong>運営窓口へLINEで相談</strong><p>短い文章で大丈夫です。写真や図面は、あればで構いません。</p></div></li>
+      <li><span>02</span><div><strong>使い方・地域・庭の条件を確認</strong><p>人数、置きたい物、ご予算、困っていることを整理します。</p></div></li>
+      <li><span>03</span><div><strong>施工対応店をご案内</strong><p>ご同意後、必要な相談情報を地域の施工対応店へ共有します。</p></div></li>
+      <li><span>04</span><div><strong>施工店が現地調査・正式見積もり</strong><p>担当する施工店が仕様と費用をご案内し、ご納得後に契約・施工へ進みます。</p></div></li>
     </ol>
-    <div class="cta-wrap"><p class="cta-reason">最初の相談だけで、契約や現地調査が決まることはありません。</p><button class="cta js-line" data-location="consultation" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">写真なし・商品未定でもOK。まずは希望の使い方をひとこと。</p></div>
+    <div class="cta-wrap"><p class="cta-reason">最初の相談だけで、契約や現地調査が決まることはありません。</p><button class="cta js-line" data-location="consultation" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">写真なし・商品未定でもOK。市区町村と希望の使い方をひとこと。</p></div>
     <p class="area-note" data-service-area hidden></p>
+    <p class="consent-note">現地調査・見積もりへ進む際は、施工対応店と共有する情報をご案内し、同意をいただいてから共有します。<a href="privacy.html">個人情報の取扱い</a></p>
   </section>
 
   <section class="faq-section" id="faq" aria-labelledby="faq-title">
@@ -343,6 +377,8 @@
       <details class="faq-item"><summary>費用は、何が分かれば確認できますか？</summary><div class="faq-answer"><p>希望する使い方と庭の条件から、必要な広さと工事を整理します。素材・地面・高さ・ステップなどで金額が変わるため、正式な金額は現地確認後のお見積もりでご案内します。</p></div></details>
       <details class="faq-item"><summary>写真や図面がなくても相談できますか？</summary><div class="faq-answer"><p>はい。最初はなくても大丈夫です。必要になった段階で、撮っていただきたい場所や確認したい資料をご案内します。</p></div></details>
       <details class="faq-item"><summary>人工木と天然木、どちらが合いますか？</summary><div class="faq-answer"><p>手入れにかけられる時間と、好みの質感から比べます。候補が決まったら、商品の仕様や実物サンプルも確認して選びます。</p></div></details>
+      <details class="faq-item"><summary>相談と施工は、同じ会社が担当しますか？</summary><div class="faq-answer"><p>相談受付とご希望の整理はplus wood deckの運営窓口が行い、現地調査・見積もり・契約・施工は地域の施工対応店が担当します。担当する施工対応店は事前にご案内します。</p></div></details>
+      <details class="faq-item"><summary>相談内容は施工店へ共有されますか？</summary><div class="faq-answer"><p>現地調査や見積もりへ進む場合は、共有する施工対応店と情報の範囲をご案内し、同意をいただいたうえで必要な情報を共有します。</p></div></details>
     </div>
   </section>
 
@@ -351,12 +387,13 @@
     <p class="section-kicker">次は、わが家の庭で。</p>
     <h2 id="final-title">まだ使えていない庭に、<br>家族の居場所を増やしませんか？</h2>
     <p class="section-lead">広さが分からなくても、商品が未定でも大丈夫です。<br>まずは「庭でしたいこと」をお聞かせください。</p>
-    <div class="cta-wrap"><button class="cta js-line" data-location="final" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">写真なし・サイズ未定でも相談できます</p></div>
+    <div class="cta-wrap"><button class="cta js-line" data-location="final" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button><p class="cta-note">市区町村と、庭でしたいことの2つから相談できます</p></div>
   </section>
 
   <footer class="mini-footer">
-    <div class="footer-identity"><span class="brand-logo"><picture><source srcset="assets/brand/plus-wood-deck-logo.webp" type="image/webp"><img src="assets/brand/plus-wood-deck-logo.png" width="1024" height="1024" alt="plus wood deck" loading="lazy" decoding="async"></picture></span><div><p class="footer-brand">庭に、暮らしをプラス。</p><p class="footer-operator">ウッドデッキ専門店<br>運営：みちしるべコンサルティング</p></div></div>
+    <div class="footer-identity"><span class="brand-logo"><picture><source srcset="assets/brand/plus-wood-deck-logo.webp" type="image/webp"><img src="assets/brand/plus-wood-deck-logo.png" width="1024" height="1024" alt="plus wood deck" loading="lazy" decoding="async"></picture></span><div><p class="footer-brand">庭に、暮らしをプラス。</p><p class="footer-operator">ウッドデッキ専門店<br>運営：みちしるべコンサルティング株式会社</p></div></div>
     <nav class="footer-nav" aria-label="ページ内リンク"><a href="#size-cost">サイズ・費用</a><a href="#deck-patterns">デザイン例</a><a href="#materials">素材の違い</a><a href="#consultation">相談の流れ</a><a href="#faq">よくある質問</a></nav>
+    <nav class="footer-legal" aria-label="運営情報"><a href="operator.html">運営者情報</a><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">ご利用にあたって</a></nav>
     <p class="note">掲載画像は生成した完成・プランイメージです。実施工写真・施工実績ではありません。設置可否や仕様は現地条件によって異なります。</p>
   </footer>
 </main>
@@ -380,6 +417,6 @@
   </div>
 </dialog>
 <script src="site-config.js"></script>
-<script src="assets/lp.js?v=20260921-brushup"></script>
+<script src="assets/lp.js?v=20260921-operator"></script>
 </body>
 </html>

@@ -16,16 +16,17 @@ python3 -m http.server 4187 --bind 127.0.0.1 --directory dist
 
 ## LINE公式アカウントの接続
 
-本番のLINE導線を接続するときに、`dist/site-config.js` の `lineUrl` にLINE公式アカウントのURLを、`serviceArea` に確認済みの対応地域を設定してください。
+本番のLINE導線を接続するときに、`dist/site-config.js` の `lineId` にLINE公式アカウントID（`@`から始まるID）を、`serviceArea` に確認済みの対応地域を設定してください。`lineId`を使うと、LPで選んだ形・広さ・相談目的をLINEの入力欄へ引き継げます。IDが分からない場合は、`lineUrl`にLINE公式アカウントURLを設定できます。
 
 ```js
 window.WOODDECK_CONFIG = Object.freeze({
-  lineUrl: 'https://line.me/R/ti/p/@example',
+  lineId: '@example',
+  lineUrl: '',
   serviceArea: '○○市・△△市とその周辺地域'
 });
 ```
 
-`lineUrl` が空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。`serviceArea` が空の場合、対応エリア表示は非表示になります。GitHub Pagesには安全なプレビュー状態で公開でき、設定後のpushで本番導線へ切り替わります。
+`lineId` と `lineUrl` が両方空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。`serviceArea` が空の場合、対応エリア表示は非表示になります。GitHub Pagesには安全なプレビュー状態で公開でき、設定後のpushで本番導線へ切り替わります。
 
 ## GitHub Pagesで公開する
 
@@ -41,7 +42,8 @@ window.WOODDECK_CONFIG = Object.freeze({
 - `dist/index.html` — LP本体
 - `dist/assets/lp.css` — デザイン
 - `dist/assets/lp.js` — 画像拡大、相談文作成、LINE導線
-- `dist/site-config.js` — LINE URL・対応地域の設定
+- `dist/site-config.js` — LINE公式アカウントID／URL・対応地域の設定
+- `dist/sitemap.xml` — 本番URLのXMLサイトマップ
 - `dist/assets/brand/` — plus wood deck ロゴ
 - `dist/assets/portfolio/` — 家と庭への合わせ方が異なる6つの生成プランイメージ（表示用768px・拡大用1536px）
 - `docs/portfolio-image-prompts.md` — 画像制作の意図と生成プロンプト

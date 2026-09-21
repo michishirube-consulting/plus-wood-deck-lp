@@ -1,0 +1,64 @@
+# plus wood deck｜SEO・情報設計 実装記録
+
+更新日：2026-09-21
+
+## 方針
+
+- 運営表記：みちしるべコンサルティング
+- ブランド：plus wood deck／ウッドデッキ専門店
+- 正規URL：`https://michishirube-consulting.github.io/plus-wood-deck-lp/`
+- 対象サービス：戸建て住宅向けウッドデッキの相談
+- 主導線：LP → LINE相談 → 現地調査 → 正式見積もり → 契約・施工
+
+現時点では、独立ページにできる取扱商品データ・実施工事例データ・地域別一次情報がない。そのため、検索語だけを変えた薄いページは作らず、一つの正規URLに判断材料を集約した。
+
+## 検索意図と受け皿
+
+| 意図 | 検索で使われる自然な語 | LP内の受け皿 |
+| --- | --- | --- |
+| 工事・相談 | ウッドデッキ 工事／施工／庭 | ページ全体・相談の流れ |
+| 費用 | 費用／相場／いくら／工事費込み | サイズ・費用 |
+| サイズ・用途 | サイズ／奥行き／狭い庭／テーブル／洗濯 | 使い方別配置図 |
+| 素材 | 人工木／樹脂木／天然木／違い | 素材比較 |
+| 後悔回避 | 後悔／手入れ／夏 熱い／段差／目隠し | 4つの確認・FAQ |
+| メーカー | LIXIL／リクシル＋製品名 | 取扱確認後に検討 |
+| 地域 | 地域名＋ウッドデッキ工事 | 対応地域・実績確認後に検討 |
+
+「費用・価格・相場・いくら」は同じ費用意図に統合。「人工木・樹脂木」は同じ素材比較で併記した。
+
+LIXIL公式サイトでは複数のウッドデッキ製品と仕様を確認できるが、plus wood deckでの取扱可否は未確認。そのため、現時点のLPではメーカー名・製品名・性能・価格を提供内容として掲載しない。取扱が確定した後に、正式な製品名、仕様、価格条件、更新日をそろえてページ化を判断する。
+
+## 実装済み
+
+- 一意なtitle、meta description、H1
+- canonical、`og:url`、OG画像、Twitterカード
+- Organization、WebSite、Service、FAQPageのJSON-LD
+- `robots.txt`と、正規URLだけを載せた`sitemap.xml`
+- 初期HTML内に検索・検討に必要な本文を保持
+- 生成画像を実施工事例と誤認させない表示
+- 架空価格を使わず、費用が変わる条件を説明
+- 人工木（樹脂木）と天然木の比較
+- ブランド日本語表記を「みちしるべ」に統一
+- 公開前スクリプトでURL、画像、ID、JSON-LD、ブランド表記を検査
+
+## 次に独立ページを作れる条件
+
+1. 施工事例：完成写真、地域、寸法、素材、用途、工事範囲、確認済み価格がそろう。
+2. 商品情報：取扱メーカー・商品、仕様、価格条件、施工可否が確定する。
+3. 地域情報：地域ごとに異なる実績、対応条件、窓口情報がある。
+
+URLは短い英小文字とハイフンを使用する。パラメータ別URLや、類似キーワードだけを変えたページは作らない。
+
+## 公開後の評価
+
+LINEクリックだけでなく、初回メッセージ送信率、形・サイズを含む相談率、有効問い合わせ率、現地調査化率、見積もり化率、受注率、粗利まで追う。検索面はSearch Consoleのクエリ、表示回数、CTR、掲載順位を確認する。
+
+## 参照した一次情報
+
+- [LIXIL：ウッドデッキ・タイルデッキ一覧](https://www.lixil.co.jp/lineup/exterior/terrace/wood_deck/)
+- [LIXIL：デッキ製品情報](https://www.lixil.co.jp/lineup/exterior/terrace/deck/)
+- [LIXIL：ウッドデッキのお手入れ・取扱説明書](https://www.lixil.co.jp/support/manual/exterior/productmanual?p_r_p_tag=ue089_0104)
+- [Google 検索セントラル：正規URL](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=ja)
+- [Google 検索セントラル：サイトマップ](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=ja)
+
+メーカー情報は検索需要と用語確認のために参照したもので、取扱を示すものではない。

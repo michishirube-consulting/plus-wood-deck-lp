@@ -257,3 +257,82 @@ dialog::backdrop{background:#292d2cb3}
 @media(min-width:700px){body{padding:24px 0}.site-shell{border-radius:12px;overflow:clip}.fixed-cta{bottom:0}}
 @media(max-width:360px){h1{font-size:26px}section{padding-inline:16px}.hero-content,.topbar,.life-section,.cases-head,.cases-foot,.topic-nav{padding-inline:16px}.topbar{gap:16px}.brand-logo{width:44px;height:77px}.brand-tagline{font-size:18px}.hero-content:before{left:16px}.cta{font-size:14px;gap:7px;padding-inline:10px}.line-symbol{width:24px;height:24px;flex-basis:24px}.final-photo{margin-inline:-16px}.pattern-copy h3{font-size:19px}.portfolio-filters{gap:6px}.portfolio-filters button{font-size:12px;padding-inline:8px}.footer-identity{gap:16px}.footer-brand{font-size:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+/* Conversion-focused compact layout */
+section{padding-block:44px}
+.topbar{gap:16px;padding-block:8px}
+.topbar .brand-logo{width:43px;height:75px}
+.header-label{margin:0}
+.brand-tagline{font-size:18px;margin-top:2px}
+.cta-reason{margin:0 0 9px;text-align:center;font-size:13px;font-weight:700;line-height:1.65;color:var(--green-dark)}
+
+.size-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:18px 20px 0}
+.size-tabs button{min-height:48px;padding:7px 5px;border:1px solid #d6cbbb;border-radius:9px;background:var(--paper);font-size:13px;font-weight:700;line-height:1.35}
+.size-tabs button[aria-selected="true"]{border-color:var(--brown);background:var(--brown);color:#fff}
+.case-stage{margin:10px 20px 0}
+.case-stage .case-card{width:100%;max-width:none;min-height:0;padding:14px}
+.case-stage .plan-figure svg{height:136px}
+.size-consult.selected{color:var(--green-dark)}
+.size-consult.selected::after{content:"相談候補に追加済み";font-size:11px;color:var(--green-dark)}
+.cost-details,.material-details{margin-top:12px;border-block:1px solid #d8d0c4}
+.cost-details summary,.material-details summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;font-size:14px;font-weight:700;list-style:none}
+.cost-details summary::-webkit-details-marker,.material-details summary::-webkit-details-marker{display:none}
+.cost-details summary::after,.material-details summary::after{content:"＋";color:var(--brown);font-size:18px}
+.cost-details[open] summary::after,.material-details[open] summary::after{content:"−"}
+.cost-details>div{padding-bottom:10px}
+.cost-details>div p{margin-top:9px}
+
+.patterns-section{padding-top:40px}
+.portfolio-list{gap:28px}
+.additional-patterns{margin-top:28px}
+.portfolio-story{padding-bottom:24px}
+.pattern-media img{object-fit:cover}
+.portfolio-point{display:flex;align-items:flex-start;gap:7px;margin-top:11px!important;padding:9px 10px;background:var(--ivory);border-radius:7px;font-size:12px!important}
+.portfolio-point span{flex:0 0 auto;color:var(--brown);font-weight:700}
+.portfolio-select{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;margin-top:10px;padding:8px 0;border:0;border-top:1px solid var(--line);background:transparent;color:var(--brown);font-size:14px;font-weight:700;text-align:left}
+.portfolio-select span{font-size:19px}
+.portfolio-select[aria-pressed="true"]{color:var(--green-dark)}
+.more-patterns{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;margin-top:5px;padding:10px 14px;border:1px solid #ccbda9;border-radius:10px;background:var(--paper);color:var(--brown);font-size:14px;font-weight:700}
+.more-patterns span{font-size:21px}
+.selection-live{min-height:24px;margin-top:8px;color:var(--green-dark);font-size:13px;font-weight:700}
+.portfolio-choice{margin-top:20px;padding:22px 18px;background:var(--sage);border-radius:14px}
+.portfolio-choice h3{font-size:21px}
+.portfolio-choice blockquote{margin:0;padding:12px 14px;border-left:3px solid var(--green);border-radius:0 8px 8px 0;background:#fff;font-size:14px;line-height:1.8;white-space:pre-wrap}
+.consultation-benefits{display:grid;grid-template-columns:1fr;gap:7px;margin:14px 0 0;padding:0;list-style:none}
+.consultation-benefits li{position:relative;padding-left:22px;font-size:14px;font-weight:700}
+.consultation-benefits li::before{content:"✓";position:absolute;left:0;color:var(--green-dark)}
+
+.materials-section{padding-block:40px}
+.material-intro{margin-top:20px;gap:12px}
+.material-intro strong{line-height:1.45}
+.comparison-table{margin-top:20px}
+.comparison-values p::before{display:block;margin-bottom:3px;font-size:11px;font-weight:700;color:var(--green-dark)}
+.comparison-values p:first-child::before{content:"人工木（樹脂木）"}
+.comparison-values p:last-child::before{content:"天然木";color:var(--brown)}
+.material-details p{padding-bottom:13px;font-size:13px;line-height:1.8;color:var(--ink-2)}
+
+.check-section{padding-block:40px}
+.check-list{margin-top:14px}
+.check-list li{padding:11px 0}
+.consultation-section{padding-block:40px}
+.consultation-section .flow{margin-top:20px}
+.consultation-section .flow li{padding-bottom:18px}
+.faq-section{padding-block:40px}
+.faq-list{margin-top:16px}
+.final-section{padding-bottom:44px}
+.mini-footer{padding-top:30px}
+.footer-operator{line-height:1.8}
+.fixed-cta{padding-top:6px}
+.fixed-cta p{font-size:11px;margin-bottom:4px}
+.fixed-cta .cta{min-height:48px}
+
+@media(max-width:360px){
+  section{padding-block:38px}
+  .size-tabs{margin-inline:16px;gap:5px}
+  .size-tabs button{font-size:12px;padding-inline:3px}
+  .case-stage{margin-inline:16px}
+  .portfolio-choice{padding-inline:15px}
+  .comparison-values{gap:10px}
+  .comparison-values p{font-size:13px}
+  .comparison-values p:last-child{padding-left:10px}
+}

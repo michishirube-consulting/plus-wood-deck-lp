@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Generate wood deck product pages
+        run: node scripts/build-wooddeck-store.mjs
+
       - name: Run launch preflight
         run: node scripts/preflight.mjs
 

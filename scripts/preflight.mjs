@@ -1,4 +1,5 @@
 import {existsSync, readFileSync} from 'node:fs';
+import {dirname, resolve} from 'node:path';
 
 const pageFiles = ['index.html', 'operator.html', 'privacy.html', 'terms.html'];
 const pages = Object.fromEntries(pageFiles.map(file => [file, readFileSync(`dist/${file}`, 'utf8')]));
@@ -82,6 +83,38 @@ requireLaunch(jsonLdBlocks.length > 0, 'JSON-LD構造化データが見つかり
 for (const [, block] of jsonLdBlocks) {
   try { JSON.parse(block); } catch { failures.push('JSON-LD構造化データのJSONが正しくありません。'); }
 }
+
+const storePages = [
+  ['dist/wooddeck/index.html', `${productionUrl}wooddeck/`],
+  ['dist/products/wooddeck/kiraraku-plain/index.html', `${productionUrl}products/wooddeck/kiraraku-plain/`],
+  ['dist/products/wooddeck/kiraraku-masame/index.html', `${productionUrl}products/wooddeck/kiraraku-masame/`],
+  ['dist/products/wooddeck/kiraraku-kibori-revia/index.html', `${productionUrl}products/wooddeck/kiraraku-kibori-revia/`],
+  ['dist/products/wooddeck/kiraraku-stage-kibori/index.html', `${productionUrl}products/wooddeck/kiraraku-stage-kibori/`]
+];
+for (const [path, url] of storePages) {
+  requireLaunch(existsSync(path), `${path} が生成されていません。`);
+  if (!existsSync(path)) continue;
+  const page = readFileSync(path, 'utf8');
+  requireLaunch((page.match(/<h1\b/g) || []).length === 1, `${path}のH1は1つにしてください。`);
+  requireLaunch(page.includes(`<link rel="canonical" href="${url}">`), `${path}のcanonical URLを確認してください。`);
+  requireLaunch(page.includes('application/ld+json'), `${path}に構造化データがありません。`);
+  requireLaunch(sitemap.includes(`<loc>${url}</loc>`), `sitemap.xmlに${url}を追加してください。`);
+  requireLaunch(page.includes('みちしるべコンサルティング株式会社'), `${path}に運営会社名がありません。`);
+
+  const pageJsonLdBlocks = [...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  for (const [, block] of pageJsonLdBlocks) {
+    try { JSON.parse(block); } catch { failures.push(`${path}のJSON-LD構造化データが正しくありません。`); }
+  }
+
+  for (const [, reference] of page.matchAll(/(?:src|href)="([^"#]+)"/g)) {
+    if (/^(?:https?:|mailto:|tel:|javascript:)/.test(reference)) continue;
+    const target = resolve(dirname(path), reference.split(/[?#]/)[0]);
+    const localTarget = target.endsWith('/') ? `${target}index.html` : target;
+    requireLaunch(existsSync(localTarget), `${path}: ${reference} が見つかりません。`);
+  }
+}
+requireLaunch(existsSync('data/wooddeck-products.source.json'), '商品価格のソースデータがありません。');
+requireLaunch(existsSync('dist/assets/shop.js') && existsSync('dist/assets/shop.css'), '商品ページ用のCSSまたはJavaScriptがありません。');
 
 if (failures.length) {
   console.error('公開前チェックで確認が必要な項目があります。');

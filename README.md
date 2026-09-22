@@ -4,7 +4,7 @@ Instagram広告からLINE相談につなげる、スマートフォン向けウ�
 
 ## 公開ファイル
 
-公開対象は `dist/` フォルダです。HTML・CSS・JavaScript・画像・フォントを含む静的サイトのため、ビルド作業や外部ライブラリのインストールは不要です。
+公開対象は `dist/` フォルダです。HTML・CSS・JavaScript・画像・フォントを含む静的サイトです。商品・価格ページは、公開時に検証済みの商品データから再生成します。外部ライブラリのインストールは不要です。
 
 ## ローカル確認
 
@@ -37,20 +37,28 @@ window.WOODDECK_CONFIG = Object.freeze({
 
 `.github/workflows/pages.yml` が `dist/` の内容だけをGitHub Pagesへ公開します。
 
+公開ワークフローは、商品ページの生成 → 公開前チェック → Pagesへの配置の順で実行します。商品データと公開HTMLのずれを残したまま公開しない構成です。
+
 ## 主なファイル
 
 - `dist/index.html` — LP本体
+- `dist/wooddeck/index.html` — ウッドデッキ4商品の比較・価格入口
+- `dist/products/wooddeck/` — 商品別のサイズ選択・本体参考価格・相談内容生成ページ
 - `dist/operator.html` — 運営者情報・相談窓口と施工担当の役割
 - `dist/privacy.html` — 本サービス用プライバシーポリシー
 - `dist/terms.html` — サービス利用時の確認事項
 - `dist/assets/lp.css` — デザイン
 - `dist/assets/lp.js` — 画像拡大、相談文作成、LINE導線
+- `dist/assets/shop.css` / `dist/assets/shop.js` — 商品・価格ページのUIと価格／相談内容生成
 - `dist/site-config.js` — LINE公式アカウントID／URL・対応地域の設定
 - `dist/sitemap.xml` — 本番URLのXMLサイトマップ
 - `dist/assets/brand/` — plus wood deck ロゴ
 - `dist/assets/portfolio/` — 家と庭への合わせ方が異なる6つの生成プランイメージ（表示用768px・拡大用1536px）
 - `docs/portfolio-image-prompts.md` — 画像制作の意図と生成プロンプト
 - `docs/lead-routing-operations.md` — 相談受付、施工店への同意取得、案件管理、加盟店連携の運用設計
+- `docs/conversion-line-ai-proposal-plan.md` — LP・概算価格・LINEボット・AI提案・施工店連携を一つにつなぐCV導線の企画設計
+- `data/wooddeck-products.source.json` — 商品名・サイズ・価格の生成元データ
+- `scripts/build-wooddeck-store.mjs` — 商品比較・商品詳細ページの静的HTML生成
 
 ## 本番導線の接続前チェック
 
@@ -64,6 +72,7 @@ window.WOODDECK_CONFIG = Object.freeze({
 次のコマンドで、GitHubへ送る前に公開条件を確認できます。
 
 ```bash
+node scripts/build-wooddeck-store.mjs
 node scripts/preflight.mjs
 ```
 

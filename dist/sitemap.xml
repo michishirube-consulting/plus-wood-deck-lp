@@ -24,4 +24,34 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://michishirube-consulting.github.io/plus-wood-deck-lp/wooddeck/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://michishirube-consulting.github.io/plus-wood-deck-lp/products/wooddeck/kiraraku-plain/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://michishirube-consulting.github.io/plus-wood-deck-lp/products/wooddeck/kiraraku-masame/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://michishirube-consulting.github.io/plus-wood-deck-lp/products/wooddeck/kiraraku-kibori-revia/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://michishirube-consulting.github.io/plus-wood-deck-lp/products/wooddeck/kiraraku-stage-kibori/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -27,9 +27,10 @@ button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visibl
 .brand-logo{display:block;position:relative;width:48px;height:84px;overflow:hidden;flex-shrink:0;background:#fff}
 .brand-logo picture{display:block;width:100%;height:100%}
 .brand-logo img{position:absolute;width:243.81%;max-width:none;height:auto;left:-71.90%;top:-19.59%}
-.header-copy{min-width:0}
+.header-copy{min-width:0;flex:1}
 .header-label{font-size:12px;color:var(--ink-2);line-height:1.5;letter-spacing:.02em}
 .brand-tagline{font-family:var(--font-display);font-size:19px;font-weight:700;letter-spacing:-.025em;line-height:1.65;margin-top:5px}
+.header-price-link{display:grid;place-items:center;flex:0 0 auto;min-height:42px;padding:6px 10px;border:1px solid #d6cbbb;border-radius:999px;color:var(--brown);font-size:11px;font-weight:700;line-height:1.4;text-decoration:none}
 section{padding:52px 20px;scroll-margin-top:8px}
 h1,h2,h3,p,figure{margin:0}
 h1,h2,h3{font-family:var(--font-display);font-weight:700;font-feature-settings:"palt"}
@@ -62,6 +63,17 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .hero-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .hero-shortcuts a{display:flex;align-items:center;justify-content:space-between;gap:5px;min-height:44px;font-size:13px;font-weight:700;line-height:1.6;text-decoration:none;border-bottom:1px solid #d9d3c8;color:var(--ink-2)}
 .hero-shortcuts span{color:var(--brown)}
+.price-link{position:relative;display:block;min-height:57px;margin-top:13px;padding:9px 38px 9px 13px;border:1px solid #d6cbbb;border-radius:10px;background:#fff;color:var(--ink);text-decoration:none}
+.price-link span{display:block;color:var(--muted);font-size:11px;line-height:1.5}
+.price-link strong{display:block;margin-top:1px;color:var(--brown);font-size:14px;line-height:1.6}
+.price-link i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:20px;font-style:normal;color:var(--brown)}
+.consult-result{padding:28px 20px;background:#fff;border-bottom:1px solid var(--line)}
+.consult-result h2{font-size:22px}
+.consult-result ol{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:16px 0 0;padding:0;list-style:none}
+.consult-result li{min-width:0;padding:10px 6px;border-radius:8px;background:var(--sage);text-align:center}
+.consult-result li span{display:block;color:var(--brown);font-size:10px;font-weight:700}
+.consult-result li strong{display:block;margin-top:3px;font-size:12px;line-height:1.55}
+.consult-result>p:last-child{margin-top:11px;color:var(--ink-2);font-size:12px;line-height:1.7}
 .life-section{padding:28px 20px;background:var(--paper)}
 .life-section h2{font-size:23px}
 .life-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
@@ -100,6 +112,8 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .budget-answer p{font-size:14px;color:var(--ink-2);margin-top:6px;line-height:1.8}
 .budget-answer a{font-weight:700;color:var(--brown)}
 .cases-foot .cta-wrap{margin-top:15px}
+.price-link-block{margin-top:17px}
+.price-scope-note{margin-top:7px;color:var(--muted);font-size:11px;line-height:1.65}
 .topic-nav{display:grid;grid-template-columns:1fr 1fr;padding:16px 20px;gap:0 16px;border-bottom:1px solid var(--line)}
 .topic-nav a{font-size:14px;min-height:45px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;border-bottom:1px solid var(--line)}
 .topic-nav a::after{content:"↓";font-size:13px;color:var(--brown);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;background:#eef4fc}
@@ -275,7 +289,7 @@ dialog::backdrop{background:#292d2cb3}
 .plan-dialog .note{margin-top:12px}
 .plan-dialog .dialog-inner{padding-top:16px}
 @media(min-width:700px){body{padding:24px 0}.site-shell{border-radius:12px;overflow:clip}.fixed-cta{bottom:0}}
-@media(max-width:360px){h1{font-size:26px}section{padding-inline:16px}.hero-content,.topbar,.life-section,.cases-head,.cases-foot,.topic-nav{padding-inline:16px}.topbar{gap:16px}.brand-logo{width:44px;height:77px}.brand-tagline{font-size:18px}.hero-content:before{left:16px}.cta{font-size:14px;gap:7px;padding-inline:10px}.line-symbol{width:24px;height:24px;flex-basis:24px}.final-photo{margin-inline:-16px}.pattern-copy h3{font-size:19px}.portfolio-filters{gap:6px}.portfolio-filters button{font-size:12px;padding-inline:8px}.footer-identity{gap:16px}.footer-brand{font-size:16px}}
+@media(max-width:360px){h1{font-size:26px}section{padding-inline:16px}.hero-content,.topbar,.life-section,.cases-head,.cases-foot,.topic-nav{padding-inline:16px}.topbar{gap:10px}.brand-logo{width:42px;height:73px}.brand-tagline{font-size:16px}.header-price-link{padding-inline:8px}.hero-content:before{left:16px}.cta{font-size:14px;gap:7px;padding-inline:10px}.line-symbol{width:24px;height:24px;flex-basis:24px}.consult-result{padding-inline:16px}.consult-result li{padding-inline:3px}.consult-result li strong{font-size:11px}.final-photo{margin-inline:-16px}.pattern-copy h3{font-size:19px}.portfolio-filters{gap:6px}.portfolio-filters button{font-size:12px;padding-inline:8px}.footer-identity{gap:16px}.footer-brand{font-size:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
 
 /* Company, privacy and service information pages */

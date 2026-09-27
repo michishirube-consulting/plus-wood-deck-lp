@@ -24,7 +24,10 @@ if (lineUrl) {
   try {
     const parsedLineUrl = new URL(lineUrl);
     requireLaunch(parsedLineUrl.protocol === 'https:', 'LINE URLはhttps://から始まる必要があります。');
-    requireLaunch(['line.me', 'lin.ee'].includes(parsedLineUrl.hostname), 'LINE公式ドメイン（line.me または lin.ee）のURLを設定してください。');
+    const isLineUrl = ['line.me', 'lin.ee'].includes(parsedLineUrl.hostname);
+    const isUtageUrl = parsedLineUrl.hostname === 'utage-system.com' && parsedLineUrl.pathname.startsWith('/line/open/');
+    requireLaunch(isLineUrl || isUtageUrl, 'LINE公式URLまたはUTAGEの公開登録URLを設定してください。');
+    requireLaunch(!parsedLineUrl.username && !parsedLineUrl.password && !parsedLineUrl.port, 'LINE URLに認証情報やポート番号を含めないでください。');
   } catch {
     failures.push('LINE URLの形式が正しくありません。');
   }
@@ -54,6 +57,7 @@ requireLaunch(robots.includes(`Sitemap: ${productionUrl}sitemap.xml`), 'robots.t
 requireLaunch(html.includes('みちしるべコンサルティング株式会社'), '正式な運営会社名を表示してください。');
 requireLaunch(html.includes('現地調査・見積もり・契約・施工は地域の施工対応店'), '運営窓口と施工担当の役割を明記してください。');
 requireLaunch(pages['privacy.html'].includes('ご本人の同意をいただきます'), '施工対応店への情報提供前の同意を明記してください。');
+requireLaunch(html.includes('assets/consultation-state.js'), 'LPで相談番号・流入情報の共通処理を読み込んでください。');
 
 for (const file of pageFiles) {
   const page = pages[file];
@@ -100,6 +104,7 @@ for (const [path, url] of storePages) {
   requireLaunch(page.includes('application/ld+json'), `${path}に構造化データがありません。`);
   requireLaunch(sitemap.includes(`<loc>${url}</loc>`), `sitemap.xmlに${url}を追加してください。`);
   requireLaunch(page.includes('みちしるべコンサルティング株式会社'), `${path}に運営会社名がありません。`);
+  requireLaunch(page.includes('assets/consultation-state.js'), `${path}で相談番号・流入情報の共通処理を読み込んでください。`);
 
   const pageJsonLdBlocks = [...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   for (const [, block] of pageJsonLdBlocks) {
@@ -115,6 +120,7 @@ for (const [path, url] of storePages) {
 }
 requireLaunch(existsSync('data/wooddeck-products.source.json'), '商品価格のソースデータがありません。');
 requireLaunch(existsSync('dist/assets/shop.js') && existsSync('dist/assets/shop.css'), '商品ページ用のCSSまたはJavaScriptがありません。');
+requireLaunch(existsSync('dist/assets/consultation-state.js'), '相談番号・流入情報の共通JavaScriptがありません。');
 
 if (failures.length) {
   console.error('公開前チェックで確認が必要な項目があります。');

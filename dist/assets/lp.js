@@ -2,6 +2,7 @@
   'use strict';
 
   const config = window.WOODDECK_CONFIG || {};
+  const sharedState = window.WOODDECK_STATE || {};
   const plans = {
     tree: {
       title: '植栽を囲むデッキ',
@@ -78,20 +79,33 @@
   const selectionLive = document.getElementById('selectionLive');
   const morePatternsToggle = document.getElementById('morePatternsToggle');
   const additionalPatterns = document.getElementById('additionalPatterns');
+  const priceSelectionBox = document.getElementById('priceSelectionBox');
+  const priceSelectionDetails = document.getElementById('priceSelectionDetails');
+  const priceSelectionLink = document.getElementById('priceSelectionLink');
+  const clearPriceSelection = document.getElementById('clearPriceSelection');
+  const lineDialogMessage = document.getElementById('lineDialogMessage');
+  const lineDialogOpen = document.getElementById('lineDialogOpen');
+  const lineDialogCopy = document.getElementById('lineDialogCopy');
   let selectedPlan = '';
   let selectedSize = '';
   let selectedIntent = 'undecided';
+  let priceSelection = null;
   let viewedPlan = '';
   let framePending = false;
 
   function record(event, properties = {}) {
+    if (typeof sharedState.record === 'function') {
+      sharedState.record(event, properties);
+      return;
+    }
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event, ...properties });
   }
   function officialLineUrl(value) {
+    if (typeof sharedState.isAllowedLineUrl === 'function') return sharedState.isAllowedLineUrl(value);
     try {
       const url = new URL(value);
-      const validHost = ['lin.ee', 'line.me'].includes(url.hostname);
+      const validHost = ['lin.ee', 'line.me'].includes(url.hostname) || (url.hostname === 'utage-system.com' && url.pathname.startsWith('/line/open/'));
       return url.protocol === 'https:' && validHost && !url.username && !url.password && !url.port ? url.href : '';
     } catch {
       return '';
@@ -129,7 +143,21 @@
   }
 
   function consultationText() {
-    const lines = [intents[selectedIntent]];
+    const consultationId = typeof sharedState.getConsultationId === 'function' ? sharedState.getConsultationId() : '';
+    const qualifiers = priceSelection?.qualifiers || {};
+    const lines = [consultationId ? '相談番号：' + consultationId : '', intents[selectedIntent]];
+    if (priceSelection?.productName) {
+      lines.push('価格診断の商品：' + priceSelection.productName);
+      if (priceSelection.selections?.width) lines.push('幅：' + String(priceSelection.selections.width).replace(/^.+?:/, ''));
+      if (priceSelection.selections?.depth) lines.push('奥行：' + String(priceSelection.selections.depth).replace(/^.+?:/, ''));
+      if (priceSelection.selections?.height) lines.push('高さ：' + String(priceSelection.selections.height).replace(/^.+?:/, ''));
+      if (Number.isFinite(priceSelection.price)) lines.push('税込・商品本体参考価格：' + Number(priceSelection.price).toLocaleString('ja-JP') + '円');
+      if (qualifiers.city) lines.push('施工希望地域：' + qualifiers.city);
+      if (qualifiers.purpose) lines.push('庭でしたいこと：' + qualifiers.purpose);
+      if (qualifiers.existing) lines.push('既存デッキ：' + qualifiers.existing);
+      if (qualifiers.ground) lines.push('設置場所の地面：' + qualifiers.ground);
+      if (Array.isArray(qualifiers.extras) && qualifiers.extras.length) lines.push('一緒に相談したいもの：' + qualifiers.extras.join('、'));
+    }
     if (selectedPlan) {
       lines.push('気になる形：LPの「' + plans[selectedPlan].title + '」');
       lines.push(plans[selectedPlan].idea);
@@ -140,9 +168,9 @@
       lines.push('寸法はまだ決めていません。');
     }
     lines.push(questions[selectedIntent]);
-    lines.push('施工希望地域（市区町村）：［入力］');
-    if (!selectedPlan && !selectedSize) lines.push('商品やサイズはまだ決まっていません。');
-    return lines.join('\n');
+    if (!qualifiers.city) lines.push('施工希望地域（市区町村）：［入力］');
+    if (!selectedPlan && !selectedSize && !priceSelection?.productName) lines.push('商品やサイズはまだ決まっていません。');
+    return lines.filter(Boolean).join('\n');
   }
   function saveSelection() {
     try {
@@ -156,6 +184,16 @@
     selectionNote.textContent = references.length ? '相談候補　' + references.join(' ／ ') : '';
     selectionNote.hidden = !references.length;
     clearSelection.hidden = !references.length;
+    if (priceSelectionBox) {
+      const hasPrice = Boolean(priceSelection?.productName && Number.isFinite(priceSelection?.price));
+      priceSelectionBox.hidden = !hasPrice;
+      if (hasPrice) {
+        const dimensions = ['width', 'depth', 'height'].map(key => priceSelection.selections?.[key] ? String(priceSelection.selections[key]).replace(/^.+?:/, '') : '').filter(Boolean).join(' × ');
+        priceSelectionDetails.textContent = [priceSelection.productName, dimensions, Number(priceSelection.price).toLocaleString('ja-JP') + '円（税込・商品本体参考価格）'].filter(Boolean).join(' ／ ');
+        const savedUrl = String(priceSelection.productUrl || '');
+        priceSelectionLink.href = /^\/products\/wooddeck\/[a-z0-9-]+\/?(?:\?.*)?$/.test(savedUrl) ? savedUrl : 'wooddeck/';
+      }
+    }
     message.textContent = consultationText();
     fixedContext.textContent = references.length ? '相談候補をLINEへ引き継げます' : '写真なし・サイズ未定でもOK';
     document.querySelectorAll('[data-select-plan]').forEach(button => {
@@ -180,6 +218,10 @@
       if (sizeExamples[state.size]) selectedSize = state.size;
       if (intents[state.intent]) selectedIntent = state.intent;
     } catch { /* Start from the default state. */ }
+    try {
+      const storedPrice = JSON.parse(sessionStorage.getItem('wooddeckPriceSelection') || 'null');
+      if (storedPrice && typeof storedPrice === 'object') priceSelection = storedPrice;
+    } catch { /* Price selection is optional. */ }
     const input = document.querySelector('[name="intent"][value="' + selectedIntent + '"]');
     if (input) input.checked = true;
   }
@@ -228,12 +270,28 @@
         window.location.assign('https://line.me/R/oaMessage/' + lineId + '/?' + encodeURIComponent(consultationText()));
       } else if (lineUrl) {
         await copyConsultation(false);
-        window.location.assign(lineUrl);
+        lineDialogMessage.textContent = consultationText();
+        lineDialogOpen.href = lineUrl;
+        lineDialog.showModal();
+        updateFixed();
+        record('wooddeck_line_handoff_view', { cta_location: button.dataset.location });
       } else {
         lineDialog.showModal();
         updateFixed();
       }
     });
+  });
+
+  lineDialogOpen?.addEventListener('click', () => record('wooddeck_line_open', { source: 'handoff_dialog' }));
+  lineDialogCopy?.addEventListener('click', async () => {
+    const copied = await copyConsultation(false);
+    lineDialogCopy.textContent = copied ? 'コピーしました' : 'コピーできませんでした';
+  });
+  clearPriceSelection?.addEventListener('click', () => {
+    try { sessionStorage.removeItem('wooddeckPriceSelection'); } catch { /* Storage is optional. */ }
+    priceSelection = null;
+    renderSelection();
+    record('wooddeck_price_selection_clear');
   });
 
   document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));

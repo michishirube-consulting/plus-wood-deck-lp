@@ -16,17 +16,17 @@ python3 -m http.server 4187 --bind 127.0.0.1 --directory dist
 
 ## LINE公式アカウントの接続
 
-本番のLINE導線を接続するときに、`dist/site-config.js` の `lineId` にLINE公式アカウントID（`@`から始まるID）を設定してください。対応地域は、現在確認済みの「福岡県を含む九州エリア・東海エリア・関東エリア」を設定済みです。`lineId`を使うと、LPで選んだ形・広さ・相談目的をLINEの入力欄へ引き継げます。IDが分からない場合は、`lineUrl`にLINE公式アカウントURLを設定できます。
+LINE導線は `dist/site-config.js` で管理します。現在はplusウッドデッキのUTAGE公開登録URLを `lineUrl` に設定しています。対応地域は、確認済みの「福岡県を含む九州エリア・東海エリア・関東エリア」です。LPや価格診断で選んだ内容は端末内で相談文にまとめ、LINEを開く前にコピーします。APIのChannel secretやアクセストークンは公開ファイルへ絶対に記載しないでください。
 
 ```js
 window.WOODDECK_CONFIG = Object.freeze({
-  lineId: '@example',
-  lineUrl: '',
+  lineId: '',
+  lineUrl: 'https://utage-system.com/line/open/...',
   serviceArea: '福岡県を含む九州エリア・東海エリア・関東エリア'
 });
 ```
 
-`lineId` と `lineUrl` が両方空の場合、LINEボタンはデザイン確認用の案内画面を表示し、外部には送信しません。`serviceArea` が空の場合、対応エリア表示は非表示になります。GitHub Pagesには安全なプレビュー状態で公開でき、設定後のpushで本番導線へ切り替わります。
+`lineId` を使う場合はLINEの入力欄へ相談文を直接入れられます。公開登録URLを使う場合は、相談内容をコピーしてから「LINEを開く」確認画面を表示します。友だち追加だけでは問い合わせ完了とせず、トークで相談内容が送信された時点を問い合わせCVとします。`serviceArea` が空の場合、対応エリア表示は非表示になります。
 
 ## GitHub Pagesで公開する
 
@@ -50,6 +50,7 @@ window.WOODDECK_CONFIG = Object.freeze({
 - `dist/assets/lp.css` — デザイン
 - `dist/assets/lp.js` — 画像拡大、相談文作成、LINE導線
 - `dist/assets/shop.css` / `dist/assets/shop.js` — 商品・価格ページのUIと価格／相談内容生成
+- `dist/assets/consultation-state.js` — 相談番号、UTM流入情報、LPと価格診断の選択状態を共通化
 - `dist/site-config.js` — LINE公式アカウントID／URL・対応地域の設定
 - `dist/sitemap.xml` — 本番URLのXMLサイトマップ
 - `dist/assets/brand/` — plus wood deck ロゴ
@@ -62,7 +63,8 @@ window.WOODDECK_CONFIG = Object.freeze({
 
 ## 本番導線の接続前チェック
 
-- LINE公式アカウントURLを設定する
+- LINE公式アカウント／UTAGE公開登録URLが正しいアカウントへ接続するか確認する
+- LINE Messaging APIの受信側で「最初の相談文送信」を問い合わせCVとして記録する
 - 対応地域や施工対応店の稼働状況に変更がないか確認する
 - 施工写真・価格・保証などは、確認済み情報だけを掲載する
 - 画像生成によるプランイメージである旨の注意書きを残す

@@ -2,7 +2,7 @@
 window.WOODDECK_CONFIG = Object.freeze({
   // Use the official account ID (for example, @example) to prefill the consultation message.
   lineId: '',
-  // Or use an official line.me / lin.ee URL. The consultation text is copied before opening it.
-  lineUrl: '',
+  // Public registration URL only. API secrets must never be added here.
+  lineUrl: 'https://utage-system.com/line/open/g7Ec8bhMTwsP?mtid=jV52Iehmlw52',
   serviceArea: '福岡県を含む九州エリア・東海エリア・関東エリア'
 });

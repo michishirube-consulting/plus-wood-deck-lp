@@ -162,6 +162,11 @@
       <li><span>03</span><strong>本体と工事の<br>費用条件</strong></li>
     </ol>
     <p>庭でしたいことと現地条件から、商品を決める前に優先順位を整理します。</p>
+    <div class="consult-output" aria-label="LINE相談で整理できる内容の例">
+      <p><span>相談例</span><strong>2人でお茶を楽しみたい</strong></p>
+      <dl><div><dt>広さの考え方</dt><dd>2.7 × 1.8mを目安に確認</dd></div><div><dt>現地で見る条件</dt><dd>窓の高さ・地面・ステップ</dd></div><div><dt>費用の考え方</dt><dd>本体価格＋現地条件による工事費</dd></div></dl>
+      <small>ご提案内容のイメージです。実際の広さ・費用はご自宅の条件で異なります。</small>
+    </div>
   </section>
 
   <section class="life-section" id="use-cases" aria-labelledby="life-title">
@@ -316,6 +321,10 @@
       <fieldset class="intent-options"><legend>まず相談したいこと（任意）</legend><label><input type="radio" name="intent" value="budget"><span>予算・費用</span></label><label><input type="radio" name="intent" value="dining"><span>庭で食事</span></label><label><input type="radio" name="intent" value="laundry"><span>洗濯に使う</span></label><label><input type="radio" name="intent" value="undecided" checked><span>まだ未定</span></label></fieldset>
       <p class="selection-note" id="selectionNote" hidden></p>
       <button class="clear-selection" id="clearSelection" type="button" hidden>選択を外す</button>
+      <div class="price-selection-box" id="priceSelectionBox" hidden>
+        <p>価格診断の選択内容</p><strong id="priceSelectionDetails"></strong>
+        <div><a id="priceSelectionLink" href="wooddeck/">条件を見直す</a><button id="clearPriceSelection" type="button">価格条件を外す</button></div>
+      </div>
       <p class="message-label">LINEに引き継ぐ相談内容</p>
       <blockquote id="consultationMessage" aria-live="polite">ウッドデッキを検討しています。<br>わが家に合う形・サイズ・費用を相談したいです。<br>施工希望地域（市区町村）：［入力］<br>商品やサイズはまだ決まっていません。</blockquote>
       <button class="copy-button" type="button" data-copy>相談文をコピー</button>
@@ -415,9 +424,12 @@
 <div class="fixed-cta" id="fixedCta" aria-hidden="true"><p id="fixedCtaContext">写真なし・サイズ未定でもOK</p><button class="cta js-line" data-location="fixed" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>LINEでサイズと費用を相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button></div>
 <dialog id="lineDialog" aria-labelledby="dialogTitle">
   <div class="dialog-inner">
-    <p class="preview-notice">デザイン確認用・LINE未接続</p>
-    <h2 class="dialog-title" id="dialogTitle">LINE相談ボタンの<br>表示確認です。</h2>
-    <p class="dialog-text">公開用のLINE公式アカウントが未設定のため、この画面から相談は送信されません。接続後は、ボタンから公式アカウントへ進めます。</p>
+    <p class="preview-notice">相談内容をコピーしました</p>
+    <h2 class="dialog-title" id="dialogTitle">LINEで相談を<br>続けてください。</h2>
+    <p class="dialog-text">次の画面で友だち追加後、コピーした内容をトークへ貼り付けて送信してください。送信された時点でお問い合わせ受付となります。</p>
+    <pre class="dialog-message" id="lineDialogMessage"></pre>
+    <a class="dialog-line-open" id="lineDialogOpen" href="#" rel="noopener">LINEを開く</a>
+    <button class="copy-button" id="lineDialogCopy" type="button">相談内容をもう一度コピー</button>
     <button class="dialog-close" type="button" data-close>ページに戻る</button>
   </div>
 </dialog>
@@ -432,6 +444,7 @@
   </div>
 </dialog>
 <script src="site-config.js"></script>
-<script src="assets/lp.js?v=20260922-store"></script>
+<script src="assets/consultation-state.js?v=20260928-inquiry3"></script>
+<script src="assets/lp.js?v=20260928-inquiry3"></script>
 </body>
 </html>

@@ -74,6 +74,12 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .consult-result li span{display:block;color:var(--brown);font-size:10px;font-weight:700}
 .consult-result li strong{display:block;margin-top:3px;font-size:12px;line-height:1.55}
 .consult-result>p:last-child{margin-top:11px;color:var(--ink-2);font-size:12px;line-height:1.7}
+.consult-output{margin-top:14px;padding:14px;border:1px solid #dfd5c8;border-radius:10px;background:var(--ivory)}
+.consult-output>p{display:flex;align-items:center;gap:8px;margin:0;font-size:13px}
+.consult-output>p span{padding:3px 7px;border-radius:999px;background:var(--brown);color:#fff;font-size:10px;font-weight:700}
+.consult-output dl{margin:10px 0 0;border-top:1px solid #e4d9cb}
+.consult-output dl div{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #e4d9cb;font-size:11px;line-height:1.55}
+.consult-output dt{color:var(--muted)}.consult-output dd{margin:0;font-weight:700}.consult-output small{display:block;margin-top:8px;color:var(--muted);font-size:10px;line-height:1.6}
 .life-section{padding:28px 20px;background:var(--paper)}
 .life-section h2{font-size:23px}
 .life-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
@@ -237,6 +243,9 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .intent-options input:focus-visible+span{outline:3px solid #ad723d;outline-offset:3px}
 .selection-note{font-size:13px;color:var(--green-dark);margin-bottom:2px}
 .clear-selection{border:0;background:transparent;text-decoration:underline;color:var(--ink-2);font-size:13px;padding:8px 0;min-height:44px;margin-bottom:8px}
+.price-selection-box{margin:4px 0 16px;padding:13px;border:1px solid #cbd9c7;border-radius:10px;background:#f2f7f0}
+.price-selection-box>p{margin:0;color:var(--green-dark);font-size:11px;font-weight:700}.price-selection-box>strong{display:block;margin-top:4px;font-size:13px;line-height:1.65}
+.price-selection-box>div{display:flex;gap:14px;margin-top:7px}.price-selection-box a,.price-selection-box button{display:inline-flex;align-items:center;min-height:36px;padding:0;border:0;background:transparent;color:var(--ink-2);font-size:12px;text-decoration:underline}
 .message-extra{margin-top:14px;border-block:1px solid var(--line)}
 .message-extra summary{padding:12px 0;min-height:44px;font-size:14px;cursor:pointer}
 .message-extra label{display:block;font-size:14px;margin:6px 0}
@@ -283,6 +292,8 @@ dialog::backdrop{background:#292d2cb3}
 .dialog-title{font-size:21px;line-height:1.5}
 .dialog-text{font-size:15px;color:var(--ink-2);margin-top:12px}
 .preview-notice{font-size:13px;font-weight:700;color:var(--brown);padding:8px 11px;background:#f4ece0;margin-bottom:14px}
+.dialog-message{max-height:150px;overflow:auto;margin:14px 0 0;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink-2);font:12px/1.65 var(--font-body);white-space:pre-wrap}
+.dialog-line-open{display:flex;align-items:center;justify-content:center;min-height:52px;margin-top:14px;border-radius:9px;background:var(--green-dark);box-shadow:0 3px 0 #0a5731;color:#fff;font-weight:700;text-decoration:none}
 .plan-dialog{width:min(720px,calc(100% - 24px))}
 .plan-close-icon{position:absolute;top:8px;right:8px;z-index:1;width:44px;height:44px;border:0;border-radius:50%;background:#fffffff2;color:var(--ink);font-size:26px;line-height:1;box-shadow:0 1px 8px #0002}
 .plan-dialog img{width:100%;aspect-ratio:3/2;object-fit:contain}

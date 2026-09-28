@@ -156,12 +156,34 @@
   <section class="consult-result" aria-labelledby="consult-result-title">
     <p class="section-kicker">相談すると整理できること</p>
     <h2 id="consult-result-title">わが家に必要な条件が、<br>具体的になります。</h2>
+    <p class="section-lead">たとえば「2人でお茶をしたい」なら、完成イメージと上から見た配置の両方で考えます。</p>
+    <div class="consult-visual-pair">
+      <figure class="consult-scene">
+        <img src="assets/explainers/two-person-deck-v1.webp" width="960" height="640" alt="日本の戸建て住宅で、2人が椅子と小さなテーブルを置いて過ごすコンパクトなウッドデッキのイメージ" loading="lazy" decoding="async">
+        <figcaption><span>完成イメージ</span>椅子を引く余白と、庭へ降りるステップも確認</figcaption>
+      </figure>
+      <figure class="consult-mini-plan">
+        <svg viewBox="0 0 320 178" role="img" aria-label="横幅2.7メートル、奥行き1.8メートルのデッキに椅子2脚と小さなテーブルを置く配置例">
+          <rect class="plan-room" x="18" y="14" width="284" height="32" rx="4"/>
+          <text x="160" y="35" text-anchor="middle">リビング・掃き出し窓</text>
+          <rect class="plan-deck" x="39" y="54" width="216" height="94" rx="4"/>
+          <path class="plan-board" d="M39 70h216M39 86h216M39 102h216M39 118h216M39 134h216"/>
+          <rect class="plan-chair" x="61" y="81" width="39" height="39" rx="7"/>
+          <rect class="plan-chair" x="192" y="81" width="39" height="39" rx="7"/>
+          <circle class="plan-table" cx="146" cy="101" r="24"/>
+          <path class="plan-step" d="M109 148v13h73v-13"/>
+          <text x="145" y="174" text-anchor="middle">庭へ降りるステップ</text>
+          <text class="plan-size" x="147" y="66" text-anchor="middle">2.7 × 1.8mの検討例</text>
+        </svg>
+        <figcaption><span>上から見た配置</span>家具を置いても通れるかまで確認</figcaption>
+      </figure>
+    </div>
+    <p class="visual-note">写真はデザインイメージ（生成画像）です。寸法は配置を考えるための例です。</p>
     <ol>
-      <li><span>01</span><strong>使い方に合う<br>広さ</strong></li>
-      <li><span>02</span><strong>庭に合わせた<br>形</strong></li>
-      <li><span>03</span><strong>本体と工事の<br>費用条件</strong></li>
+      <li><span>01 広さ</span><strong>家具＋人が<br>動ける余白</strong></li>
+      <li><span>02 高さ・形</span><strong>窓・庭との<br>つながり</strong></li>
+      <li><span>03 費用</span><strong>本体＋必要な<br>現地工事</strong></li>
     </ol>
-    <p>庭でしたいことと現地条件から、商品を決める前に優先順位を整理します。</p>
     <div class="consult-output" aria-label="LINE相談で整理できる内容の例">
       <p><span>相談例</span><strong>2人でお茶を楽しみたい</strong></p>
       <dl><div><dt>広さの考え方</dt><dd>2.7 × 1.8mを目安に確認</dd></div><div><dt>現地で見る条件</dt><dd>窓の高さ・地面・ステップ</dd></div><div><dt>費用の考え方</dt><dd>本体価格＋現地条件による工事費</dd></div></dl>
@@ -174,13 +196,14 @@
     <h2 id="pain-title">いまの庭で、<br>いちばん困っていることは？</h2>
     <p class="section-lead">近い悩みをひとつ選ぶだけで、LINEの相談文に引き継げます。寸法や商品はまだ決まっていなくて大丈夫です。</p>
     <div class="pain-options" role="group" aria-label="庭の悩みを選ぶ">
-      <button type="button" data-pain="step"><span aria-hidden="true">01</span>庭に出る段差が大きい</button>
-      <button type="button" data-pain="laundry"><span aria-hidden="true">02</span>洗濯物を運びにくい</button>
-      <button type="button" data-pain="narrow"><span aria-hidden="true">03</span>庭が狭く、置けるか不安</button>
-      <button type="button" data-pain="privacy"><span aria-hidden="true">04</span>道路・隣家の視線が気になる</button>
-      <button type="button" data-pain="family"><span aria-hidden="true">05</span>家族で過ごす場所がない</button>
-      <button type="button" data-pain="price"><span aria-hidden="true">06</span>総額の目安が分からない</button>
+      <button type="button" data-pain="step"><span class="pain-thumb" aria-hidden="true"><img src="assets/patterns/deck-steps.webp" width="960" height="640" alt="" loading="lazy" decoding="async"></span><span class="pain-copy"><b>01</b><strong>庭に出る段差が大きい</strong><small>窓と庭をステップでつなぐ</small></span></button>
+      <button type="button" data-pain="laundry"><span class="pain-thumb" aria-hidden="true"><img src="assets/explainers/laundry-route-v1.webp" width="960" height="640" alt="" loading="lazy" decoding="async"></span><span class="pain-copy"><b>02</b><strong>洗濯物を運びにくい</strong><small>室内から物干しまで一直線に</small></span></button>
+      <button type="button" data-pain="narrow"><span class="pain-thumb" aria-hidden="true"><img src="assets/explainers/narrow-custom-deck-v1.webp" width="960" height="640" alt="" loading="lazy" decoding="async"></span><span class="pain-copy"><b>03</b><strong>庭が狭く、置けるか不安</strong><small>通路を残して形を調整</small></span></button>
+      <button type="button" data-pain="privacy"><span class="pain-thumb" aria-hidden="true"><img src="assets/portfolio/deck-outdoor-room-v1-768.webp" width="768" height="512" alt="" loading="lazy" decoding="async"></span><span class="pain-copy"><b>04</b><strong>道路・隣家の視線が気になる</strong><small>必要な方向だけ目隠し</small></span></button>
+      <button type="button" data-pain="family"><span class="pain-thumb" aria-hidden="true"><img src="assets/patterns/deck-wide.webp" width="960" height="640" alt="" loading="lazy" decoding="async"></span><span class="pain-copy"><b>05</b><strong>家族で過ごす場所がない</strong><small>椅子とテーブルを置ける広さへ</small></span></button>
+      <button type="button" data-pain="price"><span class="pain-thumb" aria-hidden="true"><img src="assets/products/wood-deck-22486.jpg" width="960" height="640" alt="" loading="lazy" decoding="async"></span><span class="pain-copy"><b>06</b><strong>総額の目安が分からない</strong><small>本体と必要工事を分けて確認</small></span></button>
     </div>
+    <p class="visual-note">写真は悩みと解決方法を伝えるイメージです。実際の施工事例ではありません。</p>
     <div class="pain-next">
       <strong>高さが分からなくても相談できます</strong>
       <p>窓と地面が写る写真があれば、高さ・ステップ・床下条件を確認しやすくなります。</p>
@@ -233,10 +256,10 @@
     <h2 id="consult-models-title">同じ広さでも、<br>答えはひとつではありません。</h2>
     <p class="section-lead">庭の広さだけでなく、出入り・通路・視線・置きたい物からプランを組み立てます。</p>
     <div class="consult-model-list">
-      <article><span>CASE MODEL 01</span><h3>洗濯動線を短くしたい</h3><p>室内床との段差、物干し位置、洗濯かごを持って通れる奥行きを確認。</p><strong>確認すること：窓の高さ・物干し・通路</strong></article>
-      <article><span>CASE MODEL 02</span><h3>狭い庭を使える場所にしたい</h3><p>通り道や室外機の点検を妨げないよう、出幅や角の形を調整。</p><strong>確認すること：敷地幅・通路・点検動線</strong></article>
-      <article><span>CASE MODEL 03</span><h3>家族で食事や遊びを楽しみたい</h3><p>テーブルや椅子を置くだけでなく、引く・歩くための余白まで検討。</p><strong>確認すること：人数・家具・庭への降り方</strong></article>
-      <article><span>CASE MODEL 04</span><h3>外からの視線を抑えたい</h3><p>必要な方向だけ目隠しし、採光・風通し・圧迫感とのバランスを確認。</p><strong>確認すること：視線の方向・高さ・隙間</strong></article>
+      <article><figure><img src="assets/explainers/laundry-route-v1.webp" width="960" height="640" alt="リビングからデッキへ洗濯かごを持って移動する動線のイメージ" loading="lazy" decoding="async"><figcaption>室内 → デッキ → 物干し</figcaption></figure><div class="consult-model-copy"><span>CASE MODEL 01</span><h3>洗濯動線を短くしたい</h3><p>掃き出し窓から物干しまで、かごを持って移動しやすい奥行きと段差を確認します。</p><strong>見るポイント：窓の高さ・物干し・通路</strong></div></article>
+      <article><figure><img src="assets/explainers/narrow-custom-deck-v1.webp" width="960" height="640" alt="狭い庭で通路と室外機の点検スペースを残した変形ウッドデッキのイメージ" loading="lazy" decoding="async"><figcaption>使う場所と通路を分ける</figcaption></figure><div class="consult-model-copy"><span>CASE MODEL 02</span><h3>狭い庭を使える場所にしたい</h3><p>デッキを庭いっぱいに広げず、通り道と室外機の点検スペースを残して形を調整します。</p><strong>見るポイント：敷地幅・通路・点検動線</strong></div></article>
+      <article><figure><img src="assets/explainers/two-person-deck-v1.webp" width="960" height="640" alt="椅子とテーブルを置いて家族が過ごすウッドデッキのイメージ" loading="lazy" decoding="async"><figcaption>家具＋動く余白を確保</figcaption></figure><div class="consult-model-copy"><span>CASE MODEL 03</span><h3>家族で食事や遊びを楽しみたい</h3><p>置けるかだけでなく、椅子を引く・横を通る・庭へ降りるための余白まで考えます。</p><strong>見るポイント：人数・家具・庭への降り方</strong></div></article>
+      <article><figure><img src="assets/portfolio/deck-outdoor-room-v1-768.webp" width="768" height="512" alt="必要な方向に木製の目隠しを設けた細長いウッドデッキのイメージ" loading="lazy" decoding="async"><figcaption>視線が来る方向だけ隠す</figcaption></figure><div class="consult-model-copy"><span>CASE MODEL 04</span><h3>外からの視線を抑えたい</h3><p>全面を囲わず、道路や隣家から見える方向に合わせて高さと隙間を決めます。</p><strong>見るポイント：視線の方向・高さ・風通し</strong></div></article>
     </div>
     <p class="model-disclaimer">実際の施工事例ではなく、メーカー公式の活用例をもとに整理した相談モデルです。施工可否・仕様は現地条件により異なります。</p>
     <button class="cta js-line" data-location="consult-models" type="button"><span class="line-symbol" aria-hidden="true">LINE</span><span>近い相談モデルから相談する</span><span class="cta-arrow" aria-hidden="true">›</span></button>
@@ -372,6 +395,12 @@
     <p class="section-kicker">素材選びのヒント</p>
     <h2 id="materials-title">素材選びで迷ったら、<br>手入れと質感から。</h2>
     <p class="section-lead">人工木（樹脂木）と天然木は、どちらが上というものではありません。毎日の使い方に合う方を選びます。</p>
+    <figure class="material-photo">
+      <img src="assets/explainers/material-samples-v1.webp" width="960" height="640" alt="濃いブラウンの人工木サンプルと、明るい天然木サンプルを手で触って比較するイメージ" loading="lazy" decoding="async">
+      <div class="material-labels" aria-hidden="true"><span>人工木（樹脂木）</span><span>天然木</span></div>
+      <figcaption>色だけで決めず、木目・手触り・板の端部を実物サンプルで比べます。</figcaption>
+    </figure>
+    <p class="visual-note">写真は素材比較のイメージ（生成画像）です。実際の色・木目・仕様は商品や樹種で異なります。</p>
     <div class="material-intro">
       <div><strong>人工木（樹脂木）</strong><span>樹脂や木粉などを使った素材。配合・仕上げは商品ごとに異なります。</span></div>
       <div><strong>天然木</strong><span>自然の木材。樹種ごとの木目や手触り、経年変化を楽しむ素材です。</span></div>

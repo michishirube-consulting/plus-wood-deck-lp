@@ -69,6 +69,18 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .price-link i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:20px;font-style:normal;color:var(--brown)}
 .consult-result{padding:28px 20px;background:#fff;border-bottom:1px solid var(--line)}
 .consult-result h2{font-size:22px}
+.consult-result .section-lead{font-size:13px;line-height:1.75;margin-top:8px}
+.consult-visual-pair{display:grid;gap:10px;margin-top:16px}
+.consult-scene,.consult-mini-plan{position:relative;overflow:hidden;border:1px solid #ded5c8;border-radius:11px;background:var(--ivory)}
+.consult-scene img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.consult-scene figcaption,.consult-mini-plan figcaption{display:flex;gap:8px;align-items:center;padding:9px 11px;color:var(--ink-2);font-size:11px;line-height:1.55}
+.consult-scene figcaption span,.consult-mini-plan figcaption span{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:var(--brown);color:#fff;font-size:9px;font-weight:700}
+.consult-mini-plan{padding-top:7px;background:#fbf8f2}
+.consult-mini-plan svg{display:block;width:100%;height:auto;font-family:var(--font-body);font-size:10px;fill:var(--ink-2)}
+.consult-mini-plan .plan-room{fill:#e4e9e1}.consult-mini-plan .plan-deck{fill:#dfc39d;stroke:#8f6841;stroke-width:1.5px}
+.consult-mini-plan .plan-board{fill:none;stroke:#c29a69;stroke-width:1px}.consult-mini-plan .plan-chair,.consult-mini-plan .plan-table{fill:#fff;stroke:#48644b;stroke-width:2px}
+.consult-mini-plan .plan-step{fill:none;stroke:#8f6841;stroke-width:3px}.consult-mini-plan .plan-size{fill:#6f3d16;font-size:11px;font-weight:700}
+.visual-note{margin-top:7px;color:var(--muted);font-size:10px;line-height:1.65}
 .consult-result ol{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:16px 0 0;padding:0;list-style:none}
 .consult-result li{min-width:0;padding:10px 6px;border-radius:8px;background:var(--sage);text-align:center}
 .consult-result li span{display:block;color:var(--brown);font-size:10px;font-weight:700}
@@ -401,20 +413,32 @@ section{padding-block:44px}
 /* Market-in concern selector and evidence-based consultation models */
 .pain-section{padding-block:40px;background:var(--paper)}
 .pain-section .section-lead{font-size:14px}
-.pain-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
-.pain-options button{display:flex;align-items:center;gap:8px;min-height:66px;padding:10px;border:1px solid #d8d0c4;border-radius:10px;background:#fff;color:var(--ink);font-size:13px;font-weight:700;line-height:1.55;text-align:left}
-.pain-options button>span{display:grid;place-items:center;flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--ivory);color:var(--brown);font-family:var(--font-display);font-size:10px}
+.pain-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.pain-options button{display:block;min-width:0;overflow:hidden;padding:0 0 10px;border:1px solid #d8d0c4;border-radius:11px;background:#fff;color:var(--ink);text-align:left}
+.pain-thumb{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;background:#e8e5dd}
+.pain-thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s ease}
+.pain-options button:hover .pain-thumb img{transform:scale(1.025)}
+.pain-copy{display:block;padding:9px 10px 0}
+.pain-copy b{display:block;color:var(--brown);font-family:var(--font-display);font-size:10px}
+.pain-copy strong{display:block;margin-top:3px;font-size:13px;line-height:1.5}
+.pain-copy small{display:block;margin-top:4px;color:var(--muted);font-size:10px;font-weight:500;line-height:1.55}
 .pain-options button.selected,.pain-options button[aria-pressed="true"]{border-color:var(--green-dark);background:#edf4eb;color:var(--green-dark);box-shadow:inset 0 0 0 1px var(--green-dark)}
-.pain-options button.selected>span,.pain-options button[aria-pressed="true"]>span{background:var(--green-dark);color:#fff}
+.pain-options button.selected .pain-copy b,.pain-options button[aria-pressed="true"] .pain-copy b{color:var(--green-dark)}
+.pain-options button.selected .pain-thumb,.pain-options button[aria-pressed="true"] .pain-thumb{position:relative}
+.pain-options button.selected .pain-thumb::after,.pain-options button[aria-pressed="true"] .pain-thumb::after{content:"選択中 ✓";position:absolute;right:6px;bottom:6px;padding:3px 7px;border-radius:999px;background:var(--green-dark);color:#fff;font-size:9px;font-weight:700}
 .pain-options button:focus-visible{outline:3px solid #ad723d;outline-offset:3px}
 .pain-next{margin-top:16px;padding:14px 15px;border-left:3px solid var(--brown);background:var(--ivory)}
 .pain-next strong{display:block;font-size:14px}
 .pain-next p{margin-top:4px;color:var(--ink-2);font-size:12px;line-height:1.75}
 .pain-next a{display:flex;align-items:center;justify-content:space-between;min-height:42px;margin-top:7px;color:var(--brown);font-size:13px;font-weight:700}
 .consult-models{background:#f5f0e7}
-.consult-model-list{display:grid;gap:10px;margin-top:22px}
-.consult-model-list article{padding:16px 15px;border:1px solid #ded2c2;border-left:4px solid var(--brown);border-radius:0 10px 10px 0;background:#fff}
-.consult-model-list article>span{color:var(--brown);font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:.06em}
+.consult-model-list{display:grid;gap:14px;margin-top:22px}
+.consult-model-list article{overflow:hidden;border:1px solid #ded2c2;border-radius:12px;background:#fff}
+.consult-model-list figure{position:relative;background:#ddd8cd}
+.consult-model-list figure img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.consult-model-list figure figcaption{position:absolute;left:8px;bottom:8px;padding:4px 8px;border-radius:4px;background:#263632dc;color:#fff;font-size:10px;font-weight:700;line-height:1.5}
+.consult-model-copy{padding:14px 15px 15px;border-left:4px solid var(--brown)}
+.consult-model-copy>span{color:var(--brown);font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:.06em}
 .consult-model-list h3{margin-top:3px;font-size:17px}
 .consult-model-list p{margin-top:5px;color:var(--ink-2);font-size:13px;line-height:1.75}
 .consult-model-list strong{display:block;margin-top:9px;padding-top:8px;border-top:1px solid var(--line);color:var(--green-dark);font-size:11px;line-height:1.7}
@@ -430,5 +454,14 @@ section{padding-block:44px}
   .comparison-values{gap:10px}
   .comparison-values p{font-size:13px}
   .comparison-values p:last-child{padding-left:10px}
-  .pain-options{grid-template-columns:1fr}
+  .pain-copy{padding-inline:8px}
+  .pain-copy strong{font-size:12px}
 }
+
+/* Visual material comparison */
+.material-photo{position:relative;overflow:hidden;margin-top:20px;border:1px solid #ddd1c0;border-radius:12px;background:#e9e1d4}
+.material-photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.material-labels{position:absolute;left:8px;right:8px;top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.material-labels span{padding:5px 7px;border-radius:5px;background:#263632d9;color:#fff;font-size:10px;font-weight:700;text-align:center}
+.material-labels span:last-child{background:#7b451dd9}
+.material-photo figcaption{padding:10px 12px;color:var(--ink-2);font-size:12px;line-height:1.7}

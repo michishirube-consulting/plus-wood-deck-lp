@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="1686" viewBox="0 0 2500 1686">
+  <rect width="2500" height="1686" fill="#fbfaf6"/>
+  <rect width="2500" height="210" fill="#263632"/>
+  <g font-family="Hiragino Sans, Yu Gothic, sans-serif">
+    <text x="100" y="92" font-size="48" font-weight="700" fill="#ffffff">plus wood deck</text>
+    <text x="100" y="160" font-size="30" fill="#e9e4d8">庭に、暮らしをプラス。</text>
+    <text x="2400" y="135" text-anchor="end" font-size="30" font-weight="700" fill="#e4c397">相談メニュー</text>
+
+    <rect x="70" y="280" width="1145" height="620" rx="38" fill="#eaf1e7" stroke="#b9cbb5" stroke-width="5"/>
+    <circle cx="220" cy="465" r="82" fill="#176b3a"/>
+    <path d="M174 445h92a31 31 0 0 1 31 31v43a31 31 0 0 1-31 31h-42l-34 30 7-30h-23a31 31 0 0 1-31-31v-43a31 31 0 0 1 31-31z" fill="none" stroke="#fff" stroke-width="17" stroke-linejoin="round"/>
+    <text x="350" y="445" font-size="34" font-weight="700" fill="#52625b">はじめての方</text>
+    <text x="350" y="535" font-size="66" font-weight="800" fill="#263632">相談を始める</text>
+    <text x="350" y="610" font-size="31" fill="#586861">商品・サイズ未定でもOK</text>
+    <rect x="350" y="688" width="535" height="78" rx="39" fill="#176b3a"/>
+    <text x="618" y="741" text-anchor="middle" font-size="29" font-weight="700" fill="#fff">まずはここをタップ</text>
+
+    <rect x="1285" y="280" width="1145" height="620" rx="38" fill="#f5eee3" stroke="#d8c2a5" stroke-width="5"/>
+    <circle cx="1435" cy="465" r="82" fill="#824616"/>
+    <rect x="1383" y="414" width="104" height="105" rx="12" fill="none" stroke="#fff" stroke-width="14"/>
+    <circle cx="1435" cy="466" r="23" fill="none" stroke="#fff" stroke-width="13"/>
+    <path d="M1468 408l-14-24h-38l-14 24" fill="none" stroke="#fff" stroke-width="13" stroke-linejoin="round"/>
+    <text x="1565" y="445" font-size="34" font-weight="700" fill="#6f5b47">庭の条件を伝える</text>
+    <text x="1565" y="535" font-size="62" font-weight="800" fill="#263632">写真・図面を送る</text>
+    <text x="1565" y="610" font-size="31" fill="#665e55">窓・外壁・庭全体が分かる写真</text>
+    <rect x="1565" y="688" width="560" height="78" rx="39" fill="#824616"/>
+    <text x="1845" y="741" text-anchor="middle" font-size="29" font-weight="700" fill="#fff">撮り方もご案内します</text>
+
+    <rect x="70" y="970" width="1145" height="620" rx="38" fill="#fff" stroke="#d9d5ca" stroke-width="5"/>
+    <circle cx="220" cy="1155" r="82" fill="#2f6174"/>
+    <text x="220" y="1180" text-anchor="middle" font-size="74" font-weight="800" fill="#fff">¥</text>
+    <text x="350" y="1135" font-size="34" font-weight="700" fill="#607078">まず目安を知りたい</text>
+    <text x="350" y="1225" font-size="66" font-weight="800" fill="#263632">本体価格を見る</text>
+    <text x="350" y="1300" font-size="31" fill="#586861">幅・奥行から価格帯を確認</text>
+    <path d="M350 1408h650" stroke="#2f6174" stroke-width="4"/>
+    <text x="350" y="1478" font-size="29" font-weight="700" fill="#2f6174">価格シミュレーターへ</text>
+    <text x="1000" y="1478" text-anchor="end" font-size="46" fill="#2f6174">›</text>
+
+    <rect x="1285" y="970" width="1145" height="620" rx="38" fill="#fff" stroke="#d9d5ca" stroke-width="5"/>
+    <circle cx="1435" cy="1155" r="82" fill="#506c54"/>
+    <path d="M1382 1135a53 53 0 0 1 106 0v45a39 39 0 0 1-39 39h-25l-37 28 9-31a40 40 0 0 1-14-31z" fill="none" stroke="#fff" stroke-width="14" stroke-linejoin="round"/>
+    <text x="1565" y="1135" font-size="34" font-weight="700" fill="#607078">迷ったとき・急ぎの方</text>
+    <text x="1565" y="1225" font-size="66" font-weight="800" fill="#263632">スタッフに相談</text>
+    <text x="1565" y="1300" font-size="31" fill="#586861">相談内容を引き継いで対応</text>
+    <path d="M1565 1408h650" stroke="#506c54" stroke-width="4"/>
+    <text x="1565" y="1478" font-size="29" font-weight="700" fill="#506c54">担当者につなぎます</text>
+    <text x="2215" y="1478" text-anchor="end" font-size="46" fill="#506c54">›</text>
+  </g>
+</svg>

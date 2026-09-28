@@ -398,6 +398,29 @@ section{padding-block:44px}
 .fixed-cta p{font-size:11px;margin-bottom:4px}
 .fixed-cta .cta{min-height:48px}
 
+/* Market-in concern selector and evidence-based consultation models */
+.pain-section{padding-block:40px;background:var(--paper)}
+.pain-section .section-lead{font-size:14px}
+.pain-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
+.pain-options button{display:flex;align-items:center;gap:8px;min-height:66px;padding:10px;border:1px solid #d8d0c4;border-radius:10px;background:#fff;color:var(--ink);font-size:13px;font-weight:700;line-height:1.55;text-align:left}
+.pain-options button>span{display:grid;place-items:center;flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--ivory);color:var(--brown);font-family:var(--font-display);font-size:10px}
+.pain-options button.selected,.pain-options button[aria-pressed="true"]{border-color:var(--green-dark);background:#edf4eb;color:var(--green-dark);box-shadow:inset 0 0 0 1px var(--green-dark)}
+.pain-options button.selected>span,.pain-options button[aria-pressed="true"]>span{background:var(--green-dark);color:#fff}
+.pain-options button:focus-visible{outline:3px solid #ad723d;outline-offset:3px}
+.pain-next{margin-top:16px;padding:14px 15px;border-left:3px solid var(--brown);background:var(--ivory)}
+.pain-next strong{display:block;font-size:14px}
+.pain-next p{margin-top:4px;color:var(--ink-2);font-size:12px;line-height:1.75}
+.pain-next a{display:flex;align-items:center;justify-content:space-between;min-height:42px;margin-top:7px;color:var(--brown);font-size:13px;font-weight:700}
+.consult-models{background:#f5f0e7}
+.consult-model-list{display:grid;gap:10px;margin-top:22px}
+.consult-model-list article{padding:16px 15px;border:1px solid #ded2c2;border-left:4px solid var(--brown);border-radius:0 10px 10px 0;background:#fff}
+.consult-model-list article>span{color:var(--brown);font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:.06em}
+.consult-model-list h3{margin-top:3px;font-size:17px}
+.consult-model-list p{margin-top:5px;color:var(--ink-2);font-size:13px;line-height:1.75}
+.consult-model-list strong{display:block;margin-top:9px;padding-top:8px;border-top:1px solid var(--line);color:var(--green-dark);font-size:11px;line-height:1.7}
+.model-disclaimer{margin-top:13px;color:var(--muted);font-size:11px;line-height:1.75}
+.consult-models>.cta{margin-top:18px}
+
 @media(max-width:360px){
   section{padding-block:38px}
   .size-tabs{margin-inline:16px;gap:5px}
@@ -407,4 +430,5 @@ section{padding-block:44px}
   .comparison-values{gap:10px}
   .comparison-values p{font-size:13px}
   .comparison-values p:last-child{padding-left:10px}
+  .pain-options{grid-template-columns:1fr}
 }

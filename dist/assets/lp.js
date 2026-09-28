@@ -64,6 +64,32 @@
     laundry: '窓からの出入り・物干しの配置・費用を相談したいです。',
     undecided: 'わが家に合う形・サイズ・費用を相談したいです。'
   };
+  const pains = {
+    step: {
+      label: '庭に出る段差が大きい',
+      question: '窓から庭へ出やすい高さと、必要なステップを相談したいです。'
+    },
+    laundry: {
+      label: '洗濯物を運びにくい',
+      question: '物干しまでの動線と、無理なく出入りできる広さを相談したいです。'
+    },
+    narrow: {
+      label: '庭が狭く、置けるか不安',
+      question: '通り道を残しながら設置できる形と奥行きを相談したいです。'
+    },
+    privacy: {
+      label: '道路・隣家の視線が気になる',
+      question: '閉塞感を抑えながら、必要な位置だけ目隠しする方法を相談したいです。'
+    },
+    family: {
+      label: '家族で過ごす場所がない',
+      question: '家族で使う人数と置きたい家具に合う広さを相談したいです。'
+    },
+    price: {
+      label: '総額の目安が分からない',
+      question: '本体だけでなく、必要な工事を含む費用の考え方を相談したいです。'
+    }
+  };
 
   const lineDialog = document.getElementById('lineDialog');
   const planDialog = document.getElementById('planDialog');
@@ -89,6 +115,7 @@
   let selectedPlan = '';
   let selectedSize = '';
   let selectedIntent = 'undecided';
+  let selectedPain = '';
   let priceSelection = null;
   let viewedPlan = '';
   let framePending = false;
@@ -116,6 +143,8 @@
   }
   const lineUrl = officialLineUrl(config.lineUrl);
   const lineId = officialLineId(config.lineId);
+  const liffId = typeof config.liffId === 'string' && /^[0-9]+-[a-z0-9]+$/i.test(config.liffId.trim()) ? config.liffId.trim() : '';
+  const liffUrl = liffId ? 'https://liff.line.me/' + liffId : '';
 
   document.querySelectorAll('[data-service-area]').forEach(element => {
     if (typeof config.serviceArea === 'string' && config.serviceArea.trim()) {
@@ -146,12 +175,23 @@
     const consultationId = typeof sharedState.getConsultationId === 'function' ? sharedState.getConsultationId() : '';
     const qualifiers = priceSelection?.qualifiers || {};
     const lines = [consultationId ? '相談番号：' + consultationId : '', intents[selectedIntent]];
+    if (selectedPain) {
+      lines.push('いま困っていること：' + pains[selectedPain].label);
+      lines.push(pains[selectedPain].question);
+    }
     if (priceSelection?.productName) {
       lines.push('価格診断の商品：' + priceSelection.productName);
       if (priceSelection.selections?.width) lines.push('幅：' + String(priceSelection.selections.width).replace(/^.+?:/, ''));
       if (priceSelection.selections?.depth) lines.push('奥行：' + String(priceSelection.selections.depth).replace(/^.+?:/, ''));
-      if (priceSelection.selections?.height) lines.push('高さ：' + String(priceSelection.selections.height).replace(/^.+?:/, ''));
+      if (priceSelection.selections?.height) {
+        lines.push(priceSelection.selections.height === '__unknown__'
+          ? '高さ：未定（窓・地面の高さを確認希望）'
+          : '高さ：' + String(priceSelection.selections.height).replace(/^.+?:/, ''));
+      }
       if (Number.isFinite(priceSelection.price)) lines.push('税込・商品本体参考価格：' + Number(priceSelection.price).toLocaleString('ja-JP') + '円');
+      else if (Number.isFinite(priceSelection.priceMin) && Number.isFinite(priceSelection.priceMax)) {
+        lines.push('税込・商品本体参考価格：' + Number(priceSelection.priceMin).toLocaleString('ja-JP') + '〜' + Number(priceSelection.priceMax).toLocaleString('ja-JP') + '円（高さ未定の範囲）');
+      }
       if (qualifiers.city) lines.push('施工希望地域：' + qualifiers.city);
       if (qualifiers.purpose) lines.push('庭でしたいこと：' + qualifiers.purpose);
       if (qualifiers.existing) lines.push('既存デッキ：' + qualifiers.existing);
@@ -167,29 +207,39 @@
       lines.push('広さの参考：' + example.label + '（' + example.size + '）');
       lines.push('寸法はまだ決めていません。');
     }
-    lines.push(questions[selectedIntent]);
+    if (!selectedPain) lines.push(questions[selectedIntent]);
     if (!qualifiers.city) lines.push('施工希望地域（市区町村）：［入力］');
     if (!selectedPlan && !selectedSize && !priceSelection?.productName) lines.push('商品やサイズはまだ決まっていません。');
     return lines.filter(Boolean).join('\n');
   }
   function saveSelection() {
     try {
-      sessionStorage.setItem('wooddeckSelection', JSON.stringify({ plan: selectedPlan, size: selectedSize, intent: selectedIntent }));
+      sessionStorage.setItem('wooddeckSelection', JSON.stringify({ plan: selectedPlan, size: selectedSize, intent: selectedIntent, pain: selectedPain }));
     } catch { /* Storage is optional. */ }
   }
   function renderSelection() {
     const references = [];
+    if (selectedPain) references.push('悩み：' + pains[selectedPain].label);
     if (selectedPlan) references.push('形：' + plans[selectedPlan].title);
     if (selectedSize) references.push('広さ：' + sizeExamples[selectedSize].label + '（' + sizeExamples[selectedSize].size + '）');
     selectionNote.textContent = references.length ? '相談候補　' + references.join(' ／ ') : '';
     selectionNote.hidden = !references.length;
     clearSelection.hidden = !references.length;
     if (priceSelectionBox) {
-      const hasPrice = Boolean(priceSelection?.productName && Number.isFinite(priceSelection?.price));
+      const hasExactPrice = Number.isFinite(priceSelection?.price);
+      const hasPriceRange = Number.isFinite(priceSelection?.priceMin) && Number.isFinite(priceSelection?.priceMax);
+      const hasPrice = Boolean(priceSelection?.productName && (hasExactPrice || hasPriceRange));
       priceSelectionBox.hidden = !hasPrice;
       if (hasPrice) {
-        const dimensions = ['width', 'depth', 'height'].map(key => priceSelection.selections?.[key] ? String(priceSelection.selections[key]).replace(/^.+?:/, '') : '').filter(Boolean).join(' × ');
-        priceSelectionDetails.textContent = [priceSelection.productName, dimensions, Number(priceSelection.price).toLocaleString('ja-JP') + '円（税込・商品本体参考価格）'].filter(Boolean).join(' ／ ');
+        const dimensions = ['width', 'depth', 'height'].map(key => {
+          const value = priceSelection.selections?.[key];
+          if (!value) return '';
+          return value === '__unknown__' ? '高さ未定' : String(value).replace(/^.+?:/, '');
+        }).filter(Boolean).join(' × ');
+        const priceLabel = hasExactPrice
+          ? Number(priceSelection.price).toLocaleString('ja-JP') + '円（税込・商品本体参考価格）'
+          : Number(priceSelection.priceMin).toLocaleString('ja-JP') + '〜' + Number(priceSelection.priceMax).toLocaleString('ja-JP') + '円（税込・高さ未定の範囲）';
+        priceSelectionDetails.textContent = [priceSelection.productName, dimensions, priceLabel].filter(Boolean).join(' ／ ');
         const savedUrl = String(priceSelection.productUrl || '');
         priceSelectionLink.href = /^\/products\/wooddeck\/[a-z0-9-]+\/?(?:\?.*)?$/.test(savedUrl) ? savedUrl : 'wooddeck/';
       }
@@ -207,6 +257,11 @@
       button.classList.toggle('selected', active);
       button.setAttribute('aria-pressed', String(active));
     });
+    document.querySelectorAll('[data-pain]').forEach(button => {
+      const active = button.dataset.pain === selectedPain;
+      button.classList.toggle('selected', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
     copyStatus.textContent = '';
     saveSelection();
     queueFixed();
@@ -217,6 +272,7 @@
       if (plans[state.plan]) selectedPlan = state.plan;
       if (sizeExamples[state.size]) selectedSize = state.size;
       if (intents[state.intent]) selectedIntent = state.intent;
+      if (pains[state.pain]) selectedPain = state.pain;
     } catch { /* Start from the default state. */ }
     try {
       const storedPrice = JSON.parse(sessionStorage.getItem('wooddeckPriceSelection') || 'null');
@@ -260,13 +316,15 @@
 
   document.querySelectorAll('.js-line').forEach(button => {
     button.addEventListener('click', async () => {
-      record(lineUrl || lineId ? 'wooddeck_line_click' : 'wooddeck_preview_cta_click', {
+      record(liffUrl || lineUrl || lineId ? 'wooddeck_line_click' : 'wooddeck_preview_cta_click', {
         cta_location: button.dataset.location,
         plan_id: selectedPlan || 'unselected',
         size_example: selectedSize || 'unselected',
         intent_id: selectedIntent
       });
-      if (lineId) {
+      if (liffUrl) {
+        window.location.assign(liffUrl);
+      } else if (lineId) {
         window.location.assign('https://line.me/R/oaMessage/' + lineId + '/?' + encodeURIComponent(consultationText()));
       } else if (lineUrl) {
         await copyConsultation(false);
@@ -375,11 +433,25 @@
       record('wooddeck_intent_select', { intent_id: selectedIntent });
     });
   });
+  document.querySelectorAll('[data-pain]').forEach(button => {
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => {
+      const pain = button.dataset.pain;
+      if (!pains[pain]) return;
+      selectedPain = selectedPain === pain ? '' : pain;
+      renderSelection();
+      selectionLive.textContent = selectedPain
+        ? '「' + pains[selectedPain].label + '」を相談内容に追加しました。'
+        : '相談内容から悩みを外しました。';
+      record('wooddeck_pain_select', { pain_id: selectedPain || 'unselected' });
+    });
+  });
   clearSelection.addEventListener('click', () => {
     selectedPlan = '';
     selectedSize = '';
+    selectedPain = '';
     renderSelection();
-    selectionLive.textContent = '選択した形と広さを外しました。';
+    selectionLive.textContent = '選択した悩み・形・広さを外しました。';
   });
   document.querySelector('[data-copy]').addEventListener('click', () => copyConsultation());
 

@@ -1,4 +1,4 @@
-import {existsSync, readFileSync} from 'node:fs';
+import {existsSync, readFileSync, statSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
 
 const pageFiles = ['index.html', 'operator.html', 'privacy.html', 'terms.html'];
@@ -14,6 +14,7 @@ const setting = name => config.match(new RegExp(`${name}:\\s*['\"]([^'\"]*)['\"]
 const lineUrl = setting('lineUrl');
 const lineId = setting('lineId');
 const serviceArea = setting('serviceArea');
+const liffId = setting('liffId');
 const failures = [];
 const warnings = [];
 const requireLaunch = (condition, message) => {
@@ -39,6 +40,8 @@ if (lineId) {
   requireLaunch(/^@[a-z0-9._-]{3,50}$/i.test(lineId), 'LINE公式アカウントIDは @ から始まるIDを設定してください。');
 }
 if (!lineUrl && !lineId) warnings.push('LINE公式アカウントIDも未設定です。LINEボタンは案内画面を表示します。');
+if (liffId && !/^[0-9]+-[a-zA-Z0-9]+$/.test(liffId)) failures.push('LIFF IDの形式を確認してください。');
+if (!liffId) warnings.push('LIFF IDは未設定です。LINE相談フォームは通常のLINE登録URLへ引き継ぎます。');
 
 if (serviceArea) {
   requireLaunch(!/(example|〇〇|未定|要確認)/i.test(serviceArea), '対応地域の仮文言を実際の内容へ差し替えてください。');
@@ -121,6 +124,17 @@ for (const [path, url] of storePages) {
 requireLaunch(existsSync('data/wooddeck-products.source.json'), '商品価格のソースデータがありません。');
 requireLaunch(existsSync('dist/assets/shop.js') && existsSync('dist/assets/shop.css'), '商品ページ用のCSSまたはJavaScriptがありません。');
 requireLaunch(existsSync('dist/assets/consultation-state.js'), '相談番号・流入情報の共通JavaScriptがありません。');
+requireLaunch(existsSync('dist/line/consult/index.html'), 'LINE相談フォームがありません。');
+requireLaunch(existsSync('dist/assets/line-consult/consult.js') && existsSync('dist/assets/line-consult/consult.css'), 'LINE相談フォーム用のCSSまたはJavaScriptがありません。');
+requireLaunch(existsSync('dist/assets/line/plus-wooddeck-rich-menu.png'), 'LINEリッチメニュー画像がありません。');
+if (existsSync('dist/assets/line/plus-wooddeck-rich-menu.png')) {
+  requireLaunch(statSync('dist/assets/line/plus-wooddeck-rich-menu.png').size <= 1_000_000, 'LINEリッチメニュー画像は1MB以下にしてください。');
+}
+if (existsSync('dist/line/consult/index.html')) {
+  const consultPage = readFileSync('dist/line/consult/index.html', 'utf8');
+  requireLaunch((consultPage.match(/<h1\b/g) || []).length === 1, 'LINE相談フォームのH1は1つにしてください。');
+  requireLaunch(consultPage.includes('noindex,nofollow'), 'LINE相談フォームは検索結果に表示しない設定にしてください。');
+}
 
 if (failures.length) {
   console.error('公開前チェックで確認が必要な項目があります。');

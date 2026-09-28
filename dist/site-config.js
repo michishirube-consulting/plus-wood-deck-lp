@@ -4,5 +4,7 @@ window.WOODDECK_CONFIG = Object.freeze({
   lineId: '',
   // Public registration URL only. API secrets must never be added here.
   lineUrl: 'https://utage-system.com/line/open/g7Ec8bhMTwsP?mtid=jV52Iehmlw52',
+  // Public LIFF ID only. Add it after the LINE Login channel is linked and the LIFF app is created.
+  liffId: '',
   serviceArea: '福岡県を含む九州エリア・東海エリア・関東エリア'
 });

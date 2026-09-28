@@ -11,6 +11,7 @@
   const dialogCopy = document.getElementById('shopLineCopy');
   const selections = {};
   let currentVariant = null;
+  let currentRange = null;
 
   const allowedLineUrl = value => {
     if (typeof sharedState.isAllowedLineUrl === 'function') return sharedState.isAllowedLineUrl(value);
@@ -23,6 +24,8 @@
   const officialLineId = value => typeof value === 'string' && /^@[a-z0-9._-]{3,50}$/i.test(value.trim()) ? value.trim() : '';
   const lineUrl = allowedLineUrl(config.lineUrl);
   const lineId = officialLineId(config.lineId);
+  const liffId = typeof config.liffId === 'string' && /^[0-9]+-[a-z0-9]+$/i.test(config.liffId.trim()) ? config.liffId.trim() : '';
+  const liffUrl = liffId ? `https://liff.line.me/${liffId}` : '';
   const yen = value => `${Number(value).toLocaleString('ja-JP')}円`;
   const cleanOption = value => String(value || '').replace(/^.+?:/, '');
   const clean = (value, max = 80) => typeof sharedState.clean === 'function' ? sharedState.clean(value, max) : String(value || '').trim().slice(0, max);
@@ -51,17 +54,22 @@
   }
 
   function savedState() {
-    if (!product || !currentVariant) return null;
-    return {
+    if (!product || (!currentVariant && !currentRange)) return null;
+    const state = {
       productId: product.id,
       productName: product.name,
       productSlug: product.slug,
       productUrl: location.pathname + location.search,
       selections: { ...selections },
       qualifiers: qualifierValues(),
-      price: Math.round(currentVariant.catalogPrice * product.rate),
       updatedAt: new Date().toISOString()
     };
+    if (currentVariant) state.price = Math.round(currentVariant.catalogPrice * product.rate);
+    if (currentRange) {
+      state.priceMin = currentRange.priceMin;
+      state.priceMax = currentRange.priceMax;
+    }
+    return state;
   }
 
   function saveCurrentState() {
@@ -79,8 +87,9 @@
       lines.push(`商品：${product.name}`);
       if (selections.width) lines.push(`幅：${cleanOption(selections.width)}`);
       if (selections.depth) lines.push(`奥行：${cleanOption(selections.depth)}`);
-      if (selections.height) lines.push(`高さ：${cleanOption(selections.height)}`);
+      if (selections.height) lines.push(selections.height === '__unknown__' ? '高さ：未定（窓・地面の高さを確認希望）' : `高さ：${cleanOption(selections.height)}`);
       if (currentVariant) lines.push(`税込・商品本体参考価格：${yen(Math.round(currentVariant.catalogPrice * product.rate))}`);
+      else if (currentRange) lines.push(`税込・商品本体参考価格：${yen(currentRange.priceMin)}〜${yen(currentRange.priceMax)}（高さ未定の範囲）`);
     } else {
       lines.push('商品やサイズはまだ決まっていません。');
     }
@@ -115,7 +124,26 @@
   function renderProduct(shouldRecord = true) {
     if (!product) return;
     const complete = ['width', 'depth', 'height'].every(key => selections[key]);
-    currentVariant = complete ? product.variants.find(variant => variant.valid !== false && Object.entries(selections).every(([key, value]) => variant.selections[key] === value)) : null;
+    const heightUnknown = selections.height === '__unknown__';
+    currentVariant = complete && !heightUnknown
+      ? product.variants.find(variant => variant.valid !== false && Object.entries(selections).every(([key, value]) => variant.selections[key] === value))
+      : null;
+    currentRange = null;
+    if (complete && heightUnknown) {
+      const matching = product.variants.filter(variant => variant.valid !== false
+        && variant.selections.width === selections.width
+        && variant.selections.depth === selections.depth);
+      if (matching.length) {
+        const prices = matching.map(variant => Math.round(variant.catalogPrice * product.rate));
+        const catalogPrices = matching.map(variant => variant.catalogPrice);
+        currentRange = {
+          priceMin: Math.min(...prices),
+          priceMax: Math.max(...prices),
+          catalogMin: Math.min(...catalogPrices),
+          catalogMax: Math.max(...catalogPrices)
+        };
+      }
+    }
     const reference = document.getElementById('referencePrice');
     const catalog = document.getElementById('catalogPrice');
     const summary = document.getElementById('selectionSummary');
@@ -128,6 +156,13 @@
       button.disabled = false;
       saveCurrentState();
       if (shouldRecord) record('wooddeck_price_result', { product_id: product.id, reference_price: price });
+    } else if (currentRange) {
+      reference.textContent = `${yen(currentRange.priceMin)}〜${yen(currentRange.priceMax)}`;
+      catalog.textContent = `メーカー希望価格：${yen(currentRange.catalogMin)}〜${yen(currentRange.catalogMax)}`;
+      summary.innerHTML = `<div><dt>商品</dt><dd>${product.name}</dd></div><div><dt>幅</dt><dd>${cleanOption(selections.width)}</dd></div><div><dt>奥行</dt><dd>${cleanOption(selections.depth)}</dd></div><div><dt>高さ</dt><dd>未定（現地で確認）</dd></div><div><dt>本体参考価格</dt><dd>${yen(currentRange.priceMin)}〜${yen(currentRange.priceMax)}（税込）</dd></div>`;
+      button.disabled = false;
+      saveCurrentState();
+      if (shouldRecord) record('wooddeck_price_range_result', { product_id: product.id, reference_price_min: currentRange.priceMin, reference_price_max: currentRange.priceMax, height_unknown: true });
     } else {
       reference.textContent = `${yen(product.referencePriceMin)}〜${yen(product.referencePriceMax)}`;
       catalog.textContent = `メーカー希望価格：${yen(product.catalogPriceMin)}〜${yen(product.catalogPriceMax)}`;
@@ -149,7 +184,12 @@
   document.querySelectorAll('.js-shop-line').forEach(button => button.addEventListener('click', async () => {
     if (button.disabled) return;
     const text = consultationText();
-    record('wooddeck_line_click', { product_id: product?.id || '', has_price: Boolean(currentVariant), cta_location: button.dataset.location || 'shop' });
+    record('wooddeck_line_click', { product_id: product?.id || '', has_price: Boolean(currentVariant || currentRange), height_unknown: Boolean(currentRange), cta_location: button.dataset.location || 'shop' });
+    if (liffUrl) {
+      saveCurrentState();
+      window.location.assign(liffUrl);
+      return;
+    }
     if (lineId) {
       window.location.assign(`https://line.me/R/oaMessage/${lineId}/?${encodeURIComponent(text)}`);
       return;
@@ -161,7 +201,7 @@
       dialogOpen.hidden = !lineUrl;
     }
     dialog?.showModal();
-    record('wooddeck_line_handoff_view', { product_id: product?.id || '', has_price: Boolean(currentVariant) });
+    record('wooddeck_line_handoff_view', { product_id: product?.id || '', has_price: Boolean(currentVariant || currentRange), height_unknown: Boolean(currentRange) });
   }));
 
   dialogOpen?.addEventListener('click', () => record('wooddeck_line_open', { product_id: product?.id || '', source: 'handoff_dialog' }));

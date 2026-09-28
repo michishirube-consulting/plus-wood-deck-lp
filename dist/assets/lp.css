@@ -30,7 +30,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visibl
 .header-copy{min-width:0;flex:1}
 .header-label{font-size:12px;color:var(--ink-2);line-height:1.5;letter-spacing:.02em}
 .brand-tagline{font-family:var(--font-display);font-size:19px;font-weight:700;letter-spacing:-.025em;line-height:1.65;margin-top:5px}
-.header-price-link{display:grid;place-items:center;flex:0 0 auto;min-height:42px;padding:6px 10px;border:1px solid #d6cbbb;border-radius:999px;color:var(--brown);font-size:11px;font-weight:700;line-height:1.4;text-decoration:none}
+.header-price-link{display:grid;place-items:center;flex:0 0 auto;min-height:44px;padding:6px 10px;border:1px solid #d6cbbb;border-radius:999px;color:var(--brown);font-size:11px;font-weight:700;line-height:1.4;text-decoration:none}
 section{padding:52px 20px;scroll-margin-top:8px}
 h1,h2,h3,p,figure{margin:0}
 h1,h2,h3{font-family:var(--font-display);font-weight:700;font-feature-settings:"palt";text-wrap:balance}
@@ -518,3 +518,18 @@ section{padding-block:44px}
 .consultation-section .flow li div>small{display:block;color:var(--green-dark);font-size:9px;font-weight:700;letter-spacing:.04em}
 .consultation-section .flow strong{display:block;margin-top:1px;font-size:15px;line-height:1.55}
 .consultation-section .flow p{font-size:12px;line-height:1.65}
+
+/* Faster mobile comparison: show the next card edge and keep all options one swipe away. */
+.swipe-hint{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;color:var(--muted);font-size:11px;font-weight:700;line-height:1.5}
+.swipe-hint span{color:var(--brown);font-size:15px}
+.consult-model-list,.portfolio-list{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;margin-inline:-20px;padding:0 20px 10px;scroll-padding-inline:20px;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.consult-model-list::-webkit-scrollbar,.portfolio-list::-webkit-scrollbar{display:none}
+.consult-model-list{margin-top:9px}
+.consult-model-list article{flex:0 0 86%;scroll-snap-align:start;scroll-snap-stop:always}
+.portfolio-list{gap:14px;margin-top:9px}
+.portfolio-story{flex:0 0 88%;overflow:hidden;padding-bottom:0;border:1px solid #ded2c2;border-radius:12px;background:#fff;scroll-snap-align:start;scroll-snap-stop:always}
+.portfolio-story-head{min-height:43px;margin:0;padding:9px 12px}
+.portfolio-story .pattern-media{border-radius:0}
+.portfolio-story .pattern-copy{margin:0;padding:13px 14px 10px}
+.additional-patterns{margin-top:16px}
+.portfolio-list:focus-visible,.consult-model-list:focus-visible{outline:3px solid #ad723d;outline-offset:3px}

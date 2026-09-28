@@ -110,6 +110,7 @@
   const priceSelectionLink = document.getElementById('priceSelectionLink');
   const clearPriceSelection = document.getElementById('clearPriceSelection');
   const lineDialogMessage = document.getElementById('lineDialogMessage');
+  const lineDialogStatus = document.getElementById('dialogStatus');
   const lineDialogOpen = document.getElementById('lineDialogOpen');
   const lineDialogCopy = document.getElementById('lineDialogCopy');
   let selectedPlan = '';
@@ -245,7 +246,7 @@
       }
     }
     message.textContent = consultationText();
-    fixedContext.textContent = references.length ? '相談候補をLINEへ引き継げます' : '写真なし・サイズ未定でもOK';
+    fixedContext.textContent = references.length ? '選んだ内容をLINEへ引き継げます' : '市区町村と、庭でしたいことから';
     document.querySelectorAll('[data-select-plan]').forEach(button => {
       const active = button.dataset.selectPlan === selectedPlan;
       button.setAttribute('aria-pressed', String(active));
@@ -327,14 +328,18 @@
       } else if (lineId) {
         window.location.assign('https://line.me/R/oaMessage/' + lineId + '/?' + encodeURIComponent(consultationText()));
       } else if (lineUrl) {
-        await copyConsultation(false);
+        const copied = await copyConsultation(false);
         lineDialogMessage.textContent = consultationText();
+        lineDialogStatus.textContent = copied ? 'STEP 1　相談内容をコピーしました' : '相談内容を確認してください';
+        lineDialogCopy.textContent = '相談内容をもう一度コピー';
         lineDialogOpen.href = lineUrl;
         lineDialog.showModal();
+        lineDialogOpen.focus();
         updateFixed();
         record('wooddeck_line_handoff_view', { cta_location: button.dataset.location });
       } else {
         lineDialog.showModal();
+        lineDialogOpen.focus();
         updateFixed();
       }
     });
@@ -373,6 +378,7 @@
       document.getElementById('planTitle').textContent = plan.title;
       document.getElementById('planDescription').textContent = plan.description;
       planDialog.showModal();
+      planDialog.querySelector('.plan-close-icon').focus();
       updateFixed();
       record('wooddeck_plan_view', { plan_id: viewedPlan });
     });
@@ -454,6 +460,15 @@
     selectionLive.textContent = '選択した悩み・形・広さを外しました。';
   });
   document.querySelector('[data-copy]').addEventListener('click', () => copyConsultation());
+
+  document.querySelectorAll('.consult-model-list, .portfolio-list').forEach(scroller => {
+    scroller.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const direction = event.key === 'ArrowRight' ? 1 : -1;
+      scroller.scrollBy({ left: direction * scroller.clientWidth * 0.86, behavior: 'smooth' });
+    });
+  });
 
   morePatternsToggle.addEventListener('click', () => {
     const expanded = morePatternsToggle.getAttribute('aria-expanded') === 'true';

@@ -81,25 +81,15 @@
   function consultationText() {
     const id = consultationId();
     const lp = readJson('wooddeckSelection', {});
-    const qualifiers = qualifierValues();
+    const price = savedState() || (!product ? readJson('wooddeckPriceSelection') : null);
+    const qualifiers = price?.qualifiers || {};
     const lines = [id ? `相談番号：${id}` : '', 'ウッドデッキを相談したいです。'];
-    if (product) {
-      lines.push(`商品：${product.name}`);
-      if (selections.width) lines.push(`幅：${cleanOption(selections.width)}`);
-      if (selections.depth) lines.push(`奥行：${cleanOption(selections.depth)}`);
-      if (selections.height) lines.push(selections.height === '__unknown__' ? '高さ：未定（窓・地面の高さを確認希望）' : `高さ：${cleanOption(selections.height)}`);
-      if (currentVariant) lines.push(`税込・商品本体参考価格：${yen(Math.round(currentVariant.catalogPrice * product.rate))}`);
-      else if (currentRange) lines.push(`税込・商品本体参考価格：${yen(currentRange.priceMin)}〜${yen(currentRange.priceMax)}（高さ未定の範囲）`);
-    } else {
+    lines.push(...sharedState.priceSelectionLines(price));
+    if (!price?.productName) {
       lines.push('商品やサイズはまだ決まっていません。');
     }
-    if (qualifiers.city) lines.push(`施工希望地域：${qualifiers.city}`);
-    else lines.push('施工希望地域（市区町村）：［入力］');
-    if (qualifiers.purpose) lines.push(`庭でしたいこと：${qualifiers.purpose}`);
-    if (qualifiers.existing) lines.push(`既存デッキ：${qualifiers.existing}`);
-    if (qualifiers.ground) lines.push(`設置場所の地面：${qualifiers.ground}`);
-    if (qualifiers.extras?.length) lines.push(`一緒に相談したいもの：${qualifiers.extras.join('、')}`);
-    if (lp.plan || lp.size || lp.intent) lines.push('LPで選んだ使い方・形の候補もあわせて相談したいです。');
+    if (!qualifiers.city) lines.push('施工希望地域（市区町村）：［入力］');
+    lines.push(...sharedState.lpSelectionLines(lp));
     lines.push('現地条件を確認して、正式な見積もりを相談したいです。');
     return lines.filter(Boolean).join('\n');
   }
@@ -194,7 +184,9 @@
       window.location.assign(`https://line.me/R/oaMessage/${lineId}/?${encodeURIComponent(text)}`);
       return;
     }
-    await copyText(text);
+    const copied = await copyText(text);
+    const status = document.getElementById('shopLineStatus');
+    if (status) status.textContent = copied ? 'STEP 1　相談内容をコピーしました' : '自動コピーできませんでした。下の相談文を選択してコピーしてください。';
     if (dialogMessage) dialogMessage.textContent = text;
     if (dialogOpen) {
       dialogOpen.href = lineUrl || '#';

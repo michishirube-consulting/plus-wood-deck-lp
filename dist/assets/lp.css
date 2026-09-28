@@ -21,7 +21,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visibl
 .site-shell{position:relative;width:min(100%,430px);margin:0 auto;background:var(--paper);box-shadow:0 12px 55px #26363212}
 .skip-link{position:fixed;z-index:100;left:50%;top:8px;transform:translate(-50%,-160%);padding:8px 16px;background:var(--ink);color:white}
 .skip-link:focus{transform:translate(-50%,0)}
-.topbar{display:flex;align-items:center;gap:20px;padding:12px 24px;background:var(--paper);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--paper);border-bottom:1px solid var(--line)}
 .brand{display:block;flex-shrink:0;text-decoration:none;border-radius:2px}
 /* Only the supplied artwork's outer whitespace is hidden. Its proportions and colors stay intact. */
 .brand-logo{display:block;position:relative;width:48px;height:84px;overflow:hidden;flex-shrink:0;background:#fff}
@@ -29,7 +29,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visibl
 .brand-logo img{position:absolute;width:243.81%;max-width:none;height:auto;left:-71.90%;top:-19.59%}
 .header-copy{min-width:0;flex:1}
 .header-label{font-size:12px;color:var(--ink-2);line-height:1.5;letter-spacing:.02em}
-.brand-tagline{font-family:var(--font-display);font-size:19px;font-weight:700;letter-spacing:-.025em;line-height:1.65;margin-top:5px}
+.brand-tagline{font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:-.025em;line-height:1.65;margin-top:5px;word-break:keep-all;overflow-wrap:normal}
 .header-price-link{display:grid;place-items:center;flex:0 0 auto;min-height:44px;padding:6px 10px;border:1px solid #d6cbbb;border-radius:999px;color:var(--brown);font-size:11px;font-weight:700;line-height:1.4;text-decoration:none}
 section{padding:52px 20px;scroll-margin-top:8px}
 h1,h2,h3,p,figure{margin:0}
@@ -96,7 +96,9 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .consult-result li strong{display:block;margin-top:3px;font-size:12px;line-height:1.55}
 .consult-result>p:last-child{margin-top:11px;color:var(--ink-2);font-size:12px;line-height:1.7}
 .consult-output{margin-top:14px;padding:14px;border:1px solid #dfd5c8;border-radius:10px;background:var(--ivory)}
-.consult-output>p{display:flex;align-items:center;gap:8px;margin:0;font-size:13px}
+.consult-output summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none}
+.consult-output summary::-webkit-details-marker{display:none}.consult-output summary::after{content:"＋";color:var(--brown);font-size:18px}.consult-output[open] summary::after{content:"−"}
+.consult-output>p{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:13px}
 .consult-output>p span{padding:3px 7px;border-radius:999px;background:var(--brown);color:#fff;font-size:10px;font-weight:700}
 .consult-output dl{margin:10px 0 0;border-top:1px solid #e4d9cb}
 .consult-output dl div{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #e4d9cb;font-size:11px;line-height:1.55}
@@ -543,3 +545,4 @@ section{padding-block:44px}
 .portfolio-story .pattern-copy{margin:0;padding:13px 14px 10px}
 .additional-patterns{margin-top:16px}
 .portfolio-list:focus-visible,.consult-model-list:focus-visible{outline:3px solid #ad723d;outline-offset:3px}
+@media(max-width:360px){.consult-model-list,.portfolio-list{margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}}

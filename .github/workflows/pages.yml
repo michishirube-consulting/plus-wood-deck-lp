@@ -36,6 +36,9 @@ jobs:
       - name: Run launch preflight
         run: node scripts/preflight.mjs
 
+      - name: Test consultation handoff
+        run: node --test scripts/consultation-state.test.mjs
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

@@ -182,25 +182,7 @@
       lines.push('いま困っていること：' + pains[selectedPain].label);
       lines.push(pains[selectedPain].question);
     }
-    if (priceSelection?.productName) {
-      lines.push('価格診断の商品：' + priceSelection.productName);
-      if (priceSelection.selections?.width) lines.push('幅：' + String(priceSelection.selections.width).replace(/^.+?:/, ''));
-      if (priceSelection.selections?.depth) lines.push('奥行：' + String(priceSelection.selections.depth).replace(/^.+?:/, ''));
-      if (priceSelection.selections?.height) {
-        lines.push(priceSelection.selections.height === '__unknown__'
-          ? '高さ：未定（窓・地面の高さを確認希望）'
-          : '高さ：' + String(priceSelection.selections.height).replace(/^.+?:/, ''));
-      }
-      if (Number.isFinite(priceSelection.price)) lines.push('税込・商品本体参考価格：' + Number(priceSelection.price).toLocaleString('ja-JP') + '円');
-      else if (Number.isFinite(priceSelection.priceMin) && Number.isFinite(priceSelection.priceMax)) {
-        lines.push('税込・商品本体参考価格：' + Number(priceSelection.priceMin).toLocaleString('ja-JP') + '〜' + Number(priceSelection.priceMax).toLocaleString('ja-JP') + '円（高さ未定の範囲）');
-      }
-      if (qualifiers.city) lines.push('施工希望地域：' + qualifiers.city);
-      if (qualifiers.purpose) lines.push('庭でしたいこと：' + qualifiers.purpose);
-      if (qualifiers.existing) lines.push('既存デッキ：' + qualifiers.existing);
-      if (qualifiers.ground) lines.push('設置場所の地面：' + qualifiers.ground);
-      if (Array.isArray(qualifiers.extras) && qualifiers.extras.length) lines.push('一緒に相談したいもの：' + qualifiers.extras.join('、'));
-    }
+    lines.push(...sharedState.priceSelectionLines(priceSelection));
     if (selectedPlan) {
       lines.push('気になる形：LPの「' + plans[selectedPlan].title + '」');
       lines.push(plans[selectedPlan].idea);
@@ -243,8 +225,7 @@
           ? Number(priceSelection.price).toLocaleString('ja-JP') + '円（税込・商品本体参考価格）'
           : Number(priceSelection.priceMin).toLocaleString('ja-JP') + '〜' + Number(priceSelection.priceMax).toLocaleString('ja-JP') + '円（税込・高さ未定の範囲）';
         priceSelectionDetails.textContent = [priceSelection.productName, dimensions, priceLabel].filter(Boolean).join(' ／ ');
-        const savedUrl = String(priceSelection.productUrl || '');
-        priceSelectionLink.href = /^\/products\/wooddeck\/[a-z0-9-]+\/?(?:\?.*)?$/.test(savedUrl) ? savedUrl : 'wooddeck/';
+        priceSelectionLink.href = sharedState.productPath(priceSelection);
       }
     }
     message.textContent = consultationText();

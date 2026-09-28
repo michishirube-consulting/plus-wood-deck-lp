@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#263632">
   <title>ウッドデッキ相談を始める｜plus wood deck</title>
   <meta name="description" content="市区町村と庭のお悩みを選び、plus wood deckへLINEで相談できます。">
-  <link rel="stylesheet" href="../../assets/line-consult/consult.css?v=20260928-1">
+  <link rel="stylesheet" href="../../assets/line-consult/consult.css?v=20260928-handoff3">
 </head>
 <body>
   <main class="consult-shell">
@@ -63,9 +63,20 @@
       </section>
 
       <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
-      <button class="submit-button" id="submitConsult" type="submit">この内容をLINEで送る<span aria-hidden="true">›</span></button>
-      <p class="submit-note">送信された時点でお問い合わせ受付となります。契約や現地調査が自動で決まることはありません。</p>
+      <section class="message-preview"><label for="consultPreview">LINEへ引き継ぐ相談内容</label><textarea id="consultPreview" rows="9" readonly></textarea><p>同じタブで選んだ形・広さ・価格条件も含まれます。地域・悩み・用途は上のフォームで変更できます。</p></section>
+      <button class="submit-button" id="submitConsult" type="submit">この内容でLINEへ進む<span aria-hidden="true">›</span></button>
+      <p class="submit-note">LINEのトークで送信された時点でお問い合わせ受付となります。契約や現地調査が自動で決まることはありません。</p>
     </form>
+
+    <section class="handoff-panel" id="handoffPanel" hidden aria-labelledby="handoffTitle">
+      <p id="handoffStatus" role="status" tabindex="-1">相談内容を確認してください</p>
+      <h2 id="handoffTitle">LINEに貼り付けて、<br>相談を送ってください。</h2>
+      <p>友だち追加後、下の相談文をトークへ貼り付けて送信してください。まだお問い合わせは送信されていません。</p>
+      <label for="handoffMessage">引き継ぐ相談文</label><textarea id="handoffMessage" rows="11" readonly></textarea>
+      <a class="submit-button" id="openLine" href="#">LINEを開く</a>
+      <button id="copyHandoff" type="button">相談文をもう一度コピー</button>
+      <button id="editConsult" type="button">内容を修正する</button>
+    </section>
 
     <section class="success-panel" id="successPanel" hidden>
       <span>送信できました</span>
@@ -80,8 +91,8 @@
     </footer>
   </main>
   <script src="../../site-config.js"></script>
-  <script src="../../assets/consultation-state.js?v=20260928-market2"></script>
+  <script src="../../assets/consultation-state.js?v=20260928-handoff3"></script>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script src="../../assets/line-consult/consult.js?v=20260928-1"></script>
+  <script src="../../assets/line-consult/consult.js?v=20260928-handoff3"></script>
 </body>
 </html>

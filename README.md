@@ -16,6 +16,8 @@ python3 -m http.server 4187 --bind 127.0.0.1 --directory dist
 
 ## LINE公式アカウントの接続
 
+引継ぎ担当者は、まず [LINE引継ぎ・現行実装チェックリスト](docs/line-handoff-status.md) を確認してください。設定済みの登録入口、相談文に引き継ぐ項目、UTAGE側の構築手順、未接続のLIFF・AI提案・CV集計を区別しています。現在の公開版はコピー・貼り付け方式であり、LINEの自動受付やAIボットの完成版ではありません。
+
 LINE導線は `dist/site-config.js` で管理します。現在はplusウッドデッキのUTAGE公開登録URLを `lineUrl` に設定しています。対応地域は、確認済みの「福岡県を含む九州エリア・東海エリア・関東エリア」です。LPや価格診断で選んだ内容は端末内で相談文にまとめ、LINEを開く前にコピーします。APIのChannel secretやアクセストークンは公開ファイルへ絶対に記載しないでください。
 
 ```js
@@ -58,6 +60,8 @@ window.WOODDECK_CONFIG = Object.freeze({
 - `docs/portfolio-image-prompts.md` — 画像制作の意図と生成プロンプト
 - `docs/lead-routing-operations.md` — 相談受付、施工店への同意取得、案件管理、加盟店連携の運用設計
 - `docs/conversion-line-ai-proposal-plan.md` — LP・概算価格・LINEボット・AI提案・施工店連携を一つにつなぐCV導線の企画設計
+- `docs/line-handoff-status.md` — 最新の実装状況・LINE担当者への引継ぎ・テスト条件（最初に読む）
+- `docs/utage-line-build-spec.md` — UTAGEのラベル・自動応答・リッチメニューの構築指示
 - `data/wooddeck-products.source.json` — 商品名・サイズ・価格の生成元データ
 - `scripts/build-wooddeck-store.mjs` — 商品比較・商品詳細ページの静的HTML生成
 
@@ -76,6 +80,7 @@ window.WOODDECK_CONFIG = Object.freeze({
 ```bash
 node scripts/build-wooddeck-store.mjs
 node scripts/preflight.mjs
+node --test scripts/consultation-state.test.mjs
 ```
 
 ## ライセンス

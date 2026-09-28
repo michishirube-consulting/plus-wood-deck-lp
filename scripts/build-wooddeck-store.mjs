@@ -75,6 +75,8 @@ function footer(relativeRoot) {
   return `<footer class="shop-footer"><p><strong>plus wood deck</strong><br>運営：みちしるべコンサルティング株式会社</p><nav><a href="${relativeRoot}">専門店トップ</a><a href="${relativeRoot}operator.html">運営者情報</a><a href="${relativeRoot}privacy.html">プライバシーポリシー</a><a href="${relativeRoot}terms.html">ご利用にあたって</a></nav><p class="shop-small">現地調査・正式見積もり・契約・施工・保証は、ご案内する地域の施工対応店が担当します。</p></footer>`;
 }
 
+const lineDialog = `<dialog id="shopLineDialog"><div><p class="dialog-label" id="shopLineStatus" role="status" aria-live="polite">相談内容を確認してください</p><h2>LINEで相談を<br>続けてください。</h2><p>友だち追加後、コピーした内容をトークへ貼り付けて送信してください。まだお問い合わせは送信されていません。</p><pre id="shopLineMessage"></pre><a class="dialog-line-open" id="shopLineOpen" href="#" rel="noopener">LINEを開く</a><button class="dialog-copy" id="shopLineCopy" type="button">相談内容をもう一度コピー</button><button type="button" data-close-line>ページへ戻る</button></div></dialog>`;
+
 const categoryCanonical = `${productionRoot}wooddeck/`;
 const categoryDescription = 'LIXILの人工木ウッドデッキ4商品を比較。幅・奥行・高さを選び、税込の商品本体参考価格を確認してからLINEで相談できます。';
 const categoryJsonLd = {
@@ -110,8 +112,8 @@ const categoryHtml = `${head({
 <section class="product-list" aria-label="ウッドデッキ商品一覧">${productCards}</section>
 <section class="category-consult"><p class="shop-kicker">商品が決まっていなくても大丈夫</p><h2>庭でしたいことから<br>相談できます。</h2><p>「2人でお茶をしたい」「洗濯をしやすくしたい」など、使い方から形・広さ・費用を整理します。</p><button class="shop-line js-shop-line" type="button" data-location="category">LINEで形と費用を相談する</button><p class="shop-note">市区町村と、庭でしたいことをひとこと。</p></section>
 </main>${footer('../')}</div>
-<dialog id="shopLineDialog"><div><p class="dialog-label">相談内容をコピーしました</p><h2>LINEで相談を<br>続けてください。</h2><p>友だち追加後、コピーした内容をトークへ貼り付けて送信してください。送信された時点でお問い合わせ受付となります。</p><pre id="shopLineMessage"></pre><a class="dialog-line-open" id="shopLineOpen" href="#" rel="noopener">LINEを開く</a><button class="dialog-copy" id="shopLineCopy" type="button">相談内容をもう一度コピー</button><button type="button" data-close-line>ページへ戻る</button></div></dialog>
-<script src="../site-config.js"></script><script src="../assets/consultation-state.js?v=20260928-market2"></script><script src="../assets/shop.js?v=20260928-market2"></script></body></html>`;
+${lineDialog}
+<script src="../site-config.js"></script><script src="../assets/consultation-state.js?v=20260928-handoff3"></script><script src="../assets/shop.js?v=20260928-handoff3"></script></body></html>`;
 mkdirSync('dist/wooddeck', { recursive: true });
 writeFileSync('dist/wooddeck/index.html', categoryHtml);
 
@@ -156,8 +158,8 @@ for (const product of products) {
 <section class="product-description"><h2>商品の特徴</h2><p>${escapeHtml(product.cleanDescription)}</p><details><summary>価格について確認する</summary><p>表示額は商品データをもとに計算した税込の商品本体参考価格です。正式な商品価格と工事費は、現地条件と必要な部材・工事を確認したうえで施工対応店が見積もります。</p></details></section>
 <section class="related"><h2>ほかの商品も見る</h2><div>${related}</div><a class="back-products" href="${relativeRoot}wooddeck/">4商品を比較する</a></section></article>
 </main>${footer(relativeRoot)}</div>
-<dialog id="shopLineDialog"><div><p class="dialog-label">相談内容をコピーしました</p><h2>LINEで相談を<br>続けてください。</h2><p>友だち追加後、コピーした内容をトークへ貼り付けて送信してください。送信された時点でお問い合わせ受付となります。</p><pre id="shopLineMessage"></pre><a class="dialog-line-open" id="shopLineOpen" href="#" rel="noopener">LINEを開く</a><button class="dialog-copy" id="shopLineCopy" type="button">相談内容をもう一度コピー</button><button type="button" data-close-line>ページへ戻る</button></div></dialog>
-<script id="wooddeckProductData" type="application/json">${jsonForHtml(safeProduct)}</script><script src="${relativeRoot}site-config.js"></script><script src="${relativeRoot}assets/consultation-state.js?v=20260928-market2"></script><script src="${relativeRoot}assets/shop.js?v=20260928-market2"></script></body></html>`;
+${lineDialog}
+<script id="wooddeckProductData" type="application/json">${jsonForHtml(safeProduct)}</script><script src="${relativeRoot}site-config.js"></script><script src="${relativeRoot}assets/consultation-state.js?v=20260928-handoff3"></script><script src="${relativeRoot}assets/shop.js?v=20260928-handoff3"></script></body></html>`;
   const directory = `dist/products/wooddeck/${product.publicSlug}`;
   mkdirSync(directory, { recursive: true });
   writeFileSync(`${directory}/index.html`, productHtml);

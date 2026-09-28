@@ -33,7 +33,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,textarea:focus-visibl
 .header-price-link{display:grid;place-items:center;flex:0 0 auto;min-height:44px;padding:6px 10px;border:1px solid #d6cbbb;border-radius:999px;color:var(--brown);font-size:11px;font-weight:700;line-height:1.4;text-decoration:none}
 section{padding:52px 20px;scroll-margin-top:8px}
 h1,h2,h3,p,figure{margin:0}
-h1,h2,h3{font-family:var(--font-display);font-weight:700;font-feature-settings:"palt";text-wrap:balance}
+h1,h2,h3{font-family:var(--font-body);font-weight:700;font-feature-settings:"palt";text-wrap:balance}
+.hero h1{font-family:var(--font-display)}
 p{overflow-wrap:anywhere;text-wrap:pretty}
 h1{font-size:clamp(28px,7.7vw,32px);letter-spacing:-.03em;line-height:1.5}
 h2{font-size:clamp(24px,6.5vw,28px);letter-spacing:-.035em;line-height:1.5}
@@ -43,7 +44,7 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .heading-focus{position:relative;z-index:0;display:inline;padding:0 .05em;color:var(--brown);background:linear-gradient(transparent 70%,#dfbf9170 70% 94%,transparent 94%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .heading-focus-light{color:#fff;background:linear-gradient(transparent 70%,#dfbf9166 70% 94%,transparent 94%)}
 .section-lead{font-size:16px;color:var(--ink-2);line-height:1.85;margin-top:12px}
-.section-lead strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:15px;line-height:1.65;letter-spacing:-.015em}
+.section-lead strong{display:block;color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.65;letter-spacing:-.015em}
 .section-lead strong+span{display:block;margin-top:4px;font-size:14px;line-height:1.8}
 .note{font-size:12px;color:var(--muted);line-height:1.8}
 .hero{padding:0}
@@ -56,7 +57,7 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .hero .eyebrow{margin-bottom:6px}
 .hero-h1-label{display:block;font-family:var(--font-body);font-size:12px;letter-spacing:.05em;line-height:1.8;margin-bottom:6px;color:var(--brown)}
 .hero-lead{font-size:14px;color:var(--ink-2);line-height:1.8;margin-top:10px}
-.hero-lead strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:16px;line-height:1.6}
+.hero-lead strong{display:block;color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6}
 .hero-lead span{display:block;margin-top:3px}
 .hero-assurance{font-size:14px;font-weight:700;margin:12px 0 10px}
 .cta{width:100%;min-height:58px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;background:var(--green-dark);color:white;text-decoration:none;padding:13px 12px;font-size:15px;line-height:1.45;font-weight:700;box-shadow:0 3px 0 #0b5830}
@@ -140,6 +141,12 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .cases-foot .cta-wrap{margin-top:15px}
 .price-link-block{margin-top:17px}
 .price-scope-note{margin-top:7px;color:var(--muted);font-size:11px;line-height:1.65}
+.price-example{margin-top:17px;padding:15px;border:1px solid #d7c9b7;border-radius:11px;background:#fff}
+.price-example>span{display:block;color:var(--brown);font-size:11px;font-weight:750;letter-spacing:.04em;line-height:1.5}
+.price-example>strong{display:block;margin-top:2px;color:var(--ink);font-family:var(--font-display);font-size:25px;letter-spacing:-.035em;line-height:1.4}
+.price-example>strong small{margin-right:6px;font-family:var(--font-body);font-size:11px;letter-spacing:0}
+.price-example>p{margin-top:5px;color:var(--ink-2);font-size:12px;font-weight:700;line-height:1.65}
+.price-example>small{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);color:var(--muted);font-size:10px;line-height:1.65}
 .topic-nav{display:grid;grid-template-columns:1fr 1fr;padding:16px 20px;gap:0 16px;border-bottom:1px solid var(--line)}
 .topic-nav a{font-size:14px;min-height:45px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;border-bottom:1px solid var(--line)}
 .topic-nav a::after{content:"↓";font-size:13px;color:var(--brown);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;background:#eef4fc}
@@ -294,7 +301,7 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .mini-footer::before{content:"";position:absolute;top:0;left:20px;width:64px;height:4px;background:var(--brand-stripe);border-radius:0 0 2px 2px}
 .footer-identity{display:flex;align-items:center;gap:20px}
 .footer-identity .brand-logo{width:60px;height:105px}
-.footer-brand{font-family:var(--font-display);font-size:18px;font-weight:700;line-height:1.65}
+.footer-brand{font-family:var(--font-body);font-size:18px;font-weight:700;line-height:1.65}
 .footer-operator{font-size:12px;color:var(--muted);margin-top:5px}
 .mini-footer .note{color:var(--muted);margin-top:18px}
 .footer-nav{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:16px}
@@ -520,8 +527,11 @@ section{padding-block:44px}
 .consultation-section .flow p{font-size:12px;line-height:1.65}
 
 /* Faster mobile comparison: show the next card edge and keep all options one swipe away. */
-.swipe-hint{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;color:var(--muted);font-size:11px;font-weight:700;line-height:1.5}
-.swipe-hint span{color:var(--brown);font-size:15px}
+.swipe-hint{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;color:var(--muted);font-size:11px;font-weight:700;line-height:1.5}
+.swipe-hint span{min-width:0;color:var(--muted);font-size:11px}
+.swipe-hint span i{margin-left:4px;color:var(--brown);font-size:15px;font-style:normal}
+.swipe-hint strong{flex:0 0 auto;min-width:48px;padding:4px 8px;border:1px solid #d8c9b5;border-radius:999px;background:#fff;color:var(--brown);font-family:var(--font-body);font-size:11px;text-align:center}
+.additional-swipe-hint{margin-top:16px}
 .consult-model-list,.portfolio-list{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;margin-inline:-20px;padding:0 20px 10px;scroll-padding-inline:20px;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .consult-model-list::-webkit-scrollbar,.portfolio-list::-webkit-scrollbar{display:none}
 .consult-model-list{margin-top:9px}

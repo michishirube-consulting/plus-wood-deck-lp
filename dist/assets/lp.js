@@ -9,7 +9,8 @@
       alt: '植栽のための四角い開口を設け、庭の木を囲むオリジナル形状のウッドデッキ',
       description: '植栽のまわりに開口を設け、窓から庭への動線とつなぐ考え方です。木の成長や根への影響、床下の点検・排水を確認しながら、形と広さを検討します。',
       idea: '庭の木を残して、その周りを使える形にしたいです。',
-      image: 'assets/portfolio/deck-tree-v1'
+      image: 'assets/portfolio/deck-tree-v2-realistic',
+      format: 'jpg'
     },
     'outdoor-room': {
       title: '屋根付きの外の部屋',
@@ -105,6 +106,7 @@
   const selectionLive = document.getElementById('selectionLive');
   const morePatternsToggle = document.getElementById('morePatternsToggle');
   const additionalPatterns = document.getElementById('additionalPatterns');
+  const additionalPatternSwipeHint = document.getElementById('additionalPatternSwipeHint');
   const priceSelectionBox = document.getElementById('priceSelectionBox');
   const priceSelectionDetails = document.getElementById('priceSelectionDetails');
   const priceSelectionLink = document.getElementById('priceSelectionLink');
@@ -372,7 +374,10 @@
       const plan = plans[viewedPlan];
       if (!plan) return;
       const image = document.getElementById('planImage');
-      image.parentElement.querySelector('source').srcset = plan.image + '.webp';
+      const source = image.parentElement.querySelector('source');
+      const sourceFormat = plan.format || 'webp';
+      source.srcset = plan.image + '.' + sourceFormat;
+      source.type = sourceFormat === 'webp' ? 'image/webp' : 'image/jpeg';
       image.src = plan.image + '.jpg';
       image.alt = plan.alt + '。生成したプランイメージ';
       document.getElementById('planTitle').textContent = plan.title;
@@ -461,13 +466,34 @@
   });
   document.querySelector('[data-copy]').addEventListener('click', () => copyConsultation());
 
+  const swipeCounterIds = {
+    modelScroller: 'modelSwipeCount',
+    portfolioGrid: 'patternSwipeCount',
+    additionalPatterns: 'additionalPatternSwipeCount'
+  };
   document.querySelectorAll('.consult-model-list, .portfolio-list').forEach(scroller => {
+    const counter = document.getElementById(swipeCounterIds[scroller.id]);
+    const cards = [...scroller.children].filter(card => card.matches('article'));
+    let scrollFrame = 0;
+    const updateSwipeCount = () => {
+      scrollFrame = 0;
+      if (!counter || !cards.length || !cards[0].offsetWidth) return;
+      const styles = getComputedStyle(scroller);
+      const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+      const index = Math.max(0, Math.min(cards.length - 1, Math.round(scroller.scrollLeft / (cards[0].offsetWidth + gap))));
+      counter.textContent = (index + 1) + ' / ' + cards.length;
+    };
+    scroller.addEventListener('scroll', () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(updateSwipeCount);
+    }, { passive: true });
     scroller.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
       event.preventDefault();
       const direction = event.key === 'ArrowRight' ? 1 : -1;
       scroller.scrollBy({ left: direction * scroller.clientWidth * 0.86, behavior: 'smooth' });
     });
+    window.addEventListener('resize', updateSwipeCount, { passive: true });
+    updateSwipeCount();
   });
 
   morePatternsToggle.addEventListener('click', () => {
@@ -476,6 +502,8 @@
     morePatternsToggle.childNodes[0].textContent = expanded ? 'ほかの3つの形を見る' : '追加の3案を閉じる';
     morePatternsToggle.querySelector('span').textContent = expanded ? '＋' : '−';
     additionalPatterns.hidden = expanded;
+    additionalPatternSwipeHint.hidden = expanded;
+    if (!expanded) requestAnimationFrame(() => additionalPatterns.dispatchEvent(new Event('scroll')));
     record('wooddeck_more_patterns', { expanded: !expanded });
     queueFixed();
   });

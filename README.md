@@ -61,7 +61,8 @@ window.WOODDECK_CONFIG = Object.freeze({
 - `docs/lead-routing-operations.md` — 相談受付、施工店への同意取得、案件管理、加盟店連携の運用設計
 - `docs/conversion-line-ai-proposal-plan.md` — LP・概算価格・LINEボット・AI提案・施工店連携を一つにつなぐCV導線の企画設計
 - `docs/line-handoff-status.md` — 最新の実装状況・LINE担当者への引継ぎ・テスト条件（最初に読む）
-- `docs/utage-line-build-spec.md` — UTAGEのラベル・自動応答・リッチメニューの構築指示
+- `docs/utage-settings.md` — UTAGE に実際に入っている受付の設定（ラベル・シナリオ・配信アクション・自動応答の順番）と公開手順
+- `docs/utage-line-build-spec.md` — UTAGEの旧構築指示（会話設計は不採用。CV定義・リッチメニューの参考）
 - `data/wooddeck-products.source.json` — 商品名・サイズ・価格の生成元データ
 - `scripts/build-wooddeck-store.mjs` — 商品比較・商品詳細ページの静的HTML生成
 

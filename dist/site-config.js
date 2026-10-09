@@ -3,7 +3,8 @@ window.WOODDECK_CONFIG = Object.freeze({
   // Use the official account ID (for example, @example) to prefill the consultation message.
   lineId: '',
   // Public registration URL only. API secrets must never be added here.
-  lineUrl: 'https://utage-system.com/line/open/g7Ec8bhMTwsP?mtid=jV52Iehmlw52',
+  // mtid=LtDxkj7hbaGb is the UTAGE registration route "LP（ウッドデッキ専門店）", so LP visitors are counted separately.
+  lineUrl: 'https://utage-system.com/line/open/g7Ec8bhMTwsP?mtid=LtDxkj7hbaGb',
   // Public LIFF ID only. Add it after the LINE Login channel is linked and the LIFF app is created.
   liffId: '',
   serviceArea: '福岡県を含む九州エリア・東海エリア・関東エリア'

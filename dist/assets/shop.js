@@ -135,27 +135,23 @@
       }
     }
     const reference = document.getElementById('referencePrice');
-    const catalog = document.getElementById('catalogPrice');
     const summary = document.getElementById('selectionSummary');
     const button = document.querySelector('.selected-summary .js-shop-line');
     if (currentVariant) {
       const price = Math.round(currentVariant.catalogPrice * product.rate);
       reference.textContent = yen(price);
-      catalog.textContent = `メーカー希望価格：${yen(currentVariant.catalogPrice)}`;
       summary.innerHTML = `<div><dt>商品</dt><dd>${product.name}</dd></div><div><dt>幅</dt><dd>${cleanOption(selections.width)}</dd></div><div><dt>奥行</dt><dd>${cleanOption(selections.depth)}</dd></div><div><dt>高さ</dt><dd>${cleanOption(selections.height)}</dd></div><div><dt>本体参考価格</dt><dd>${yen(price)}（税込）</dd></div>`;
       button.disabled = false;
       saveCurrentState();
       if (shouldRecord) record('wooddeck_price_result', { product_id: product.id, reference_price: price });
     } else if (currentRange) {
       reference.textContent = `${yen(currentRange.priceMin)}〜${yen(currentRange.priceMax)}`;
-      catalog.textContent = `メーカー希望価格：${yen(currentRange.catalogMin)}〜${yen(currentRange.catalogMax)}`;
       summary.innerHTML = `<div><dt>商品</dt><dd>${product.name}</dd></div><div><dt>幅</dt><dd>${cleanOption(selections.width)}</dd></div><div><dt>奥行</dt><dd>${cleanOption(selections.depth)}</dd></div><div><dt>高さ</dt><dd>未定（現地で確認）</dd></div><div><dt>本体参考価格</dt><dd>${yen(currentRange.priceMin)}〜${yen(currentRange.priceMax)}（税込）</dd></div>`;
       button.disabled = false;
       saveCurrentState();
       if (shouldRecord) record('wooddeck_price_range_result', { product_id: product.id, reference_price_min: currentRange.priceMin, reference_price_max: currentRange.priceMax, height_unknown: true });
     } else {
       reference.textContent = `${yen(product.referencePriceMin)}〜${yen(product.referencePriceMax)}`;
-      catalog.textContent = `メーカー希望価格：${yen(product.catalogPriceMin)}〜${yen(product.catalogPriceMax)}`;
       button.disabled = true;
     }
   }

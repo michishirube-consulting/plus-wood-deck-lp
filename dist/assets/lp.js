@@ -100,7 +100,6 @@
   const inlineButtons = [...document.querySelectorAll('.js-line:not([data-location="fixed"])')];
   const heroButton = document.querySelector('[data-location="hero"]');
   const message = document.getElementById('consultationMessage');
-  const copyStatus = document.getElementById('copyStatus');
   const selectionNote = document.getElementById('selectionNote');
   const clearSelection = document.getElementById('clearSelection');
   const selectionLive = document.getElementById('selectionLive');
@@ -229,7 +228,7 @@
       }
     }
     message.textContent = consultationText();
-    fixedContext.textContent = references.length ? '選んだ内容をLINEへ引き継げます' : '市区町村と、庭でしたいことから';
+    fixedContext.hidden = !references.length;
     document.querySelectorAll('[data-select-plan]').forEach(button => {
       const active = button.dataset.selectPlan === selectedPlan;
       button.setAttribute('aria-pressed', String(active));
@@ -246,7 +245,6 @@
       button.classList.toggle('selected', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    copyStatus.textContent = '';
     saveSelection();
     queueFixed();
   }
@@ -266,7 +264,7 @@
     if (input) input.checked = true;
   }
 
-  async function copyConsultation(showStatus = true) {
+  async function copyConsultation() {
     const text = consultationText();
     let copied = false;
     if (navigator.clipboard && window.isSecureContext) {
@@ -284,11 +282,6 @@
       field.select();
       try { copied = document.execCommand('copy'); } catch { copied = false; }
       field.remove();
-    }
-    if (showStatus) {
-      copyStatus.textContent = copied
-        ? 'コピーしました。LINEのトーク画面に貼り付けて送ってください。'
-        : 'コピーできませんでした。表示された相談内容を選択してコピーしてください。';
     }
     if (copied) record('wooddeck_consultation_copy', { plan_id: selectedPlan || 'unselected', size_example: selectedSize || 'unselected', intent_id: selectedIntent });
     return copied;
@@ -311,7 +304,7 @@
       } else if (lineId) {
         window.location.assign('https://line.me/R/oaMessage/' + lineId + '/?' + encodeURIComponent(consultationText()));
       } else if (lineUrl) {
-        const copied = await copyConsultation(false);
+        const copied = await copyConsultation();
         lineDialogMessage.textContent = consultationText();
         lineDialogStatus.textContent = copied ? 'STEP 1　相談内容をコピーしました' : '相談内容を確認してください';
         lineDialogCopy.textContent = '相談内容をもう一度コピー';
@@ -330,7 +323,7 @@
 
   lineDialogOpen?.addEventListener('click', () => record('wooddeck_line_open', { source: 'handoff_dialog' }));
   lineDialogCopy?.addEventListener('click', async () => {
-    const copied = await copyConsultation(false);
+    const copied = await copyConsultation();
     lineDialogCopy.textContent = copied ? 'コピーしました' : 'コピーできませんでした';
   });
   clearPriceSelection?.addEventListener('click', () => {
@@ -393,6 +386,7 @@
         item.tabIndex = active ? 0 : -1;
       });
       document.querySelectorAll('[data-size-card]').forEach(card => { card.hidden = card.dataset.sizeCard !== size; });
+      document.querySelectorAll('[data-size-price]').forEach(block => { block.hidden = block.dataset.sizePrice !== size; });
       record('wooddeck_size_tab', { size_example: size });
       queueFixed();
     });
@@ -445,7 +439,6 @@
     renderSelection();
     selectionLive.textContent = '選択した悩み・形・広さを外しました。';
   });
-  document.querySelector('[data-copy]').addEventListener('click', () => copyConsultation());
 
   const swipeCounterIds = {
     modelScroller: 'modelSwipeCount',
@@ -455,6 +448,8 @@
   document.querySelectorAll('.consult-model-list, .portfolio-list').forEach(scroller => {
     const counter = document.getElementById(swipeCounterIds[scroller.id]);
     const cards = [...scroller.children].filter(card => card.matches('article'));
+    const chips = [...document.querySelectorAll('[data-scroller="' + scroller.id + '"] [data-chip-index]')];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let scrollFrame = 0;
     const updateSwipeCount = () => {
       scrollFrame = 0;
@@ -463,7 +458,14 @@
       const gap = parseFloat(styles.columnGap || styles.gap) || 0;
       const index = Math.max(0, Math.min(cards.length - 1, Math.round(scroller.scrollLeft / (cards[0].offsetWidth + gap))));
       counter.textContent = (index + 1) + ' / ' + cards.length;
+      chips.forEach(chip => chip.setAttribute('aria-pressed', String(Number(chip.dataset.chipIndex) === index)));
     };
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      const card = cards[Number(chip.dataset.chipIndex)];
+      if (!card) return;
+      scroller.scrollTo({ left: card.offsetLeft - cards[0].offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+      record('wooddeck_model_chip', { model_index: Number(chip.dataset.chipIndex) + 1 });
+    }));
     scroller.addEventListener('scroll', () => {
       if (!scrollFrame) scrollFrame = requestAnimationFrame(updateSwipeCount);
     }, { passive: true });

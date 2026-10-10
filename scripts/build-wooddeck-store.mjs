@@ -17,6 +17,7 @@ const imageMetaById = {
 
 const yen = value => `${Number(value).toLocaleString('ja-JP')}円`;
 const cleanDescription = value => String(value || '').replace(/^.+?の販売情報\s*/, '');
+const leadSentence = value => (String(value).match(/^[^。]*。/) || [String(value)])[0];
 const escapeHtml = value => String(value).replace(/[&<>\"]/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
 }[character]));
@@ -62,7 +63,7 @@ function head({ title, description, canonical, image, jsonLd }) {
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/webp" href="${canonical.includes('/products/') ? '../../../' : '../'}assets/brand/plus-wood-deck-logo.webp">
   <link rel="stylesheet" href="${canonical.includes('/products/') ? '../../../' : '../'}assets/fonts/plus-rounded.css">
-  <link rel="stylesheet" href="${canonical.includes('/products/') ? '../../../' : '../'}assets/shop.css?v=20260928-market2">
+  <link rel="stylesheet" href="${canonical.includes('/products/') ? '../../../' : '../'}assets/shop.css?v=20261010-review">
   <script type="application/ld+json">${jsonForHtml(jsonLd)}</script>
 </head>`;
 }
@@ -113,7 +114,7 @@ const categoryHtml = `${head({
 <section class="category-consult"><p class="shop-kicker">商品が決まっていなくても大丈夫</p><h2>庭でしたいことから<br>相談できます。</h2><p>「2人でお茶をしたい」「洗濯をしやすくしたい」など、使い方から形・広さ・費用を整理します。</p><button class="shop-line js-shop-line" type="button" data-location="category">LINEで形と費用を相談する</button><p class="shop-note">市区町村と、庭でしたいことをひとこと。</p></section>
 </main>${footer('../')}</div>
 ${lineDialog}
-<script src="../site-config.js"></script><script src="../assets/consultation-state.js?v=20260928-handoff3"></script><script src="../assets/shop.js?v=20260928-handoff3"></script></body></html>`;
+<script src="../site-config.js"></script><script src="../assets/consultation-state.js?v=20260928-handoff3"></script><script src="../assets/shop.js?v=20261010-review"></script></body></html>`;
 mkdirSync('dist/wooddeck', { recursive: true });
 writeFileSync('dist/wooddeck/index.html', categoryHtml);
 
@@ -150,8 +151,8 @@ for (const product of products) {
 <body><div class="shop-shell">${header(relativeRoot)}
 <main><nav class="breadcrumbs" aria-label="パンくず"><a href="${relativeRoot}">ホーム</a><span aria-hidden="true">›</span><a href="${relativeRoot}wooddeck/">ウッドデッキ商品</a><span aria-hidden="true">›</span><span>${escapeHtml(product.productName)}</span></nav>
 <article class="product-detail"><div class="product-image"><img src="${relativeRoot}assets/products/wood-deck-${product.id}.jpg" width="${product.imageMeta.width}" height="${product.imageMeta.height}" alt="${escapeHtml(product.productName)}"></div>
-<div class="product-intro"><p class="maker">LIXIL｜人工木デッキ</p><h1>${escapeHtml(product.productName)}</h1><p>${escapeHtml(product.cleanDescription)}</p></div>
-<section class="price-panel" aria-live="polite"><span>税込・商品本体参考価格</span><strong id="referencePrice">${yen(product.referencePriceMin)}〜${yen(product.referencePriceMax)}</strong><p id="catalogPrice">メーカー希望価格：${yen(product.catalogPriceMin)}〜${yen(product.catalogPriceMax)}</p><small>施工費、基礎、加工、ステップ、フェンス、撤去、配送などは含みません。</small></section>
+<div class="product-intro"><p class="maker">LIXIL｜人工木デッキ</p><h1>${escapeHtml(product.productName)}</h1><p>${escapeHtml(leadSentence(product.cleanDescription))}</p></div>
+<section class="price-panel" aria-live="polite"><span>税込・商品本体参考価格</span><strong id="referencePrice">${yen(product.referencePriceMin)}〜${yen(product.referencePriceMax)}</strong><small>施工費、基礎、加工、ステップ、フェンス、撤去、配送などは含みません。</small></section>
 <section class="configurator" aria-labelledby="config-title"><p class="shop-kicker">分かる範囲で本体価格を確認</p><h2 id="config-title">幅・奥行からでも<br>価格の目安が分かります。</h2><p>高さが分からない場合は価格帯で表示し、窓や地面の高さは相談時に確認できます。</p>${dimensions}</section>
 <section class="site-conditions"><details><summary>設置条件を追加すると相談がスムーズです</summary><form id="siteConditionsForm"><p>分かる項目だけで構いません。未定は空欄のままLINEで相談できます。</p><label class="city-field">施工希望地域（市区町村・任意）<input type="text" name="city" maxlength="40" autocomplete="address-level2" placeholder="例：福岡市"></label><fieldset><legend>庭でしたいこと</legend><div class="condition-grid"><label><input type="radio" name="purpose" value="ひと休み"><span>ひと休み</span></label><label><input type="radio" name="purpose" value="洗濯"><span>洗濯</span></label><label><input type="radio" name="purpose" value="2人でお茶"><span>2人でお茶</span></label><label><input type="radio" name="purpose" value="家族で食事"><span>家族で食事</span></label><label><input type="radio" name="purpose" value="まだ未定"><span>まだ未定</span></label></div></fieldset><fieldset><legend>既存のウッドデッキ</legend><div class="condition-grid"><label><input type="radio" name="existing" value="なし"><span>なし</span></label><label><input type="radio" name="existing" value="あり"><span>あり</span></label><label><input type="radio" name="existing" value="わからない"><span>わからない</span></label></div></fieldset><fieldset><legend>設置場所の地面</legend><div class="condition-grid"><label><input type="radio" name="ground" value="土"><span>土</span></label><label><input type="radio" name="ground" value="砂利"><span>砂利</span></label><label><input type="radio" name="ground" value="コンクリート・タイル"><span>コンクリート・タイル</span></label><label><input type="radio" name="ground" value="わからない"><span>わからない</span></label></div></fieldset><fieldset><legend>一緒に相談したいもの</legend><div class="condition-grid"><label><input type="checkbox" name="extras" value="ステップ"><span>ステップ</span></label><label><input type="checkbox" name="extras" value="フェンス・目隠し"><span>フェンス・目隠し</span></label><label><input type="checkbox" name="extras" value="床下の防草"><span>床下の防草</span></label><label><input type="checkbox" name="extras" value="屋根"><span>屋根</span></label></div></fieldset></form></details></section>
 <section class="selected-summary"><h2>この条件で相談する</h2><dl id="selectionSummary"><div><dt>商品</dt><dd>${escapeHtml(product.productName)}</dd></div><div><dt>サイズ</dt><dd>幅・奥行を選び、高さは分かる範囲で選択してください</dd></div></dl><button class="shop-line js-shop-line" type="button" data-location="product-result" disabled>選択内容をLINEで相談する</button><p class="shop-note">高さ・設置条件・写真は後からでOK。分かる内容だけ相談文に入ります。</p><a class="return-lp" href="${relativeRoot}#message-builder">LPで選んだ形・用途もまとめて確認する</a></section>
@@ -159,7 +160,7 @@ for (const product of products) {
 <section class="related"><h2>ほかの商品も見る</h2><div>${related}</div><a class="back-products" href="${relativeRoot}wooddeck/">4商品を比較する</a></section></article>
 </main>${footer(relativeRoot)}</div>
 ${lineDialog}
-<script id="wooddeckProductData" type="application/json">${jsonForHtml(safeProduct)}</script><script src="${relativeRoot}site-config.js"></script><script src="${relativeRoot}assets/consultation-state.js?v=20260928-handoff3"></script><script src="${relativeRoot}assets/shop.js?v=20260928-handoff3"></script></body></html>`;
+<script id="wooddeckProductData" type="application/json">${jsonForHtml(safeProduct)}</script><script src="${relativeRoot}site-config.js"></script><script src="${relativeRoot}assets/consultation-state.js?v=20260928-handoff3"></script><script src="${relativeRoot}assets/shop.js?v=20261010-review"></script></body></html>`;
   const directory = `dist/products/wooddeck/${product.publicSlug}`;
   mkdirSync(directory, { recursive: true });
   writeFileSync(`${directory}/index.html`, productHtml);

@@ -68,41 +68,11 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .cta-note{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7}
 .cta-wrap{margin-top:22px}
 .area-note{font-size:13px;text-align:center;margin-top:8px;color:var(--ink-2)}
-.hero-role-note{margin-top:10px;padding-top:10px;border-top:1px solid #ded8ce;font-size:12px;line-height:1.75;text-align:center;color:var(--muted)}
-.hero-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.hero-shortcuts a{display:flex;align-items:center;justify-content:space-between;gap:5px;min-height:44px;font-size:13px;font-weight:700;line-height:1.6;text-decoration:none;border-bottom:1px solid #d9d3c8;color:var(--ink-2)}
-.hero-shortcuts span{color:var(--brown)}
 .price-link{position:relative;display:block;min-height:57px;margin-top:13px;padding:9px 38px 9px 13px;border:1px solid #d6cbbb;border-radius:10px;background:#fff;color:var(--ink);text-decoration:none}
 .price-link span{display:block;color:var(--muted);font-size:11px;line-height:1.5}
 .price-link strong{display:block;margin-top:1px;color:var(--brown);font-size:14px;line-height:1.6}
 .price-link i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:20px;font-style:normal;color:var(--brown)}
-.consult-result{padding:28px 20px;background:#fff;border-bottom:1px solid var(--line)}
-.consult-result h2{font-size:22px}
-.consult-result .section-lead{font-size:13px;line-height:1.75;margin-top:8px}
-.consult-visual-pair{display:grid;gap:10px;margin-top:16px}
-.consult-scene,.consult-mini-plan{position:relative;overflow:hidden;border:1px solid #ded5c8;border-radius:11px;background:var(--ivory)}
-.consult-scene img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
-.consult-scene figcaption,.consult-mini-plan figcaption{display:flex;gap:8px;align-items:center;padding:9px 11px;color:var(--ink-2);font-size:11px;line-height:1.55}
-.consult-scene figcaption span,.consult-mini-plan figcaption span{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:var(--brown);color:#fff;font-size:9px;font-weight:700}
-.consult-mini-plan{padding-top:7px;background:#fbf8f2}
-.consult-mini-plan svg{display:block;width:100%;height:auto;font-family:var(--font-body);font-size:10px;fill:var(--ink-2)}
-.consult-mini-plan .plan-room{fill:#e4e9e1}.consult-mini-plan .plan-deck{fill:#dfc39d;stroke:#8f6841;stroke-width:1.5px}
-.consult-mini-plan .plan-board{fill:none;stroke:#c29a69;stroke-width:1px}.consult-mini-plan .plan-chair,.consult-mini-plan .plan-table{fill:#fff;stroke:#48644b;stroke-width:2px}
-.consult-mini-plan .plan-step{fill:none;stroke:#8f6841;stroke-width:3px}.consult-mini-plan .plan-size{fill:#6f3d16;font-size:11px;font-weight:700}
 .visual-note{margin-top:7px;color:var(--muted);font-size:10px;line-height:1.65}
-.consult-result ol{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:16px 0 0;padding:0;list-style:none}
-.consult-result li{min-width:0;padding:10px 6px;border-radius:8px;background:var(--sage);text-align:center}
-.consult-result li span{display:block;color:var(--brown);font-size:10px;font-weight:700}
-.consult-result li strong{display:block;margin-top:3px;font-size:12px;line-height:1.55}
-.consult-result>p:last-child{margin-top:11px;color:var(--ink-2);font-size:12px;line-height:1.7}
-.consult-output{margin-top:14px;padding:14px;border:1px solid #dfd5c8;border-radius:10px;background:var(--ivory)}
-.consult-output summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none}
-.consult-output summary::-webkit-details-marker{display:none}.consult-output summary::after{content:"＋";color:var(--brown);font-size:18px}.consult-output[open] summary::after{content:"−"}
-.consult-output>p{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:13px}
-.consult-output>p span{padding:3px 7px;border-radius:999px;background:var(--brown);color:#fff;font-size:10px;font-weight:700}
-.consult-output dl{margin:10px 0 0;border-top:1px solid #e4d9cb}
-.consult-output dl div{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #e4d9cb;font-size:11px;line-height:1.55}
-.consult-output dt{color:var(--muted)}.consult-output dd{margin:0;font-weight:700}.consult-output small{display:block;margin-top:8px;color:var(--muted);font-size:10px;line-height:1.6}
 .life-section{padding:28px 20px;background:var(--paper)}
 .life-section h2{font-size:23px}
 .life-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
@@ -142,7 +112,6 @@ h3{font-size:18px;line-height:1.65;letter-spacing:-.02em}
 .budget-answer a{font-weight:700;color:var(--brown)}
 .cases-foot .cta-wrap{margin-top:15px}
 .price-link-block{margin-top:17px}
-.price-scope-note{margin-top:7px;color:var(--muted);font-size:11px;line-height:1.65}
 .price-example{margin-top:17px;padding:15px;border:1px solid #d7c9b7;border-radius:11px;background:#fff}
 .price-example>span{display:block;color:var(--brown);font-size:11px;font-weight:750;letter-spacing:.04em;line-height:1.5}
 .price-example>strong{display:block;margin-top:2px;color:var(--ink);font-family:var(--font-display);font-size:25px;letter-spacing:-.035em;line-height:1.4}
@@ -331,7 +300,7 @@ dialog::backdrop{background:#292d2cb3}
 .plan-dialog .note{margin-top:12px}
 .plan-dialog .dialog-inner{padding-top:16px}
 @media(min-width:700px){body{padding:24px 0}.site-shell{border-radius:12px;overflow:clip}.fixed-cta{bottom:0}}
-@media(max-width:360px){h1{font-size:26px}section{padding-inline:16px}.hero-content,.topbar,.life-section,.cases-head,.cases-foot,.topic-nav{padding-inline:16px}.topbar{gap:10px}.brand-logo{width:42px;height:73px}.brand-tagline{font-size:16px}.header-price-link{padding-inline:8px}.hero-content:before{left:16px}.cta{font-size:14px;gap:7px;padding-inline:10px}.line-symbol{width:24px;height:24px;flex-basis:24px}.consult-result{padding-inline:16px}.consult-result li{padding-inline:3px}.consult-result li strong{font-size:11px}.final-photo{margin-inline:-16px}.pattern-copy h3{font-size:19px}.portfolio-filters{gap:6px}.portfolio-filters button{font-size:12px;padding-inline:8px}.footer-identity{gap:16px}.footer-brand{font-size:16px}}
+@media(max-width:360px){h1{font-size:26px}section{padding-inline:16px}.hero-content,.topbar,.life-section,.cases-head,.cases-foot,.topic-nav{padding-inline:16px}.topbar{gap:10px}.brand-logo{width:42px;height:73px}.brand-tagline{font-size:16px}.header-price-link{padding-inline:8px}.hero-content:before{left:16px}.cta{font-size:14px;gap:7px;padding-inline:10px}.line-symbol{width:24px;height:24px;flex-basis:24px}.final-photo{margin-inline:-16px}.pattern-copy h3{font-size:19px}.portfolio-filters{gap:6px}.portfolio-filters button{font-size:12px;padding-inline:8px}.footer-identity{gap:16px}.footer-brand{font-size:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
 
 /* Company, privacy and service information pages */
@@ -413,7 +382,7 @@ section{padding-block:44px}
 .comparison-values p::before{display:block;margin-bottom:3px;font-size:11px;font-weight:700;color:var(--green-dark)}
 .comparison-values p:first-child::before{content:"人工木（樹脂木）"}
 .comparison-values p:last-child::before{content:"天然木";color:var(--brown)}
-.material-details p{padding-bottom:13px;font-size:13px;line-height:1.8;color:var(--ink-2)}
+.material-details>p{padding-bottom:13px;font-size:13px;line-height:1.8;color:var(--ink-2)}
 
 .check-section{padding-block:40px}
 .check-list{margin-top:14px}
@@ -439,11 +408,10 @@ section{padding-block:44px}
 .pain-thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s ease}
 .pain-options button:hover .pain-thumb img{transform:scale(1.025)}
 .pain-copy{display:block;padding:9px 10px 0}
-.pain-copy b{display:block;color:var(--brown);font-family:var(--font-display);font-size:10px}
 .pain-copy strong{display:block;margin-top:3px;font-size:13px;line-height:1.5}
 .pain-copy small{display:block;margin-top:4px;color:var(--muted);font-size:10px;font-weight:500;line-height:1.55}
 .pain-options button.selected,.pain-options button[aria-pressed="true"]{border-color:var(--green-dark);background:#edf4eb;color:var(--green-dark);box-shadow:inset 0 0 0 1px var(--green-dark)}
-.pain-options button.selected .pain-copy b,.pain-options button[aria-pressed="true"] .pain-copy b{color:var(--green-dark)}
+
 .pain-options button.selected .pain-thumb,.pain-options button[aria-pressed="true"] .pain-thumb{position:relative}
 .pain-options button.selected .pain-thumb::after,.pain-options button[aria-pressed="true"] .pain-thumb::after{content:"選択中 ✓";position:absolute;right:6px;bottom:6px;padding:3px 7px;border-radius:999px;background:var(--green-dark);color:#fff;font-size:9px;font-weight:700}
 .pain-options button:focus-visible{outline:3px solid #ad723d;outline-offset:3px}
@@ -546,3 +514,22 @@ section{padding-block:44px}
 .additional-patterns{margin-top:16px}
 .portfolio-list:focus-visible,.consult-model-list:focus-visible{outline:3px solid #ad723d;outline-offset:3px}
 @media(max-width:360px){.consult-model-list,.portfolio-list{margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}}
+
+/* 2026-10-10 review: Japanese headings break only at <wbr> and punctuation (same result in Safari and Chrome) */
+h1,h2,h3,.pain-copy strong{word-break:keep-all;overflow-wrap:anywhere}
+/* size and cost: what the consultation clarifies (merged from the former section 04) */
+.benefits-title{margin:0 0 6px;color:var(--ink);font-size:13px;font-weight:700;line-height:1.6}
+.size-benefits{margin:0 0 14px}
+.size-benefits li{font-size:13px;line-height:1.6}
+/* consult models: every example visible as a chip */
+.model-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:10px}
+.model-chips button{min-height:40px;padding:6px 8px;border:1px solid #d8c9b5;border-radius:999px;background:#fff;color:var(--ink-2);font-size:12px;font-weight:700;line-height:1.4}
+.model-chips button[aria-pressed="true"]{border-color:var(--brown);background:var(--brown);color:#fff}
+.model-chips button:focus-visible{outline:3px solid #ad723d;outline-offset:2px}
+/* message builder as its own section */
+.builder-section{background:var(--sage)}
+.builder-section .portfolio-choice{margin-top:0;padding:0;background:none;border-radius:0}
+.builder-section h2{font-size:clamp(21px,5.8vw,24px)}
+/* materials: one row open, the rest folded */
+.material-details+.material-details{margin-top:0;border-top:0}
+.material-details .comparison-values{padding-bottom:14px}

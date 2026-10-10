@@ -122,6 +122,22 @@ for (const [path, url] of storePages) {
   }
 }
 requireLaunch(existsSync('data/wooddeck-products.source.json'), '商品価格のソースデータがありません。');
+if (existsSync('data/wooddeck-products.source.json')) {
+  const products = JSON.parse(readFileSync('data/wooddeck-products.source.json', 'utf8'));
+  const priceExamples = [...html.matchAll(/<div class="price-example"([^>]*)>([\s\S]*?)<\/div>/g)];
+  requireLaunch(priceExamples.length >= 3, 'LPのサイズ別価格例（3件）が見つかりません。');
+  for (const [, attributes, body] of priceExamples) {
+    const attribute = name => attributes.match(new RegExp(`data-${name}="([^"]+)"`))?.[1] ?? '';
+    const product = products.find(item => item.productName === attribute('product'));
+    const variant = product?.variants.find(item => item.valid !== false
+      && item.selections.width === `幅:${attribute('width')}mm`
+      && item.selections.depth === `奥行:${attribute('depth')}mm`
+      && item.selections.height === attribute('height'));
+    const expected = variant ? Math.round(variant.catalogPrice * product.rate) : NaN;
+    requireLaunch(Number.isFinite(expected) && body.includes(`${expected.toLocaleString('ja-JP')}円`),
+      `LPの価格例（${attribute('product')} 幅${attribute('width')}×奥行${attribute('depth')}）が商品データと一致しません。`);
+  }
+}
 requireLaunch(existsSync('dist/assets/shop.js') && existsSync('dist/assets/shop.css'), '商品ページ用のCSSまたはJavaScriptがありません。');
 requireLaunch(existsSync('dist/assets/consultation-state.js'), '相談番号・流入情報の共通JavaScriptがありません。');
 requireLaunch(existsSync('dist/line/consult/index.html'), 'LINE相談フォームがありません。');
